@@ -1,0 +1,31 @@
+{
+  "name": "rotas-sz-bff",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only main.ts",
+    "dev:build": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "API do Rotas-SZ com Clean Architecture",
+  "dependencies": {
+    "bcrypt": "5.1.1",
+    "dotenv": "^17.4.2",
+    "mongoose": "6.13.9",
+    "restify": "6.3.4",
+    "restify-errors": "5.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "6.0.0",
+    "@types/node": "^25.9.1",
+    "@types/restify": "5.0.6",
+    "@types/restify-errors": "4.3.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}
