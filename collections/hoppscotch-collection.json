@@ -1,0 +1,126 @@
+{
+  "v": 2,
+  "name": "Rotas SZ BFF",
+  "folders": [
+    {
+      "v": 1,
+      "name": "Clientes",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1",
+          "id": "req-clientes-get-all",
+          "name": "Listar todos os clientes",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/clientes",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "none",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
+          "id": "req-clientes-get-by-id",
+          "name": "Buscar cliente por ID",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "none",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
+          "id": "req-clientes-post",
+          "name": "Adicionar cliente",
+          "method": "POST",
+          "endpoint": "http://localhost:3001/clientes",
+          "params": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "active": true
+            }
+          ],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "none",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"codigoExterno\": \"COD001\",\n  \"dataCadastro\": \"2024-01-15T10:00:00.000Z\",\n  \"nome\": \"João Silva\",\n  \"foto\": \"\",\n  \"celular\": \"(11) 99999-8888\",\n  \"whatsapp\": \"(11) 99999-8888\",\n  \"telegram\": \"@joaosilva\",\n  \"email\": \"joao@email.com\",\n  \"cep\": \"01310-100\",\n  \"logradouro\": \"Avenida Paulista\",\n  \"numero\": \"1000\",\n  \"complemento\": \"Apto 21\",\n  \"bairro\": \"Bela Vista\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pontoDeReferencia\": \"Próximo ao MASP\",\n  \"observacao\": \"Cliente preferencial\"\n}"
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
+          "id": "req-clientes-patch",
+          "name": "Atualizar cliente (parcial)",
+          "method": "PATCH",
+          "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "params": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "active": true
+            }
+          ],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "none",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"nome\": \"João Silva Atualizado\",\n  \"celular\": \"(11) 88888-7777\",\n  \"cidade\": \"Campinas\",\n  \"observacao\": \"Observação atualizada\"\n}"
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
+          "id": "req-clientes-delete",
+          "name": "Remover cliente",
+          "method": "DELETE",
+          "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "none",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": []
+        }
+      ]
+    }
+  ],
+  "requests": []
+}
