@@ -8,65 +8,26 @@
       "folders": [],
       "requests": [
         {
-          "v": "1",
-          "id": "req-clientes-get-all",
-          "name": "Listar todos os clientes",
-          "method": "GET",
-          "endpoint": "http://localhost:3001/clientes",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "none",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": []
+          "v": "1", "id": "clientes-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/clientes",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
         },
         {
-          "v": "1",
-          "id": "req-clientes-get-by-id",
-          "name": "Buscar cliente por ID",
-          "method": "GET",
-          "endpoint": "http://localhost:3001/clientes/<<id>>",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "none",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": []
+          "v": "1", "id": "clientes-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
         },
         {
-          "v": "1",
-          "id": "req-clientes-post",
-          "name": "Adicionar cliente",
-          "method": "POST",
-          "endpoint": "http://localhost:3001/clientes",
+          "v": "1", "id": "clientes-post", "name": "Adicionar cliente",
+          "method": "POST", "endpoint": "http://localhost:3001/clientes",
           "params": [],
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/json",
-              "active": true
-            }
-          ],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "none",
-            "authActive": true
-          },
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
           "body": {
             "contentType": "application/json",
             "body": "{\n  \"codigoExterno\": \"COD001\",\n  \"dataCadastro\": \"2024-01-15T10:00:00.000Z\",\n  \"nome\": \"João Silva\",\n  \"foto\": \"\",\n  \"celular\": \"(11) 99999-8888\",\n  \"whatsapp\": \"(11) 99999-8888\",\n  \"telegram\": \"@joaosilva\",\n  \"email\": \"joao@email.com\",\n  \"cep\": \"01310-100\",\n  \"logradouro\": \"Avenida Paulista\",\n  \"numero\": \"1000\",\n  \"complemento\": \"Apto 21\",\n  \"bairro\": \"Bela Vista\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pontoDeReferencia\": \"Próximo ao MASP\",\n  \"observacao\": \"Cliente preferencial\"\n}"
@@ -74,49 +35,450 @@
           "requestVariables": []
         },
         {
-          "v": "1",
-          "id": "req-clientes-patch",
-          "name": "Atualizar cliente (parcial)",
-          "method": "PATCH",
-          "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "v": "1", "id": "clientes-patch", "name": "Atualizar cliente",
+          "method": "PATCH", "endpoint": "http://localhost:3001/clientes/<<id>>",
           "params": [],
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/json",
-              "active": true
-            }
-          ],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "none",
-            "authActive": true
-          },
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"nome\": \"João Silva Atualizado\",\n  \"celular\": \"(11) 88888-7777\",\n  \"cidade\": \"Campinas\",\n  \"observacao\": \"Observação atualizada\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "clientes-delete", "name": "Remover cliente",
+          "method": "DELETE", "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Checklist Assistência",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "checklist-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/checklist-assistencia",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "checklist-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/checklist-assistencia/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "checklist-post", "name": "Adicionar checklist",
+          "method": "POST", "endpoint": "http://localhost:3001/checklist-assistencia",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
           "body": {
             "contentType": "application/json",
-            "body": "{\n  \"nome\": \"João Silva Atualizado\",\n  \"celular\": \"(11) 88888-7777\",\n  \"cidade\": \"Campinas\",\n  \"observacao\": \"Observação atualizada\"\n}"
+            "body": "{\n  \"pedidoId\": \"PED-2024-001\",\n  \"codigoCliente\": \"CLI001\",\n  \"idCliente\": \"abc123\",\n  \"nomeCliente\": \"João Silva\",\n  \"numeroSerie\": \"SN-00001\",\n  \"modelo\": \"Purificador Plus 20L\",\n  \"botaoAguaGelada\": true,\n  \"botaoAguaGeladaFuncionando\": true,\n  \"botaoAguaNatural\": true,\n  \"botaoAguaNaturalFuncionando\": false,\n  \"painelSemTrinca\": true,\n  \"painelSemViolacaoEncaixes\": true,\n  \"painelComAdesivoFrontal\": true,\n  \"painelComColoracaoAmarelado\": false,\n  \"torneiraPingando\": false,\n  \"torneiraComPoucoVazao\": false,\n  \"semATorneira\": false,\n  \"comAPingadeira\": true,\n  \"pingadeiraAmassada\": false,\n  \"pingadeiraSemGrade\": false,\n  \"pingadeiraArranhada\": false,\n  \"gabineteComFerrugem\": false,\n  \"pinturaDesgastada\": false,\n  \"amassadoNoGabinete\": false,\n  \"gabineteComCaixaEletrica\": false,\n  \"ausenciaFiltroCompartimento\": false,\n  \"ausenciaTampaCompartimento\": false,\n  \"ausenciaEngate\": false,\n  \"violacaoEncaixeCompartimento\": false,\n  \"contemTodosPedais\": true,\n  \"condensadorSemArranhoes\": true,\n  \"condensadorSemAmassado\": true,\n  \"condensadorSemFerrugem\": true,\n  \"compressorSemBarulho\": true,\n  \"caboCortado\": false,\n  \"plugMachoTrocado\": false,\n  \"caboResecado\": false,\n  \"maisInformacoes\": \"Equipamento em bom estado geral\",\n  \"descricaoDoDefeito\": \"Botão de água natural com falha intermitente\",\n  \"dataChecklist\": \"2024-05-15T10:30:00.000Z\"\n}"
           },
           "requestVariables": []
         },
         {
-          "v": "1",
-          "id": "req-clientes-delete",
-          "name": "Remover cliente",
-          "method": "DELETE",
-          "endpoint": "http://localhost:3001/clientes/<<id>>",
+          "v": "1", "id": "checklist-patch", "name": "Atualizar checklist",
+          "method": "PATCH", "endpoint": "http://localhost:3001/checklist-assistencia/<<id>>",
           "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "none",
-            "authActive": true
-          },
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"botaoAguaNaturalFuncionando\": true,\n  \"descricaoDoDefeito\": \"Defeito corrigido\",\n  \"maisInformacoes\": \"Botão substituído\"\n}" },
+          "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Checklist Assistência Água Natural",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "checklist-an-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "checklist-an-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "checklist-an-post", "name": "Adicionar checklist",
+          "method": "POST", "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
           "body": {
-            "contentType": null,
-            "body": null
+            "contentType": "application/json",
+            "body": "{\n  \"pedidoId\": \"PED-2024-001\",\n  \"codigoCliente\": \"CLI001\",\n  \"idCliente\": \"abc123\",\n  \"nomeCliente\": \"João Silva\",\n  \"numeroSerie\": \"SN-00001\",\n  \"modelo\": \"Bebedouro Água Natural 10L\",\n  \"trincado\": false,\n  \"volante\": true,\n  \"adesivoDesgastado\": false,\n  \"amarelado\": false,\n  \"torneira\": true,\n  \"rabicho\": false,\n  \"maisInformacoes\": \"Equipamento em bom estado\",\n  \"descricaoDoDefeito\": \"Torneira com vazamento leve\",\n  \"dataChecklist\": \"2024-05-15T10:30:00.000Z\"\n}"
           },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "checklist-an-patch", "name": "Atualizar checklist",
+          "method": "PATCH", "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"torneira\": false,\n  \"descricaoDoDefeito\": \"Torneira substituída — sem vazamento\"\n}" },
+          "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Funcionários",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "func-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/funcionarios",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "func-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/funcionarios/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "func-post", "name": "Adicionar funcionário",
+          "method": "POST", "endpoint": "http://localhost:3001/funcionarios",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"funcao\": \"Técnico\",\n  \"codigoExterno\": \"TEC001\",\n  \"nome\": \"Carlos Silva\",\n  \"email\": \"carlos@rotassz.com\",\n  \"foto\": \"\",\n  \"assinatura\": \"\"\n}"
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "func-patch", "name": "Atualizar funcionário",
+          "method": "PATCH", "endpoint": "http://localhost:3001/funcionarios/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"funcao\": \"Supervisor\",\n  \"email\": \"carlos.supervisor@rotassz.com\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "func-delete", "name": "Remover funcionário",
+          "method": "DELETE", "endpoint": "http://localhost:3001/funcionarios/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Motivos de Retorno",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "mr-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/motivos-retorno",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "mr-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/motivos-retorno/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "mr-post", "name": "Adicionar motivo",
+          "method": "POST", "endpoint": "http://localhost:3001/motivos-retorno",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"descricao\": \"Cliente ausente\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "mr-patch", "name": "Atualizar motivo",
+          "method": "PATCH", "endpoint": "http://localhost:3001/motivos-retorno/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"descricao\": \"Cliente não encontrado no endereço\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "mr-delete", "name": "Remover motivo",
+          "method": "DELETE", "endpoint": "http://localhost:3001/motivos-retorno/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Motivos de Situação",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "ms-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/motivos-situacao",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ms-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/motivos-situacao/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ms-post", "name": "Adicionar motivo",
+          "method": "POST", "endpoint": "http://localhost:3001/motivos-situacao",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"descricao\": \"Endereço não localizado\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ms-patch", "name": "Atualizar motivo",
+          "method": "PATCH", "endpoint": "http://localhost:3001/motivos-situacao/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"descricao\": \"Endereço incorreto no cadastro\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ms-delete", "name": "Remover motivo",
+          "method": "DELETE", "endpoint": "http://localhost:3001/motivos-situacao/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Pedidos",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "ped-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/pedidos",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ped-get-filter", "name": "Listar por mês/ano",
+          "method": "GET", "endpoint": "http://localhost:3001/pedidos",
+          "params": [
+            { "key": "month", "value": "5", "active": true },
+            { "key": "year", "value": "2024", "active": true }
+          ],
+          "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ped-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/pedidos/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ped-put", "name": "Salvar pedido — PUT com ID do app",
+          "method": "PUT", "endpoint": "http://localhost:3001/pedidos/<<id_gerado_pelo_app>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"codigoCliente\": \"CLI001\",\n  \"codigoExterno\": \"EXT001\",\n  \"idCliente\": \"abc123\",\n  \"nomeCliente\": \"João Silva\",\n  \"codigoTecnico\": \"TEC001\",\n  \"codigoVendedor\": \"VEN001\",\n  \"nomeVendedor\": \"Maria Vendas\",\n  \"nomeTecnico\": \"Carlos Técnico\",\n  \"dataRomaneio\": \"2024-05-15T08:00:00.000Z\",\n  \"dataVisita\": null,\n  \"pendencia\": \"\",\n  \"prazoPagamento\": \"30 dias\",\n  \"situacao\": 1,\n  \"frete\": 0.0,\n  \"acrescimo\": 0.0,\n  \"desconto\": 0.0,\n  \"observacao\": \"Entregar no período da manhã\",\n  \"situacaoRomaneio\": \"PENDENTE\",\n  \"tiposPagamento\": [\n    { \"id\": \"tp1\", \"descricao\": \"Pix\", \"valor\": 350.00, \"quantidade\": 1 }\n  ],\n  \"tipoVenda\": \"VENDA\",\n  \"tipoPedido\": \"INSTALACAO\",\n  \"turno\": \"MANHÃ\",\n  \"pedidoTeste\": \"0\",\n  \"index\": 1,\n  \"cliente\": null,\n  \"produtos\": [\n    {\n      \"id\": \"item1\",\n      \"idProduto\": \"prod123\",\n      \"descricao\": \"Purificador Plus 20L\",\n      \"quantidade\": 1,\n      \"precoUnitario\": 350.00,\n      \"desconto\": 0,\n      \"devolvido\": 0,\n      \"devolucaoLancada\": null,\n      \"precoMinimo\": 300.00\n    }\n  ],\n  \"servicos\": [],\n  \"fotos\": [],\n  \"assinatura\": null,\n  \"horaInstalacao\": \"08:00\",\n  \"lancado\": null,\n  \"lancadoLogistica\": null,\n  \"lancadoComercial\": null,\n  \"quemAssinou\": \"\",\n  \"transformadoEmVipzon\": false,\n  \"ordemServicoEnviada\": null,\n  \"numeroInformadoPeloTecnico\": null,\n  \"observacaoTecnico\": \"\",\n  \"enderecoCobranca\": null,\n  \"dadosPedidoDeCobranca\": null\n}"
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ped-patch", "name": "Atualizar pedido (parcial)",
+          "method": "PATCH", "endpoint": "http://localhost:3001/pedidos/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"situacao\": 2,\n  \"situacaoRomaneio\": \"ENTREGUE\",\n  \"lancado\": true,\n  \"quemAssinou\": \"João Silva\",\n  \"observacaoTecnico\": \"Instalação concluída com sucesso\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "ped-delete", "name": "Remover pedido",
+          "method": "DELETE", "endpoint": "http://localhost:3001/pedidos/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Pendências",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "pend-get-all", "name": "Listar todas",
+          "method": "GET", "endpoint": "http://localhost:3001/pendencias",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pend-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/pendencias/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pend-post", "name": "Adicionar pendência",
+          "method": "POST", "endpoint": "http://localhost:3001/pendencias",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"pedidoId\": \"PED-2024-001\",\n  \"codigoCliente\": \"CLI001\",\n  \"idCliente\": \"abc123\",\n  \"nomeCliente\": \"João Silva\",\n  \"idMotivoRetorno\": null,\n  \"pendencia\": \"INSTALAÇÃO\",\n  \"observacao\": \"Cliente solicitou reagendamento para semana que vem\"\n}"
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pend-patch", "name": "Atualizar pendência",
+          "method": "PATCH", "endpoint": "http://localhost:3001/pendencias/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"pendencia\": \"COBRANÇA\",\n  \"observacao\": \"Atualizado para cobrança pendente\",\n  \"idMotivoRetorno\": \"<<id_motivo_retorno>>\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pend-delete", "name": "Remover pendência",
+          "method": "DELETE", "endpoint": "http://localhost:3001/pendencias/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Produtos Entregue",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "pe-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/produtos-entregue",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pe-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/produtos-entregue/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pe-post", "name": "Registrar entrega",
+          "method": "POST", "endpoint": "http://localhost:3001/produtos-entregue",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"dataRomaneio\": \"2024-05-15T08:00:00.000Z\",\n  \"codigoTecnico\": \"TEC001\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pe-patch", "name": "Atualizar entrega",
+          "method": "PATCH", "endpoint": "http://localhost:3001/produtos-entregue/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"dataRomaneio\": \"2024-05-16T08:00:00.000Z\",\n  \"codigoTecnico\": \"TEC002\"\n}" },
+          "requestVariables": []
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "name": "Produtos Recebido",
+      "folders": [],
+      "requests": [
+        {
+          "v": "1", "id": "pr-get-all", "name": "Listar todos",
+          "method": "GET", "endpoint": "http://localhost:3001/produtos-recebido",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pr-get-id", "name": "Buscar por ID",
+          "method": "GET", "endpoint": "http://localhost:3001/produtos-recebido/<<id>>",
+          "params": [], "headers": [], "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null }, "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pr-post", "name": "Registrar recebimento",
+          "method": "POST", "endpoint": "http://localhost:3001/produtos-recebido",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"dataRomaneio\": \"2024-05-15T08:00:00.000Z\",\n  \"codigoTecnico\": \"TEC001\"\n}" },
+          "requestVariables": []
+        },
+        {
+          "v": "1", "id": "pr-patch", "name": "Atualizar recebimento",
+          "method": "PATCH", "endpoint": "http://localhost:3001/produtos-recebido/<<id>>",
+          "params": [],
+          "headers": [{ "key": "Content-Type", "value": "application/json", "active": true }],
+          "preRequestScript": "", "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": "application/json", "body": "{\n  \"dataRomaneio\": \"2024-05-16T08:00:00.000Z\",\n  \"codigoTecnico\": \"TEC002\"\n}" },
           "requestVariables": []
         }
       ]
