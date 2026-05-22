@@ -40,6 +40,22 @@ import { ProdutosEntregueMongooseRepository } from './src/features/produtos-entr
 import { ProdutosRecebidoController } from './src/features/produtos-recebido/presentation/produtos-recebido.controller';
 import { ProdutosRecebidoMongooseRepository } from './src/features/produtos-recebido/infra/repositories/produtos-recebido.mongoose.repository';
 
+// Produtos
+import { ProdutosController } from './src/features/produtos/presentation/produtos.controller';
+import { ProdutoMongooseRepository } from './src/features/produtos/infra/repositories/produto.mongoose.repository';
+
+// Usuários
+import { UsuariosController } from './src/features/usuarios/presentation/usuarios.controller';
+import { UsuarioMongooseRepository } from './src/features/usuarios/infra/repositories/usuario.mongoose.repository';
+
+// Visitas
+import { VisitasController } from './src/features/visitas/presentation/visitas.controller';
+import { VisitaMongooseRepository } from './src/features/visitas/infra/repositories/visita.mongoose.repository';
+
+// Títulos
+import { TitulosController } from './src/features/titulos/presentation/titulos.controller';
+import { TituloMongooseRepository } from './src/features/titulos/infra/repositories/titulo.mongoose.repository';
+
 // Composition Root — toda a injeção de dependência acontece aqui
 const server = new Server();
 
@@ -55,6 +71,10 @@ server
     new PendenciasController(new PendenciaMongooseRepository()),
     new ProdutosEntregueController(new ProdutosEntregueMongooseRepository()),
     new ProdutosRecebidoController(new ProdutosRecebidoMongooseRepository()),
+    new ProdutosController(new ProdutoMongooseRepository()),
+    new UsuariosController(new UsuarioMongooseRepository()),
+    new VisitasController(new VisitaMongooseRepository()),
+    new TitulosController(new TituloMongooseRepository()),
   ])
   .catch((error) => {
     console.error('Falha ao iniciar o servidor:', error);
