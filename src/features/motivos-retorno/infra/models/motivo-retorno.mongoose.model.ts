@@ -7,4 +7,4 @@ const motivoRetornoSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const MotivoRetornoModel = mongoose.model('MotivoRetorno', motivoRetornoSchema);
+export const MotivoRetornoModel = mongoose.model('MotivoRetorno', motivoRetornoSchema, 'motivoRetorno');

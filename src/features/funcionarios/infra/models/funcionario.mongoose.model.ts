@@ -12,4 +12,4 @@ const funcionarioSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const FuncionarioModel = mongoose.model('Funcionario', funcionarioSchema);
+export const FuncionarioModel = mongoose.model('Funcionario', funcionarioSchema, 'funcionario');

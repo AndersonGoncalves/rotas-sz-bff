@@ -30,4 +30,4 @@ const visitaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false }
 );
 
-export const VisitaModel = mongoose.model('Visita', visitaSchema);
+export const VisitaModel = mongoose.model('Visita', visitaSchema, 'visita');

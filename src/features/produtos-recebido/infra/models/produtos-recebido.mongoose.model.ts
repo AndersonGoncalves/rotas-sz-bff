@@ -8,4 +8,4 @@ const produtosRecebidoSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const ProdutosRecebidoModel = mongoose.model('ProdutosRecebido', produtosRecebidoSchema);
+export const ProdutosRecebidoModel = mongoose.model('ProdutosRecebido', produtosRecebidoSchema, 'produtos_recebido');

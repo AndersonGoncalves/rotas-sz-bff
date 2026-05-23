@@ -8,4 +8,4 @@ const produtosEntregueSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const ProdutosEntregueModel = mongoose.model('ProdutosEntregue', produtosEntregueSchema);
+export const ProdutosEntregueModel = mongoose.model('ProdutosEntregue', produtosEntregueSchema, 'produtos_entregue');

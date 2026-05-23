@@ -76,4 +76,4 @@ const pedidoSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const PedidoModel = mongoose.model('Pedido', pedidoSchema);
+export const PedidoModel = mongoose.model('Pedido', pedidoSchema, 'pedido');

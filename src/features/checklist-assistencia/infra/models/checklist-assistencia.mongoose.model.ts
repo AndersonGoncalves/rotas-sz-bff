@@ -49,4 +49,4 @@ const checklistAssistenciaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const ChecklistAssistenciaModel = mongoose.model('ChecklistAssistencia', checklistAssistenciaSchema);
+export const ChecklistAssistenciaModel = mongoose.model('ChecklistAssistencia', checklistAssistenciaSchema, 'checklist_assistencia');

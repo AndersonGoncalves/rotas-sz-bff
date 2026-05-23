@@ -19,4 +19,4 @@ const tituloSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false }
 );
 
-export const TituloModel = mongoose.model('Titulo', tituloSchema);
+export const TituloModel = mongoose.model('Titulo', tituloSchema, 'titulo');

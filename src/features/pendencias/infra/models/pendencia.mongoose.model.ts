@@ -13,4 +13,4 @@ const pendenciaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const PendenciaModel = mongoose.model('Pendencia', pendenciaSchema);
+export const PendenciaModel = mongoose.model('Pendencia', pendenciaSchema, 'pendencia');

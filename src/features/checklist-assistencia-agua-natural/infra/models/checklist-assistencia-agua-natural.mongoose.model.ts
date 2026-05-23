@@ -24,4 +24,4 @@ const checklistAguaNaturalSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const ChecklistAssistenciaAguaNaturalModel = mongoose.model('ChecklistAssistenciaAguaNatural', checklistAguaNaturalSchema);
+export const ChecklistAssistenciaAguaNaturalModel = mongoose.model('ChecklistAssistenciaAguaNatural', checklistAguaNaturalSchema, 'checklist_assistencia_agua_natural');

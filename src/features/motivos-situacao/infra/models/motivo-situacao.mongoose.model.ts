@@ -7,4 +7,4 @@ const motivoSituacaoSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const MotivoSituacaoModel = mongoose.model('MotivoSituacao', motivoSituacaoSchema);
+export const MotivoSituacaoModel = mongoose.model('MotivoSituacao', motivoSituacaoSchema, 'motivoSituacao');
