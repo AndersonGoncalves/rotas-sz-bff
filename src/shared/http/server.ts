@@ -8,16 +8,29 @@ export class Server {
   application!: restify.Server;
 
   private initializeServer(): void {
-    this.application = restify.createServer({ name: 'rotas-sz-bff' });
+    this.application = restify.createServer({
+      name: 'rotas-sz-bff',
+      formatters: {
+        'application/json': (_req, res, body) => {
+          res.setHeader('Content-Type', 'application/json; charset=utf-8');
+          if (!body) return null;
+          if (Buffer.isBuffer(body)) return body.toString('utf-8');
+          if (body instanceof Error) {
+            return JSON.stringify({ code: body.name, message: body.message });
+          }
+          return JSON.stringify(body);
+        },
+      },
+    });
 
     this.application.use(restify.plugins.queryParser());
     this.application.use(restify.plugins.bodyParser());
 
-    // CORS headers para permitir chamadas do app Flutter (web)
+    // CORS
     this.application.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
       return next();
     });
 
