@@ -60,8 +60,7 @@ import { TituloMongooseRepository } from './src/features/titulos/infra/repositor
 const server = new Server();
 
 server
-  .bootstrap([
-    new ClientesController(new ClienteMongooseRepository()),
+  .bootstrap([    
     new ChecklistAssistenciaController(new ChecklistAssistenciaMongooseRepository()),
     new ChecklistAssistenciaAguaNaturalController(new ChecklistAssistenciaAguaNaturalMongooseRepository()),
     new FuncionariosController(new FuncionarioMongooseRepository()),
@@ -70,11 +69,13 @@ server
     new PedidosController(new PedidoMongooseRepository()),
     new PendenciasController(new PendenciaMongooseRepository()),
     new ProdutosEntregueController(new ProdutosEntregueMongooseRepository()),
-    new ProdutosRecebidoController(new ProdutosRecebidoMongooseRepository()),
-    new ProdutosController(new ProdutoMongooseRepository()),
-    new UsuariosController(new UsuarioMongooseRepository()),
+    new ProdutosRecebidoController(new ProdutosRecebidoMongooseRepository()),    
     new VisitasController(new VisitaMongooseRepository()),
-    new TitulosController(new TituloMongooseRepository()),
+    //por enquanto sem Clientes, Produtos, Usuários e Títulos para focar no desenvolvimento das funcionalidades principais do sistema
+    // new ClientesController(new ClienteMongooseRepository()),
+    // new ProdutosController(new ProdutoMongooseRepository()),    
+    // new UsuariosController(new UsuarioMongooseRepository()),
+    // new TitulosController(new TituloMongooseRepository()),
   ])
   .catch((error) => {
     console.error('Falha ao iniciar o servidor:', error);
