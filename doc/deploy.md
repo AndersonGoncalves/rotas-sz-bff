@@ -289,58 +289,79 @@ New-NetFirewallRule -DisplayName "rotas-sz-bff" -Direction Inbound -Protocol TCP
 
 Docker empacota a aplicação + Node.js + todas as dependências em uma **imagem** isolada. O servidor só precisa ter o Docker instalado — não é necessário instalar Node.js nem MongoDB separadamente.
 
-### Preparar os arquivos do projeto
+> **Como funciona resumidamente:**
+> 1. Você cria dois arquivos de configuração na raiz do projeto (`Dockerfile` e `docker-compose.yml`).
+> 2. O Docker lê esses arquivos e monta tudo automaticamente.
+> 3. Um único comando sobe a API e o banco de dados juntos.
 
-Crie os dois arquivos abaixo na raiz do projeto antes de rodar o Docker.
+---
 
-#### Dockerfile
+### Passo 1 — Criar o Dockerfile
+
+O `Dockerfile` é um **script de instruções** que o Docker usa para montar a imagem da sua aplicação. Você não executa esse arquivo manualmente — o Docker o lê quando você rodar o comando de build.
+
+Crie o arquivo `Dockerfile` (sem extensão) na raiz do projeto com o seguinte conteúdo:
 
 ```dockerfile
+# Usa Node.js 20 como base (versão leve)
 FROM node:20-alpine
 
+# Define o diretório de trabalho dentro do container
 WORKDIR /app
 
+# Copia os arquivos de dependências e instala os pacotes
 COPY package*.json ./
 RUN npm install
 
+# Copia o restante do código-fonte
 COPY . .
+
+# Compila o TypeScript → gera a pasta dist/
 RUN npx tsc
 
+# Informa que a aplicação usa a porta 3001
 EXPOSE 3001
 
+# Comando que inicia a aplicação quando o container rodar
 CMD ["node", "dist/main.js"]
 ```
 
-#### docker-compose.yml
+> **Você não executa essas linhas no terminal.** O Docker as lê automaticamente ao construir a imagem.
+
+---
+
+### Passo 2 — Criar o docker-compose.yml
+
+O `docker-compose.yml` define **quais containers rodar** e como eles se conectam entre si. Neste caso, serão dois: a API e o MongoDB.
+
+Crie o arquivo `docker-compose.yml` na raiz do projeto:
 
 ```yaml
 services:
   api:
-    build: .
+    build: .          # usa o Dockerfile que você criou no Passo 1
     ports:
-      - "3001:3001"
+      - "3001:3001"   # expõe a porta 3001 para fora do container
     environment:
       SERVER_PORT: 3001
       DB_URL: mongodb://mongo:27017/rotas-sz
     depends_on:
-      - mongo
+      - mongo         # aguarda o MongoDB subir antes de iniciar a API
     restart: unless-stopped
 
   mongo:
-    image: mongo:7
+    image: mongo:7    # baixa a imagem oficial do MongoDB
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db
+      - mongo_data:/data/db   # salva os dados fora do container
     restart: unless-stopped
 
 volumes:
-  mongo_data:
+  mongo_data:   # volume nomeado: dados persistem mesmo se o container for recriado
 ```
 
-> O `volumes: mongo_data` garante que os dados do banco **persistem** mesmo se o container for recriado ou atualizado.
->
-> O `restart: unless-stopped` faz os containers reiniciarem automaticamente após reinicialização do servidor.
+> `restart: unless-stopped` faz os containers reiniciarem automaticamente se o servidor for reiniciado.
 
 ---
 
