@@ -303,26 +303,21 @@ O `Dockerfile` é um **script de instruções** que o Docker usa para montar a i
 Crie o arquivo `Dockerfile` (sem extensão) na raiz do projeto com o seguinte conteúdo:
 
 ```dockerfile
-# Usa Node.js 20 como base (versão leve)
-FROM node:20-alpine
-
-# Define o diretório de trabalho dentro do container
+# Stage 1: build
+FROM node:20-alpine AS builder
 WORKDIR /app
-
-# Copia os arquivos de dependências e instala os pacotes
 COPY package*.json ./
-RUN npm install
-
-# Copia o restante do código-fonte
+RUN npm ci
 COPY . .
-
-# Compila o TypeScript → gera a pasta dist/
 RUN npx tsc
 
-# Informa que a aplicação usa a porta 3001
+# Stage 2: produção (sem devDependencies)
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY --from=builder /app/dist ./dist
 EXPOSE 3001
-
-# Comando que inicia a aplicação quando o container rodar
 CMD ["node", "dist/main.js"]
 ```
 
@@ -346,7 +341,8 @@ services:
       SERVER_PORT: 3001
       DB_URL: mongodb://mongo:27017/rotas-sz
     depends_on:
-      - mongo         # aguarda o MongoDB subir antes de iniciar a API
+      mongo:
+        condition: service_healthy
     restart: unless-stopped
 
   mongo:
@@ -356,6 +352,11 @@ services:
     volumes:
       - mongo_data:/data/db   # salva os dados fora do container
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   mongo_data:   # volume nomeado: dados persistem mesmo se o container for recriado

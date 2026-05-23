@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .          # usa o Dockerfile que você criou no Passo 1
+    ports:
+      - "3001:3001"   # expõe a porta 3001 para fora do container
+    environment:
+      SERVER_PORT: 3001
+      DB_URL: mongodb://mongo:27017/rotas-sz
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7    # baixa a imagem oficial do MongoDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db   # salva os dados fora do container
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mongo_data:   # volume nomeado: dados persistem mesmo se o container for recriado
