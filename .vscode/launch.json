@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug rotas-sz-bff",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": ["${workspaceFolder}/main.ts"],
+            "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "name": "Debug via ts-node-dev (attach)",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
+        }
+    ]
+}
