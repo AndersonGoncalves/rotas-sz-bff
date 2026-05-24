@@ -433,54 +433,134 @@ sudo ufw allow 3001
 
 ### Windows
 
-#### 1. Instalar o Docker Desktop
+#### 1. Preparar o computador (Git + Docker Desktop)
 
-Acesse [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop) e baixe o instalador para Windows.
+O computador precisa ter dois programas instalados antes de qualquer coisa: **Git** (para baixar o projeto) e **Docker Desktop** (para rodar a aplicação). Siga os passos abaixo na ordem.
 
-Durante a instalação:
-- Deixe marcada a opção **"Use WSL 2 instead of Hyper-V"** (recomendado).
-- Se solicitado, instale o **WSL 2** seguindo o link que o instalador fornecer.
+---
 
-Após a instalação, **reinicie o computador** e abra o Docker Desktop. Aguarde o ícone da baleia na bandeja ficar estável (verde).
+**1.1 — Instalar o Git**
 
-Verifique no PowerShell:
+O Git é o programa que permite baixar o código do projeto do GitHub.
+
+1. Acesse [git-scm.com/download/win](https://git-scm.com/download/win) e o download iniciará automaticamente.
+2. Execute o instalador. Pode clicar em **Next** em todas as telas sem alterar nada — as opções padrão já são as corretas.
+3. Ao final, clique em **Finish**.
+
+Para confirmar que o Git foi instalado, abra o **PowerShell** (pressione `Win + R`, digite `powershell` e pressione Enter) e execute:
+
+```powershell
+git --version
+```
+
+Se aparecer algo como `git version 2.x.x`, está funcionando.
+
+---
+
+**1.2 — Instalar o Docker Desktop**
+
+O Docker Desktop é o programa que vai criar e rodar os containers da aplicação.
+
+1. Acesse [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop) e clique em **Download for Windows**.
+2. Execute o instalador.
+3. Durante a instalação, deixe marcada a opção **"Use WSL 2 instead of Hyper-V"** (recomendado).
+4. Se o instalador solicitar a instalação do **WSL 2**, clique no link fornecido e siga as instruções da Microsoft (é uma atualização do Windows necessária para o Docker funcionar).
+5. Ao final, clique em **Close and restart** para reiniciar o computador.
+
+Após reiniciar, abra o **Docker Desktop** pelo menu Iniciar. Aguarde até o ícone da baleia na bandeja do sistema (canto inferior direito) ficar estável — isso indica que o Docker está pronto.
+
+Para confirmar que o Docker foi instalado corretamente, abra o PowerShell e execute:
 
 ```powershell
 docker -v
 docker compose version
 ```
 
-#### 2. Copiar os arquivos do projeto
+Se ambos os comandos mostrarem versões, está tudo certo.
+
+---
+
+#### 2. Baixar os arquivos do projeto
+
+Agora que o Git está instalado, você pode baixar o projeto do GitHub. No PowerShell, execute:
 
 ```powershell
 git clone https://github.com/seu-usuario/rotas-sz-bff.git
 cd rotas-sz-bff
 ```
 
+- O primeiro comando (`git clone`) baixa todos os arquivos do projeto para uma pasta chamada `rotas-sz-bff`.
+- O segundo comando (`cd rotas-sz-bff`) entra nessa pasta.
+
 Certifique-se de que o `Dockerfile` e o `docker-compose.yml` estão na raiz do projeto.
 
 #### 3. Subir os containers
 
-Abra o PowerShell na pasta do projeto:
+Este passo vai iniciar a aplicação. O comando abaixo instrui o Docker a ler o arquivo `docker-compose.yml` do projeto e criar/iniciar todos os containers necessários (a API e o banco de dados MongoDB) em segundo plano.
+
+Certifique-se de que o PowerShell está aberto **dentro da pasta do projeto** (você deve ter feito isso no passo anterior com o `cd rotas-sz-bff`). O caminho no terminal deve terminar com `rotas-sz-bff`, assim:
+
+```
+PS C:\Users\seu-usuario\rotas-sz-bff>
+```
+
+Agora digite o comando abaixo e pressione **Enter**:
 
 ```powershell
 docker compose up -d
 ```
 
-O Docker Desktop irá baixar as imagens necessárias (`node:20-alpine` e `mongo:7`) e construir a imagem da API automaticamente.
+O que cada parte significa:
+- `docker compose` — chama o Docker para gerenciar os containers.
+- `up` — cria e inicia os containers.
+- `-d` — roda em segundo plano (você continua usando o terminal normalmente enquanto a aplicação roda).
+
+Na primeira vez, o Docker irá baixar as imagens necessárias (`node:20-alpine` e `mongo:7`) — isso pode demorar alguns minutos dependendo da internet. Nas próximas vezes será muito mais rápido.
+
+Ao final, você verá uma saída parecida com esta, indicando que os containers foram criados com sucesso:
+
+```
+✔ Container rotas-sz-bff-mongo-1  Started
+✔ Container rotas-sz-bff-api-1    Started
+```
 
 Você pode acompanhar os containers rodando pela interface gráfica do **Docker Desktop** ou pelo terminal.
 
 #### 4. Liberar a porta no firewall do Windows
 
+Para que outros dispositivos da rede consigam acessar a aplicação, o Windows precisa permitir conexões na porta `3001`. Abra o PowerShell **como administrador** (clique com o botão direito no PowerShell e escolha "Executar como administrador") e execute:
+
 ```powershell
-# Execute como administrador
 New-NetFirewallRule -DisplayName "rotas-sz-bff" -Direction Inbound -Protocol TCP -LocalPort 3001 -Action Allow
 ```
 
 ---
 
-### Rodar com Docker Compose
+#### 5. Acessar a aplicação
+
+Após os passos 3 e 4, sua aplicação já está no ar e acessível por outros dispositivos na mesma rede.
+
+Para saber o IP do computador onde a aplicação está rodando, execute no PowerShell:
+
+```powershell
+ipconfig
+```
+
+Procure pelo campo **Endereço IPv4** (exemplo: `192.168.1.100`).
+
+Agora, de qualquer dispositivo na mesma rede (celular, notebook, etc.), acesse no navegador:
+
+```
+http://192.168.1.100:3001
+```
+
+> Substitua `192.168.1.100` pelo IP que apareceu no `ipconfig`.
+
+Se a API responder, a aplicação está funcionando corretamente.
+
+---
+
+### Comandos úteis com Docker Compose
 
 Os comandos abaixo funcionam igualmente no Linux e no Windows (PowerShell).
 
@@ -507,12 +587,93 @@ docker compose up --build -d
 docker compose down -v
 ```
 
-> **Atualizar a aplicação** após uma mudança no código:
-> ```bash
-> git pull
-> docker compose up --build -d
-> ```
-> O `--build` força a reconstrução da imagem com o código atualizado.
+#### Atualizar a aplicação após uma mudança no código
+
+Sempre que uma nova versão do projeto for publicada no GitHub (por você ou por outra pessoa), siga este processo no computador onde a aplicação está rodando:
+
+**1 — Abra o PowerShell e entre na pasta do projeto:**
+
+```powershell
+cd rotas-sz-bff
+```
+
+**2 — Baixe as alterações do GitHub:**
+
+```powershell
+git pull
+```
+
+Este comando sincroniza os arquivos locais com o que está no repositório remoto. Se não houver nada novo, ele dirá `Already up to date.`
+
+**3 — Reconstrua e reinicie os containers com o código atualizado:**
+
+```powershell
+docker compose up --build -d
+```
+
+O `--build` faz o Docker recompilar a imagem da API com o novo código antes de reiniciar. Sem ele, o Docker subiria a versão antiga.
+
+Após o comando terminar, a aplicação já estará rodando com a versão mais recente. Não é necessário reiniciar o computador nem parar os containers manualmente antes — o comando cuida disso.
+
+---
+
+## Acessar o banco de dados com uma interface gráfica
+
+Com a aplicação rodando via Docker Compose, o MongoDB fica acessível na porta `27017` do computador onde os containers estão. Você pode conectar qualquer cliente gráfico — como **MongoDB Compass** (gratuito, oficial) ou **Studio 3T** — para visualizar e editar os dados diretamente.
+
+### Onde os dados ficam armazenados fisicamente
+
+Os dados do banco **não ficam dentro do container** — se o container for removido, os dados não são perdidos. Eles ficam em um **volume Docker** chamado `mongo_data`, gerenciado pelo próprio Docker Desktop.
+
+**No Windows**, esse volume fica dentro do disco virtual do WSL 2. Você pode acessá-lo pelo Explorer colando o caminho abaixo na barra de endereço:
+
+```
+\\wsl$\docker-desktop-data\data\docker\volumes\rotas-sz-bff_mongo_data\_data
+```
+
+**No Linux**, o caminho físico é:
+
+```
+/var/lib/docker/volumes/rotas-sz-bff_mongo_data/_data
+```
+
+> Na prática, você não precisa acessar essa pasta diretamente — use o MongoDB Compass ou Studio 3T para visualizar e editar os dados. A pasta existe para garantir que os dados **sobrevivam a reinicializações e atualizações** dos containers.
+
+---
+
+### Dados de conexão
+
+| Campo        | Valor                     |
+| ------------ | ------------------------- |
+| Host         | `localhost` (se for o próprio computador) ou o IP da máquina na rede (ex: `192.168.1.100`) |
+| Porta        | `27017`                   |
+| Banco        | `rotas-sz`                |
+| Autenticação | Nenhuma (sem usuário/senha) |
+
+### MongoDB Compass
+
+1. Baixe e instale em [mongodb.com/products/compass](https://www.mongodb.com/products/compass).
+2. Abra o Compass. Na tela inicial, você verá um campo de **Connection String**.
+3. Se estiver acessando do próprio computador onde o Docker roda, use:
+   ```
+   mongodb://localhost:27017
+   ```
+   Se estiver acessando de outro computador na rede, substitua `localhost` pelo IP da máquina (ex: `mongodb://192.168.1.100:27017`).
+4. Clique em **Connect**.
+5. O banco `rotas-sz` aparecerá na lista à esquerda.
+
+### Studio 3T
+
+1. Abra o Studio 3T e clique em **New Connection**.
+2. Escolha a aba **From URI** e cole:
+   ```
+   mongodb://localhost:27017
+   ```
+   (ou substitua `localhost` pelo IP se for de outro computador).
+3. Clique em **Test Connection** para verificar, depois em **Save** e em **Connect**.
+4. O banco `rotas-sz` estará disponível na árvore de conexões.
+
+> **Importante:** essa configuração não tem senha, o que é adequado para uso interno em rede local. Nunca exponha a porta `27017` para a internet sem adicionar autenticação.
 
 ---
 
