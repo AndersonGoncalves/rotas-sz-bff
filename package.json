@@ -6,6 +6,7 @@
     "start": "node dist/main.js",
     "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only main.ts",
+    "dev:debug": "ts-node-dev --respawn --transpile-only --inspect=9229 main.ts",
     "dev:build": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

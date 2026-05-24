@@ -15,7 +15,7 @@ Este guia cobre todo o processo: configurar o ambiente, rodar o servidor, depura
 | `ts-node` e `ts-node-dev` | ✅ em `node_modules` | instalados via `npm install` |
 | Arquivo `.env` | ✅ configurado | `SERVER_PORT=3001`, `DB_URL=mongodb://localhost:27017/rotas-sz` |
 | `tsconfig.json` com `sourceMap` | ✅ habilitado | permite breakpoints direto nos arquivos `.ts` |
-| `.vscode/launch.json` | ✅ configurado | adicionadas as configs **"Debug rotas-sz-bff"** e **"Debug via attach"** |
+| `.vscode/launch.json` | ✅ configurado | adicionadas as configs **"Debug rotas-sz-bff"** e **"Debug via ts-node-dev (attach)"** |
 | Coleção Hoppscotch | ✅ pronta | `collections/hoppscotch-collection.json` com todos os endpoints |
 
 ### O que você precisa fazer (3 passos)
@@ -28,13 +28,15 @@ Acesse [hoppscotch.io](https://hoppscotch.io) no navegador, vá em **Collections
 
 1. Abra a aba **Run and Debug** (`Ctrl+Shift+D`).
 2. Selecione **"Debug rotas-sz-bff"** no dropdown.
-3. Pressione `F5`.
+3. Pressione `F5` — o VSCode sobe o servidor por conta própria.
 
 Saída esperada no terminal do VSCode:
 ```
 [DB] Conectado ao MongoDB: mongodb://localhost:27017/rotas-sz
 [Server] rotas-sz-bff rodando na porta 3001
 ```
+
+> **Não rode `npm run dev` antes do F5** nesta opção — o VSCode sobe o processo. Se quiser hot-reload, use a Opção 2 da seção 5 (`npm run dev:debug` + attach).
 
 **Passo 3 — Coloque um breakpoint e dispare a requisição**
 
@@ -136,49 +138,11 @@ npm start       # executa dist/main.js
 
 ## 5. Debugar com breakpoints no VSCode
 
-O projeto já tem `sourceMap: true` no `tsconfig.json`, o que permite colocar breakpoints diretamente nos arquivos `.ts`.
+O projeto já tem `sourceMap: true` no `tsconfig.json` e o `.vscode/launch.json` versionado com duas configurações prontas — você não precisa editar nada.
 
-### Configurar o launch.json
+### Opção 1 — Lançar pelo VSCode (recomendado)
 
-Abra [.vscode/launch.json](.vscode/launch.json) e substitua o conteúdo por:
-
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Debug rotas-sz-bff",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "node",
-      "runtimeArgs": [
-        "--require", "ts-node/register"
-      ],
-      "args": ["${workspaceFolder}/main.ts"],
-      "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env",
-      "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "name": "Debug via ts-node-dev (attach)",
-      "type": "node",
-      "request": "attach",
-      "port": 9229,
-      "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "skipFiles": ["<node_internals>/**"]
-    }
-  ]
-}
-```
-
-### Usar o debugger
-
-**Opção 1 — Lançar pelo VSCode (F5)**
-
-> **Não rode `npm run dev` antes.** A configuração `"Debug rotas-sz-bff"` usa `request: "launch"` — o VSCode sobe o servidor por conta própria via `ts-node/register`. Se o `npm run dev` já estiver rodando, haverá conflito de porta (`EADDRINUSE: 3001`) porque os dois processos tentam ocupar a mesma porta.
+> **Não rode `npm run dev` antes.** O VSCode sobe o servidor por conta própria. Se o `npm run dev` já estiver rodando, haverá conflito de porta (`EADDRINUSE: 3001`).
 
 1. Abra a aba **Run and Debug** (`Ctrl+Shift+D`).
 2. Selecione **"Debug rotas-sz-bff"** no dropdown.
@@ -186,16 +150,34 @@ Abra [.vscode/launch.json](.vscode/launch.json) e substitua o conteúdo por:
 4. Coloque um breakpoint em qualquer arquivo `.ts` clicando na margem esquerda.
 5. Dispare uma requisição pelo Hoppscotch ou navegador; a execução pausará no breakpoint.
 
-**Opção 2 — Attach ao processo existente**
+Os breakpoints param diretamente no seu código-fonte `.ts`, não nos arquivos compilados de `dist/`.
 
-Se preferir usar o `npm run dev` normal e acoplar o debugger depois:
+### Opção 2 — Attach ao ts-node-dev (hot-reload + debug)
+
+Use esta opção quando quiser manter o hot-reload do `ts-node-dev` e debugar ao mesmo tempo.
+
+**Passo 1 — Suba o servidor com a porta de debug aberta:**
 
 ```bash
-# Subir com porta de debug exposta
-node --inspect --require ts-node/register main.ts
+npm run dev:debug
 ```
 
-Depois, no VSCode, selecione **"Debug via ts-node-dev (attach)"** e pressione `F5`.
+Aguarde a saída completa no terminal antes de continuar:
+
+```
+[DB] Conectado ao MongoDB: mongodb://localhost:27017/rotas-sz
+[Server] rotas-sz-bff rodando na porta 3001
+```
+
+> **Importante:** pressionar F5 antes do servidor terminar de subir faz o VS Code tentar conectar na porta 9229 antes dela estar disponível e encerrar a sessão. Espere a linha do servidor aparecer.
+
+**Passo 2 — Anexe o debugger:**
+
+1. Abra a aba **Run and Debug** (`Ctrl+Shift+D`).
+2. Selecione **"Debug via ts-node-dev (attach)"** no dropdown.
+3. Pressione `F5`.
+
+A sessão permanece ativa mesmo quando o `ts-node-dev` reinicia o processo ao salvar um arquivo (o VS Code reconecta automaticamente graças ao `"restart": true` no `launch.json`).
 
 ### Breakpoints úteis para começar
 
@@ -337,7 +319,8 @@ error TS2345: Argument of type 'X' is not assignable to parameter of type 'Y'
 
 | Comando | O que faz |
 |---|---|
-| `npm run dev` | Sobe em modo dev com hot-reload via ts-node-dev |
+| `npm run dev` | Sobe em modo dev com hot-reload (sem debug) |
+| `npm run dev:debug` | Sobe em modo dev com hot-reload **e porta de debug 9229 aberta** — use com "Debug via ts-node-dev (attach)" |
 | `npm run build` | Compila TypeScript para `dist/` |
 | `npm start` | Executa o build compilado (`dist/main.js`) |
 | `npm run dev:build` | Compila em modo watch (sem rodar o servidor) |
