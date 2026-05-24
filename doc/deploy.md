@@ -60,6 +60,46 @@ sudo systemctl enable --now mongod
 sudo systemctl status mongod
 ```
 
+#### 2.1 Liberar o MongoDB para acesso em rede
+
+Por padrão, o MongoDB só aceita conexões vindas do próprio computador (`localhost`). Para que outros dispositivos na rede consigam se conectar — via Compass, Studio 3T ou outra máquina — é preciso alterar uma linha no arquivo de configuração.
+
+Abra o arquivo de configuração do MongoDB:
+
+```bash
+sudo nano /etc/mongod.conf
+```
+
+Localize o bloco `net` (geralmente perto do fim do arquivo):
+
+```yaml
+net:
+  port: 27017
+  bindIp: 127.0.0.1
+```
+
+Altere `bindIp` para `0.0.0.0` (aceitar conexões de qualquer endereço):
+
+```yaml
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+```
+
+Salve o arquivo (`Ctrl+O`, Enter, `Ctrl+X`) e reinicie o MongoDB:
+
+```bash
+sudo systemctl restart mongod
+```
+
+Confirme que voltou a rodar:
+
+```bash
+sudo systemctl status mongod
+```
+
+> **Atenção:** `0.0.0.0` é seguro em rede local fechada. Se o servidor estiver exposto à internet, use o IP específico da interface de rede em vez de `0.0.0.0`, ou configure autenticação no MongoDB.
+
 #### 3. Copiar os arquivos do projeto
 
 Copie **apenas o código-fonte** — nunca copie `node_modules/` nem `dist/`, pois serão gerados no servidor.
@@ -192,6 +232,48 @@ mongosh
 
 > Se o comando não for encontrado, adicione o caminho do MongoDB ao PATH:
 > `C:\Program Files\MongoDB\Server\7.0\bin`
+
+#### 2.1 Liberar o MongoDB para acesso em rede
+
+Por padrão, o MongoDB só aceita conexões vindas do próprio computador (`localhost`). Para que outros dispositivos na rede consigam se conectar — via Compass, Studio 3T ou outra máquina — é preciso alterar uma linha no arquivo de configuração.
+
+Abra o **Bloco de Notas como administrador** (clique com o botão direito no Bloco de Notas e escolha "Executar como administrador") e abra o arquivo:
+
+```
+C:\Program Files\MongoDB\Server\7.0\bin\mongod.cfg
+```
+
+Localize o bloco `net`:
+
+```yaml
+net:
+  port: 27017
+  bindIp: 127.0.0.1
+```
+
+Altere `bindIp` para `0.0.0.0` (aceitar conexões de qualquer endereço):
+
+```yaml
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+```
+
+Salve o arquivo e reinicie o serviço do MongoDB no PowerShell (como administrador):
+
+```powershell
+Restart-Service -Name MongoDB
+```
+
+Confirme que voltou a rodar:
+
+```powershell
+Get-Service -Name MongoDB
+```
+
+O campo `Status` deve mostrar `Running`.
+
+> **Atenção:** `0.0.0.0` é seguro em rede local fechada. Se o servidor estiver exposto à internet, use o IP específico da interface de rede em vez de `0.0.0.0`, ou configure autenticação no MongoDB.
 
 #### 3. Copiar os arquivos do projeto
 
@@ -614,6 +696,59 @@ docker compose up --build -d
 O `--build` faz o Docker recompilar a imagem da API com o novo código antes de reiniciar. Sem ele, o Docker subiria a versão antiga.
 
 Após o comando terminar, a aplicação já estará rodando com a versão mais recente. Não é necessário reiniciar o computador nem parar os containers manualmente antes — o comando cuida disso.
+
+---
+
+## O que fazer se o computador travar ou reiniciar
+
+### Reinicialização normal
+
+Não é necessário fazer nada. Os containers estão configurados com a política `restart: unless-stopped`, o que significa que o Docker os reinicia automaticamente sempre que o computador for ligado ou reiniciado.
+
+Após o boot, aguarde alguns segundos para o Docker Desktop inicializar e os containers subirem. Você pode confirmar que estão rodando com:
+
+```powershell
+docker compose ps
+```
+
+A coluna `Status` deve mostrar `Up` para os dois serviços (`api` e `mongo`).
+
+### Quando os containers NÃO sobem automaticamente
+
+A única situação em que os containers **não** reiniciam sozinhos é se você os parou manualmente com:
+
+```powershell
+docker compose stop
+```
+
+Nesse caso, o Docker entende que foi uma parada intencional. Para subir novamente:
+
+```powershell
+docker compose up -d
+```
+
+### Se a aplicação não responder após reiniciar
+
+Verifique o status dos containers:
+
+```powershell
+docker compose ps
+```
+
+Se algum aparecer como `Exited` ou `Restarting`, veja os logs para entender o problema:
+
+```powershell
+docker compose logs api
+docker compose logs mongo
+```
+
+Se necessário, force uma reinicialização dos containers:
+
+```powershell
+docker compose restart
+```
+
+> Os dados do banco **não são perdidos** em nenhum desses cenários — eles ficam salvos no volume `mongo_data`, fora dos containers.
 
 ---
 
