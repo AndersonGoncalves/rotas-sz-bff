@@ -11,7 +11,7 @@ Este guia cobre todo o processo: configurar o ambiente, rodar o servidor, depura
 | Item | Status | Detalhe |
 |---|---|---|
 | Node.js v20 | ✅ instalado | `node -v` → v20.19.5 |
-| MongoDB v7 | ✅ instalado e rodando | `systemctl status mongod` → active |
+| MongoDB v7 | ✅ instalado e rodando | Linux: `systemctl status mongod` / Windows: `Get-Service MongoDB` |
 | `ts-node` e `ts-node-dev` | ✅ em `node_modules` | instalados via `npm install` |
 | Arquivo `.env` | ✅ configurado | `SERVER_PORT=3001`, `DB_URL=mongodb://localhost:27017/rotas-sz` |
 | `tsconfig.json` com `sourceMap` | ✅ habilitado | permite breakpoints direto nos arquivos `.ts` |
@@ -101,6 +101,16 @@ sudo systemctl start mongod
 # Verificar status
 sudo systemctl status mongod
 ```
+
+```powershell
+# Windows (PowerShell como Administrador)
+net start MongoDB
+
+# Verificar status
+Get-Service MongoDB
+```
+
+> No Windows o serviço pode se chamar `MongoDB` ou `mongod` dependendo de como foi instalado. Se `net start MongoDB` falhar, tente `net start mongod`.
 
 ### Opção B — Via Docker
 
@@ -267,7 +277,10 @@ http://localhost:3001/checklist-assistencia
 ```
 
 **Causa:** MongoDB não está rodando.  
-**Solução:** Inicie o MongoDB (`sudo systemctl start mongod` ou `docker start mongo-rotas`).
+**Solução:** Inicie o MongoDB:
+- Linux: `sudo systemctl start mongod`
+- Windows: `net start MongoDB` (PowerShell como Administrador)
+- Docker: `docker start mongo-rotas`
 
 ---
 
@@ -281,11 +294,19 @@ Error: listen EADDRINUSE: address already in use :::3001
 **Solução:**
 
 ```bash
-# Descobrir qual processo usa a porta
+# Linux — descobrir qual processo usa a porta
 lsof -i :3001
 
-# Matar o processo (substitua <PID> pelo número retornado)
+# Linux — matar o processo (substitua <PID> pelo número retornado)
 kill -9 <PID>
+```
+
+```powershell
+# Windows — descobrir qual processo usa a porta
+netstat -ano | findstr :3001
+
+# Windows — matar o processo (substitua <PID> pelo número retornado)
+taskkill /PID <PID> /F
 ```
 
 ---
