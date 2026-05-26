@@ -27,12 +27,18 @@ export class PedidoMongooseRepository implements IPedidoRepository {
     };
   }
 
-  async findAll(month?: number, year?: number): Promise<IPedido[]> {
+  async findAll(month?: number, year?: number, day?: number): Promise<IPedido[]> {
     const query: any = {};
     if (month !== undefined && year !== undefined) {
-      // Filtra por mês/ano no campo dataRomaneio (formato ISO)
-      const start = new Date(year, month - 1, 1).toISOString();
-      const end = new Date(year, month, 1).toISOString();
+      let start: string;
+      let end: string;
+      if (day !== undefined) {
+        start = new Date(year, month - 1, day).toISOString();
+        end = new Date(year, month - 1, day + 1).toISOString();
+      } else {
+        start = new Date(year, month - 1, 1).toISOString();
+        end = new Date(year, month, 1).toISOString();
+      }
       query.dataRomaneio = { $gte: start, $lt: end };
     }
     const docs = await PedidoModel.find(query).sort({ dataRomaneio: -1 });

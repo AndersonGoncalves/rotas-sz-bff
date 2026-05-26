@@ -10,12 +10,13 @@ export class PedidosController extends BaseRouter {
   }
 
   applyRoutes(application: restify.Server): void {
-    // GET /pedidos?month=X&year=Y
+    // GET /pedidos?month=X&year=Y&day=Z
     application.get('/pedidos', async (req, res, next) => {
       try {
         const month = req.query.month ? parseInt(req.query.month as string) : undefined;
         const year = req.query.year ? parseInt(req.query.year as string) : undefined;
-        res.json(await this.repo.findAll(month, year));
+        const day = req.query.day ? parseInt(req.query.day as string) : undefined;
+        res.json(await this.repo.findAll(month, year, day));
         return next();
       } catch (e) { return next(e); }
     });
