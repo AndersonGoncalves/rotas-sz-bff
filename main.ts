@@ -1,4 +1,5 @@
 import { Server } from './src/shared/http/server';
+import { SwaggerController } from './src/shared/swagger/swagger.controller';
 
 // Clientes
 import { ClientesController } from './src/features/clientes/presentation/clientes.controller';
@@ -60,7 +61,8 @@ import { TituloMongooseRepository } from './src/features/titulos/infra/repositor
 const server = new Server();
 
 server
-  .bootstrap([    
+  .bootstrap([
+    new SwaggerController(),
     new ChecklistAssistenciaController(new ChecklistAssistenciaMongooseRepository()),
     new ChecklistAssistenciaAguaNaturalController(new ChecklistAssistenciaAguaNaturalMongooseRepository()),
     new FuncionariosController(new FuncionarioMongooseRepository()),

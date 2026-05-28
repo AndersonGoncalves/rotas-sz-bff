@@ -11,6 +11,7 @@ API RESTful BFF (Backend for Frontend) construída com **Node.js**, **TypeScript
 - [Tecnologias](#tecnologias)
 - [Configuração e Execução](#configuração-e-execução)
 - [MongoDB](#mongodb)
+- [Documentação da API (Swagger)](#documentação-da-api-swagger)
 - [Arquitetura](#arquitetura)
   - [src/shared/config/environment.ts](#srcsharedconfigenvironmentts)
   - [src/shared/router/base.router.ts](#srcsharedrouterbase-routerts)
@@ -51,8 +52,11 @@ rotas-sz-bff/
 │   │   ├── http/
 │   │   │   ├── server.ts                # Criação e inicialização do servidor Restify
 │   │   │   └── error.handler.ts         # Handler global de erros do Restify
-│   │   └── router/
-│   │       └── base.router.ts           # Classe base abstrata (BaseRouter extends EventEmitter)
+│   │   ├── router/
+│   │   │   └── base.router.ts           # Classe base abstrata (BaseRouter extends EventEmitter)
+│   │   └── swagger/
+│   │       ├── swagger.spec.ts          # Spec OpenAPI 3.0 (schemas e paths de todas as rotas)
+│   │       └── swagger.controller.ts    # Serve GET /docs (UI) e GET /swagger.json
 │   └── features/
 │       ├── checklist-assistencia/       # Recurso: checklist de assistência
 │       ├── checklist-assistencia-agua-natural/
@@ -188,6 +192,32 @@ mongo
 > ```bash
 > sudo mongod --config /etc/mongod.conf
 > ```
+
+---
+
+## Documentação da API (Swagger)
+
+A documentação interativa da API é servida pelo próprio servidor, sem dependências extras. A UI utiliza o **Swagger UI** carregado via CDN.
+
+| Endpoint         | Descrição                                         |
+| ---------------- | ------------------------------------------------- |
+| `GET /docs`      | Interface interativa Swagger UI (abre no browser) |
+| `GET /swagger.json` | Spec OpenAPI 3.0 em JSON                       |
+
+Com o servidor rodando, acesse:
+
+```
+http://localhost:3001/docs
+```
+
+### Arquivos
+
+| Arquivo | Responsabilidade |
+| ------- | ---------------- |
+| `src/shared/swagger/swagger.spec.ts` | Objeto TypeScript com a spec OpenAPI 3.0 completa — tags, paths, parâmetros e schemas de todas as features ativas |
+| `src/shared/swagger/swagger.controller.ts` | Controller registrado no bootstrap que expõe os dois endpoints acima |
+
+> Para atualizar a documentação ao adicionar ou modificar rotas, edite `swagger.spec.ts` diretamente.
 
 ---
 
