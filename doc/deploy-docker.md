@@ -151,6 +151,12 @@ docker compose up -d
 
 O `-d` (detached) roda em segundo plano.
 
+Sempre que fizer alterações no código, reconstrua a imagem com:
+
+```bash
+docker compose up -d --build
+```
+
 #### 5. Liberar a porta no firewall
 
 ```bash
@@ -251,6 +257,14 @@ Ao final, você verá uma saída parecida com esta, indicando que os containers 
 ✔ Container rotas-sz-bff-mongo-1  Started
 ✔ Container rotas-sz-bff-api-1    Started
 ```
+
+Sempre que fizer alterações no código, reconstrua a imagem com:
+
+```powershell
+docker compose up -d --build
+```
+
+O `--build` reconstrói a imagem da API com o código atualizado. O MongoDB não é afetado e os dados são preservados.
 
 Você pode acompanhar os containers rodando pela interface gráfica do **Docker Desktop** ou pelo terminal.
 
