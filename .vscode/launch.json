@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
             "name": "Debug rotas-sz-bff",
             "type": "node",
@@ -15,6 +16,7 @@
             "name": "Debug via ts-node-dev (attach)",
             "type": "node",
             "request": "attach",
+            "address": "192.168.1.25", //"192.168.1.25", //"127.0.0.1"
             "port": 9229,
             "restart": true,
             "timeout": 30000,
