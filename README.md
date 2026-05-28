@@ -199,16 +199,38 @@ mongo
 
 A documentação interativa da API é servida pelo próprio servidor, sem dependências extras. A UI utiliza o **Swagger UI** carregado via CDN.
 
-| Endpoint         | Descrição                                         |
-| ---------------- | ------------------------------------------------- |
-| `GET /docs`      | Interface interativa Swagger UI (abre no browser) |
-| `GET /swagger.json` | Spec OpenAPI 3.0 em JSON                       |
+### Como executar
 
-Com o servidor rodando, acesse:
+**1. Inicie o servidor** (escolha uma das opções):
+
+```bash
+# Modo desenvolvimento — recompila e reinicia automaticamente ao editar .ts
+npm run dev
+
+# Modo produção — compila primeiro e depois executa
+npx tsc && node dist/main.js
+```
+
+**2. Abra a documentação no browser:**
 
 ```
 http://localhost:3001/docs
 ```
+
+> A UI utiliza **Swagger UI** carregado via CDN — é necessário conexão com a internet para que os assets sejam carregados corretamente.
+
+**3. (Opcional) Acesse a spec OpenAPI 3.0 em JSON:**
+
+```
+http://localhost:3001/swagger.json
+```
+
+### Endpoints
+
+| Endpoint            | Descrição                                         |
+| ------------------- | ------------------------------------------------- |
+| `GET /docs`         | Interface interativa Swagger UI (abre no browser) |
+| `GET /swagger.json` | Spec OpenAPI 3.0 em JSON                          |
 
 ### Arquivos
 
