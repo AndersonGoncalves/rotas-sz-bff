@@ -30,14 +30,19 @@ export class PedidoMongooseRepository implements IPedidoRepository {
   async findAll(month?: number, year?: number, day?: number): Promise<IPedido[]> {
     const query: any = {};
     if (month !== undefined && year !== undefined) {
+      const pad = (n: number) => String(n).padStart(2, '0');
       let start: string;
       let end: string;
       if (day !== undefined) {
-        start = new Date(year, month - 1, day).toISOString();
-        end = new Date(year, month - 1, day + 1).toISOString();
+        const d = new Date(Date.UTC(year, month - 1, day));
+        const next = new Date(Date.UTC(year, month - 1, day + 1));
+        start = `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}T00:00:00`;
+        end = `${next.getUTCFullYear()}-${pad(next.getUTCMonth() + 1)}-${pad(next.getUTCDate())}T00:00:00`;
       } else {
-        start = new Date(year, month - 1, 1).toISOString();
-        end = new Date(year, month, 1).toISOString();
+        const d = new Date(Date.UTC(year, month - 1, 1));
+        const next = new Date(Date.UTC(year, month, 1));
+        start = `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}T00:00:00`;
+        end = `${next.getUTCFullYear()}-${pad(next.getUTCMonth() + 1)}-${pad(next.getUTCDate())}T00:00:00`;
       }
       query.dataRomaneio = { $gte: start, $lt: end };
     }
