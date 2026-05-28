@@ -336,7 +336,85 @@ error TS2345: Argument of type 'X' is not assignable to parameter of type 'Y'
 
 ---
 
-## 9. Referência rápida de scripts
+## 9. Debugar com a API rodando no Docker
+
+Esta seção cobre como anexar o debugger do VS Code a um container Docker já em execução.
+
+### Como funciona
+
+O projeto possui dois arquivos Docker Compose:
+
+| Arquivo | Finalidade |
+|---|---|
+| `docker-compose.yml` | Produção — **sem** inspector, sem porta 9229 exposta |
+| `docker-compose.debug.yml` | Override de debug — adiciona `--inspect` e expõe a porta 9229 |
+
+O arquivo de debug **não substitui** o de produção: ele sobrescreve apenas o `command` e acrescenta a porta 9229. Tudo o mais (banco, variáveis, volumes) vem do `docker-compose.yml` original.
+
+---
+
+> ## ⚠️ PRODUÇÃO — USE SEMPRE ESTE COMANDO
+>
+> ```bash
+> docker compose up -d
+> ```
+>
+> **Nunca use o override `-f docker-compose.debug.yml` em produção.**  
+> O inspector abre uma porta que permite execução remota de código no container.
+
+---
+
+### Rodar com debug (desenvolvimento)
+
+**Passo 1 — Suba os containers com o override de debug:**
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.debug.yml up -d --build
+```
+
+Verifique que os dois containers subiram:
+
+```bash
+docker compose ps
+```
+
+Confirme que a porta 9229 aparece mapeada na coluna `PORTS` do serviço `api`.
+
+**Passo 2 — Anexe o debugger no VS Code:**
+
+1. Abra a aba **Run and Debug** (`Ctrl+Shift+D`).
+2. Selecione **"Debug via ts-node-dev (attach)"** no dropdown.
+3. Pressione `F5`.
+
+O VS Code conecta na porta 9229 do container. Coloque breakpoints normalmente nos arquivos `.ts` — o source map já está configurado no `tsconfig.json`.
+
+**Passo 3 — Parar o ambiente de debug:**
+
+```bash
+docker compose down
+```
+
+---
+
+### Limitações do debug via Docker
+
+- O container roda o **build compilado** (`dist/main.js`), então **não há hot-reload**. Para recarregar após uma mudança, pare e suba novamente com o comando do Passo 1.
+- Se precisar de hot-reload + debug ao mesmo tempo, use a **Opção 2 da seção 5** (local com `npm run dev:debug`).
+
+---
+
+### Referência rápida — Docker
+
+| Situação | Comando |
+|---|---|
+| **Produção** | `docker compose up -d` |
+| **Debug** | `docker compose -f docker-compose.yml -f docker-compose.debug.yml up -d --build` |
+| Parar tudo | `docker compose down` |
+| Ver logs | `docker compose logs -f api` |
+
+---
+
+## 10. Referência rápida de scripts
 
 | Comando | O que faz |
 |---|---|

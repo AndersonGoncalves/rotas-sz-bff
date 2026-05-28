@@ -19,6 +19,8 @@
             "restart": true,
             "timeout": 30000,
             "sourceMaps": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app",
             "skipFiles": ["<node_internals>/**"]
         }
     ]
