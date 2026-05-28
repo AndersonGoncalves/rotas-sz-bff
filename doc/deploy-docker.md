@@ -98,19 +98,142 @@ volumes:
 
 #### 1. Instalar o Docker
 
+**1.1 — Instalar o Docker Engine**
+
+Remova versões antigas caso existam:
+
 ```bash
-curl -fsSL https://get.docker.com | sh
+sudo apt remove -y docker docker-engine docker.io containerd runc 2>/dev/null; true
+```
 
-# Permitir rodar Docker sem sudo
+Adicione o repositório oficial do Docker:
+
+```bash
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Instale o Docker:
+
+```bash
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Habilite o serviço para iniciar junto com o sistema:
+
+```bash
+sudo systemctl enable --now docker
+```
+
+Permita rodar o Docker sem `sudo` e aplique sem precisar reconectar:
+
+```bash
 sudo usermod -aG docker $USER
-
-# Reconecte ao terminal (ou rode o comando abaixo para aplicar sem reconectar)
 newgrp docker
+```
 
-# Verificar
+Verifique a instalação:
+
+```bash
 docker -v
 docker compose version
 ```
+
+---
+
+**1.2 — Instalar o Docker Desktop (interface gráfica)**
+
+O Docker Desktop oferece uma interface gráfica para gerenciar containers, imagens e volumes, similar ao que está disponível no Windows.
+
+Baixe o pacote `.deb` mais recente:
+
+```bash
+# Verifique a versão mais recente em https://docs.docker.com/desktop/release-notes/
+curl -Lo /tmp/docker-desktop.deb \
+  "https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb"
+```
+
+Instale:
+
+```bash
+sudo apt install -y /tmp/docker-desktop.deb
+```
+
+Inicie o Docker Desktop:
+
+```bash
+systemctl --user start docker-desktop
+```
+
+Para abrir a interface, procure **Docker Desktop** no menu de aplicativos do Ubuntu, ou execute:
+
+```bash
+docker desktop
+```
+
+> O Docker Desktop no Linux requer que o Docker Engine já esteja instalado (passo 1.1). Ele inicia um contexto separado (`desktop-linux`) e exibe containers, imagens e volumes em uma interface visual.
+
+Para que o Docker Desktop inicie automaticamente com o sistema:
+
+```bash
+systemctl --user enable docker-desktop
+```
+
+---
+
+**1.3 — Resolver erro de KVM (se o Docker Desktop não abrir)**
+
+O Docker Desktop no Linux exige suporte a KVM (virtualização de hardware). Se ao iniciar aparecer a mensagem *"KVM is not enabled on host"*, siga os passos abaixo.
+
+Verifique se a CPU suporta virtualização (resultado deve ser maior que 0):
+
+```bash
+egrep -c '(vmx|svm)' /proc/cpuinfo
+```
+
+Carregue o módulo KVM — use `kvm_intel` para processadores Intel ou `kvm_amd` para AMD:
+
+```bash
+sudo modprobe kvm_intel
+```
+
+Confirme que o dispositivo foi criado:
+
+```bash
+ls /dev/kvm
+```
+
+Adicione seu usuário ao grupo `kvm`:
+
+```bash
+sudo usermod -aG kvm $USER
+```
+
+Torne o módulo persistente para que carregue automaticamente no boot:
+
+```bash
+echo "kvm_intel" | sudo tee /etc/modules-load.d/kvm.conf
+```
+
+Reinicie o Docker Desktop:
+
+```bash
+systemctl --user restart docker-desktop
+```
+
+> Se o comando `modprobe kvm_intel` retornar erro mesmo com a CPU compatível, a virtualização (VT-x/AMD-V) pode estar desabilitada na BIOS/UEFI. Reinicie o computador, entre na BIOS e habilite a opção **Intel Virtualization Technology** (ou **SVM Mode** em AMD).
 
 #### 2. Copiar os arquivos do projeto
 
