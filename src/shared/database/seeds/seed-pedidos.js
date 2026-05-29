@@ -1,21 +1,14 @@
 const BASE_URL = 'http://localhost:3001/pedidos';
 
-const dataArg    = process.argv[2];
-const startIdArg = process.argv[3];
+const dataArg = process.argv[2];
 
-if (!dataArg || !startIdArg) {
-  console.error('Uso: node seed-pedidos.js <data> <idInicial>');
-  console.error('Exemplo: node seed-pedidos.js 2026-05-30 1');
+if (!dataArg) {
+  console.error('Uso: node seed-pedidos.js <data>');
+  console.error('Exemplo: node seed-pedidos.js 2026-05-30');
   process.exit(1);
 }
 
 const dataRomaneioOverride = `${dataArg}T00:00:00.000`;
-const startId = parseInt(startIdArg, 10);
-
-if (isNaN(startId) || startId < 1) {
-  console.error('idInicial deve ser um número inteiro positivo (ex: 1, 150, 500)');
-  process.exit(1);
-}
 
 const pedidos = [
   {
@@ -293,6 +286,27 @@ const pedidos = [
   },
 ];
 
+async function prepareRun() {
+  let items = [];
+  try {
+    const res = await fetch(BASE_URL);
+    if (res.ok) {
+      const data = await res.json();
+      items = Array.isArray(data) ? data : [];
+    }
+  } catch { /* API inacessível — prossegue com ID 1 */ }
+
+  const existentes = items.filter(item => (item.dataRomaneio || '').startsWith(dataArg));
+  if (existentes.length > 0) {
+    console.error(`[!] Já existem ${existentes.length} pedido(s) com dataRomaneio ${dataArg}. Abortando.`);
+    process.exit(1);
+  }
+
+  if (items.length === 0) return 1;
+  const maxId = Math.max(...items.map(item => parseInt(item.id, 10) || 0));
+  return isFinite(maxId) ? maxId + 1 : 1;
+}
+
 async function put(pedido, index) {
   try {
     const payload = { ...pedido, dataRomaneio: dataRomaneioOverride, dataVisita: dataRomaneioOverride };
@@ -311,6 +325,7 @@ async function put(pedido, index) {
 }
 
 async function main() {
+  const startId = await prepareRun();
   const items = pedidos.map((p, i) => {
     const novoId = String(startId + i);
     return {

@@ -534,6 +534,20 @@ O servidor escuta na porta **3001** por padrão.
 
 Scripts para popular o banco com dados iniciais. Execute com o servidor em execução (`http://localhost:3001`).
 
+### Seed Completo (pedidos + produtos entregues + produtos recebidos)
+
+Executa os três seeds em sequência com a mesma data. Se qualquer um abortar (ex.: data já existente), os demais não são executados.
+
+```bash
+npm run seed -- 2026-05-30
+```
+
+Ou diretamente:
+
+```bash
+node src/shared/database/seeds/seed-all.js 2026-05-30
+```
+
 ### Funcionários
 
 ```bash
@@ -554,12 +568,12 @@ node src/shared/database/seeds/seed-motivos-situacao.js
 
 ### Pedidos
 
-Requer dois argumentos obrigatórios: a data do romaneio no formato `YYYY-MM-DD` e o ID inicial a partir do qual os pedidos serão numerados sequencialmente. A data é aplicada nos campos `dataRomaneio` e `dataVisita` de todos os pedidos. Ao final da execução o script exibe o próximo `idInicial` a ser usado na próxima carga.
+Requer a data do romaneio no formato `YYYY-MM-DD`. O ID inicial é determinado automaticamente consultando o maior `id` já existente na coleção e incrementando. A data é aplicada nos campos `dataRomaneio` e `dataVisita` de todos os pedidos.
 
 ```bash
-node src/shared/database/seeds/seed-pedidos.js <data> <idInicial>
+node src/shared/database/seeds/seed-pedidos.js <data>
 # Exemplo:
-node src/shared/database/seeds/seed-pedidos.js 2026-05-30 1
+node src/shared/database/seeds/seed-pedidos.js 2026-05-30
 ```
 
 ### Pendências
@@ -570,22 +584,22 @@ node src/shared/database/seeds/seed-pendencias.js
 
 ### Produtos Entregues
 
-Requer dois argumentos obrigatórios: a data do romaneio no formato `YYYY-MM-DD` e o ID inicial a partir do qual os registros serão numerados sequencialmente. A data é aplicada no campo `dataRomaneio` de todos os registros.
+Requer a data do romaneio no formato `YYYY-MM-DD`. O ID inicial é determinado automaticamente consultando o maior `id` já existente na coleção e incrementando. A data é aplicada no campo `dataRomaneio` de todos os registros.
 
 ```bash
-node src/shared/database/seeds/seed-produtos-entregue.js <data> <idInicial>
+node src/shared/database/seeds/seed-produtos-entregue.js <data>
 # Exemplo:
-node src/shared/database/seeds/seed-produtos-entregue.js 2026-05-30 1
+node src/shared/database/seeds/seed-produtos-entregue.js 2026-05-30
 ```
 
 ### Produtos Recebidos
 
-Requer dois argumentos obrigatórios: a data do romaneio no formato `YYYY-MM-DD` e o ID inicial a partir do qual os registros serão numerados sequencialmente. A data é aplicada no campo `dataRomaneio` de todos os registros.
+Requer a data do romaneio no formato `YYYY-MM-DD`. O ID inicial é determinado automaticamente consultando o maior `id` já existente na coleção e incrementando. A data é aplicada no campo `dataRomaneio` de todos os registros.
 
 ```bash
-node src/shared/database/seeds/seed-produtos-recebido.js <data> <idInicial>
+node src/shared/database/seeds/seed-produtos-recebido.js <data>
 # Exemplo:
-node src/shared/database/seeds/seed-produtos-recebido.js 2026-05-30 1
+node src/shared/database/seeds/seed-produtos-recebido.js 2026-05-30
 ```
 
 ### Checklist de Assistência
