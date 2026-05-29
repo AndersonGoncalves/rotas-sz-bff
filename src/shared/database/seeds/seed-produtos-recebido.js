@@ -1,214 +1,33 @@
 const BASE_URL = 'http://localhost:3001/produtos-recebido';
 
+const dataArg   = process.argv[2];
+const startIdArg = process.argv[3];
+
+if (!dataArg || !startIdArg) {
+  console.error('Uso: node seed-produtos-recebido.js <data> <idInicial>');
+  console.error('Exemplo: node seed-produtos-recebido.js 2026-05-30 1');
+  process.exit(1);
+}
+
+const dataRomaneioOverride = `${dataArg}T00:00:00.000`;
+const startId = parseInt(startIdArg, 10);
+
+if (isNaN(startId) || startId < 1) {
+  console.error('idInicial deve ser um número inteiro positivo (ex: 1, 150, 500)');
+  process.exit(1);
+}
+
 const produtosRecebido = [
-  { id: '-Otg5r6rs6vuU_1fZyNn', codigoTecnico: '1221', dataRomaneio: '2026-05-27T00:00:00.000' },
-  { id: '-Otg5rFw8YHfQ6ZTZMXA', codigoTecnico: '1221', dataRomaneio: '2026-05-27T00:00:00.000' },
-  { id: '-Otg5vrzlvRoNw5XRIBF', codigoTecnico: '1221', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-Otg5vuBp1ahGVfwsUoB', codigoTecnico: '1221', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-Oti04asZu662YmIO-nP', codigoTecnico: '1894', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-Oti057C6NAEZdWrZ7AC', codigoTecnico: '1894', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-Oti05Wz35L9pQG_v5j8', codigoTecnico: '1894', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCfi7of-Q2HVWd8BL', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCg4umnCXALQl_VKL', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCg4umnCXALQl_VKM', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgCJQN4qlK9hYnhy', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgECjbXb_Whtjkyl', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgMhbCW6PLSMZhZc', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgQplH7W8MYnnGpM', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgSdX86dU16T5rwN', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgYYaOEgpiZwlJyD', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgarKONfcg6KwAhX', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgb2oitHjtIcNrXz', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgwpXC_4etSbHfve', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiCgwqWlJ2bmp3DLIZ', codigoTecnico: '886',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiETJqkWHmwUsf7eFW', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEThiAqXx1QYylSZ1', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiETnkfw4RN9zSLWos', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiETuUj7ukd-6atyz8', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEU-BP_tKpNg2Ugeo', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEU3PVvOz9iJBPhFT', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEU4exhP4MmaX2WY_', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEU7ZUeeYMNJTt8SN', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEUMJkS1_pNJVA4Ww', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEUOyVfeGIi2dy-nN', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEUSAIDGEM-gZMJKy', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiEUUomu09w31DiK5k', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiJzSM61x2-eLBsqWo', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiJzXV1vd0e3xTMJrs', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiJzbKfwLr3Jp0APci', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiJzdeWeeoSuuLYDwD', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiJzqoGItvInd7HznK', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-3MpB40yC4pT7ys', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-AbjLzBn1eCVI8W', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-D8EHwCTnxY80XL', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-GixWY3HKCTxut6', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-XZ3gU08lTCvbhq', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-gDkQLIQperFfuA', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiK-nXk3-BS2Fg4ZOE', codigoTecnico: '2023', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiM7GEHJ6iMXbPuaIA', codigoTecnico: '286',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiM7YuUS3vKD7FHBaL', codigoTecnico: '286',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiM8WmIaN7b9HD_UYM', codigoTecnico: '286',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiM8_nA-UMz7ErLTzv', codigoTecnico: '286',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiM8cet9KCDBTUokV7', codigoTecnico: '286',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiM8n0jOh40Pu0qJrd', codigoTecnico: '286',  dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNNTKUzLnoyNxUAQo', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNQxYW1OssAGeZ0gg', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNQynkEbI3GIXegR7', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNR-xllKfzqABpaQe', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNROqNyV16ry_42ce', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNRRjVrDEbGW1-1ZF', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNRUSTyQZy9npD7L3', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNRjAQT6saqF6Xcv2', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSYWJBgdwj3a0gpC', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSaJtBrDOv3ujZsv', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNScHP3Jps8g7hoVK', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSfPGz9qHYnpnJcx', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSh-waABo8YsCkc5', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSkktIL0gsPkESmc', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSlxgsQEA6ak-G6a', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSoNYNmfZwoqDJQA', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSqVgA3pZAmeAy1u', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSswTNd6p3D2Qhfo', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiNSvQ86lnxRBw3QEu', codigoTecnico: '1852', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiX_u1ko_GXkkcpzWQ', codigoTecnico: '1976', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYkFW-IBXg_Z9TlhN', codigoTecnico: '1866', dataRomaneio: '2026-05-27T00:00:00.000' },
-  { id: '-OtiYnSP6GnhhmZhqajh', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYndIsevv8HiOFsHj', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYnhTzFbbY1bfvhH-', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYny1RvtTRTC0ZYxF', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYo2dvQmUgdineGJn', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYo3-XH6xJ-98zJaR', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYo68sOHfQbryp0ng', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYodxb-1kUZ2V3Gb4', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYoh0NmuBQa9fZ5yr', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYok4U3lEI5G6rgdb', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYopx9AwhWE8vSv2q', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYotkNAAWQS8X4qI3', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYowZiajkaiSeMLiL', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYozx8GJTfHRCtxLu', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqb4k56AftWSpdvl', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqd2T_Cwz7oqcm9p', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqgWDikwjVHKjCSF', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqkPuILOLcASKhfN', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqnPUMJJhfw9pAH-', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqqs6mPxbBu2Xf6P', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqu8YL4-uCbekdVc', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYqx8Ct598DVDAqJy', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYrAkToL3ZhxHHX2v', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYrEx_-QkR1ryrc29', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYrHO7xXe4GnWbnXv', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYrSo_upTnTfRA_iX', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYrViVuc4qTTP8LL8', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYrYuOJZe6w2nJQgg', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYvx85jtYtUzpSpCJ', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYvzzqxNhJAoXnnDt', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYw7A4UiiOARu20Ro', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYw9t0ly0K0j8benU', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYwDgWhJF5WFRm9bm', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYwS4sulnU-G3wajJ', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYwVTQea4jwoKq-Ub', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYwZTCJxWyvcNbyIM', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYwoJr3H-I98gyWoN', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYxOhiBnyrHJFD2Cb', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYxRtlv-Wwlo3Lfpg', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYxWOM_JNnwbicCMC', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYxZTeaMEkh2SDL2A', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYxcHkjxE1qKR-HNf', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYyDGPZN7P5szOZqF', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYyIfgwV40aQzCYuU', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYyMAdkQGrCYoC0ZM', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYySEkAaTAMqtauST', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYyXRNPHUz_Yr-K0Y', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYyYozPGdIWaZbh1a', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYybS6UnPJNYgfxg5', codigoTecnico: '1866', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiYzJI0HM3Z7FOFdZ4', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ-57VoFpqlk-K2CZ', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ-fA2AuOL3wKDibn', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ08I3gRFQ3eMVoMG', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ0cC5R3eakozg2Xy', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ0iZ1_n752zkdkck', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ0oU3y4jXabOpJcY', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ1AhmUFZTlMPq7XT', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ1Fm7xfXhF_7GAq_', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZ1LEBV6DWEdsjAJb', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZHyhw9pRiqiXp4EQ', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZIihfeq8ukLS82Fn', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZJlJGBCcRQ5YAxNI', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZK8YweMjZbBB4GPH', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZMpYIDuw86sX-WGg', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZOKZk1rQwZSt-TvP', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZORpsish3iDk9xei', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZOaX0mfUp1cw1c5C', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZOnBxzN4CaRL8j_p', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiZPCeRJFYmOG_Fcd8', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiamJu13OFgMVTQbkb', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiamVUce6GNbYdyqV7', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiamaLQKE3M8IE6mHD', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-OtiamdVh5XyH4fTBg96', codigoTecnico: '1879', dataRomaneio: '2026-05-28T00:00:00.000' },
-  { id: '-Otmwl8BoobvHht11L7w', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlIACxVJ_VPlFt-H', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlMoSlUV0QhicaN4', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlPwPSVV6WvAPB2A', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlUCqSj-VVx0WhuG', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlZBoKGQJXrXzSgf', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otmwliq4-cuJx7Jqc9Q', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlpGlzwhO3If5dwa', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwltxEgxd91ADVhMR', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwlyZY_y_3yNHkCrg', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otmwm3AkUNEbVHkNptN', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otmwm7lHN-1Qs1gznhc', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwmCZFfv_DzV9pVtp', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwnJPeIbNPoczClN3', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwocruLhBxWy_9XZC', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otmwohsj7YGaEd-k0iq', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwoklTudax2_4tRq3', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwopLy9QOrqUoRxtZ', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwoqvRBmURVYgVtVk', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwotOeJsw6PvYK9Y5', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtmwoxHeeoCy3ZEdJyV', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otmwp5_KixyMjPtymRC', codigoTecnico: '1852', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8UI2NogaREP3o3FL', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8UI8SRY0QV15Rebh', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8UtGTTQf5Q2M_c1L', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8UwHnJvy-boP_uyo', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8UwjsS5TcBKW7AZC', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8V0hO96eZgP2Te0-', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8V6VMGwYQxcKC6ey', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-Otn8V6Y-QJ8ALcIaCCM', codigoTecnico: '1894', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB6YdRQtzkCW9b7Dc', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB7VRBfZukhzVggZW', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB8y28oqfW4aTmU24', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB98C5ZJ-WTUX40WC', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB9eg3SEqydfUQlE4', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB9kXOYq1xuvQioVD', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB9oEXSjzzWOacLc7', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB9rKFRDz_9OWwhwa', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB9uE27bkuouql7x9', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnB9wwV_Q09KPSC1HF', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnBA2iK3vUPn4e2zuo', codigoTecnico: '1879', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnKfD737RZx9dS-wwd', codigoTecnico: '1221', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnKfL8I6gY2QB2ybw6', codigoTecnico: '1221', dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL44oMe9bAqv_ajSb', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4VupyKFF9uRXH_D', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4cZ_aAu8pFLqacn', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4camMU9C3J8y5XA', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4j5fRl2GqjqHlB8', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4jAKYx0zPn_LyHy', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4jBETIKtghbIXou', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL4qu5Q14F2b2Bjrb', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL55OrAt9tE3-PIsC', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL5BxxHdEePhBs30-', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL5C-SH5ZYWA88dl-', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL5I12Ri--XsGQ9Wp', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL5VR-4zsupJEDk-3', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL5VR-4zsupJEDk-4', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnL5VVxhX49rAtlMeH', codigoTecnico: '886',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnStVkU9u6EVuNsET5', codigoTecnico: '286',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnSw0X13PF57eNtVt-', codigoTecnico: '286',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnSw65KM4Z7jRy4wh1', codigoTecnico: '286',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnSwAXDpU2Yx9wyxYb', codigoTecnico: '286',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnSwDfYEdRDYWG-NG1', codigoTecnico: '286',  dataRomaneio: '2026-05-29T00:00:00.000' },
-  { id: '-OtnSwGDAhpS8fAqjeGA', codigoTecnico: '286',  dataRomaneio: '2026-05-29T00:00:00.000' },
+  { id: '1',  codigoTecnico: '1221' },
+  { id: '2',  codigoTecnico: '886'  },
+  { id: '3',  codigoTecnico: '1852' },
+  { id: '4',  codigoTecnico: '1894' },
+  { id: '5',  codigoTecnico: '1879' },
+  { id: '6',  codigoTecnico: '1866' },
+  { id: '7',  codigoTecnico: '2023' },
+  { id: '8',  codigoTecnico: '1924' },
+  { id: '9',  codigoTecnico: '286'  },
+  { id: '10', codigoTecnico: '1976' },
 ];
 
 async function post(item, index) {
@@ -216,22 +35,29 @@ async function post(item, index) {
     const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: item.id, codigoTecnico: item.codigoTecnico, dataRomaneio: item.dataRomaneio }),
+      body: JSON.stringify({ id: item.id, codigoTecnico: item.codigoTecnico, dataRomaneio: dataRomaneioOverride }),
     });
     const status = res.ok ? '✓' : '✗';
-    console.log(`[${String(index + 1).padStart(3, '0')}] ${status} ${res.status} — ${item.id} (${item.codigoTecnico})`);
+    console.log(`[${String(index + 1).padStart(3, '0')}] ${status} ${res.status} — id: ${item.id} | tecnico: ${item.codigoTecnico}`);
     return res.ok;
   } catch (err) {
-    console.error(`[${String(index + 1).padStart(3, '0')}] ✗ ERRO — ${item.id}: ${err.message}`);
+    console.error(`[${String(index + 1).padStart(3, '0')}] ✗ ERRO — id: ${item.id}: ${err.message}`);
     return false;
   }
 }
 
 async function main() {
-  console.log(`Enviando ${produtosRecebido.length} produtos recebidos para ${BASE_URL}\n`);
-  const results = await Promise.all(produtosRecebido.map((item, i) => post(item, i)));
+  const items = produtosRecebido.map((item, i) => ({ ...item, id: String(startId + i) }));
+  const lastId = startId + items.length - 1;
+
+  console.log(`Data romaneio : ${dataRomaneioOverride}`);
+  console.log(`IDs gerados   : ${startId} → ${lastId}  (${items.length} registros)`);
+  console.log(`Próximo ID    : ${lastId + 1}\n`);
+
+  const results = await Promise.all(items.map((item, i) => post(item, i)));
   const ok = results.filter(Boolean).length;
-  console.log(`\nConcluído: ${ok}/${produtosRecebido.length} inseridos com sucesso.`);
+  console.log(`\nConcluído: ${ok}/${items.length} inseridos com sucesso.`);
+  console.log(`Próximo idInicial para a próxima execução: ${lastId + 1}`);
 }
 
 main();

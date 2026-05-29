@@ -554,8 +554,12 @@ node src/shared/database/seeds/seed-motivos-situacao.js
 
 ### Pedidos
 
+Requer dois argumentos obrigatórios: a data do romaneio no formato `YYYY-MM-DD` e o ID inicial a partir do qual os pedidos serão numerados sequencialmente. A data é aplicada nos campos `dataRomaneio` e `dataVisita` de todos os pedidos. Ao final da execução o script exibe o próximo `idInicial` a ser usado na próxima carga.
+
 ```bash
-node src/shared/database/seeds/seed-pedidos.js
+node src/shared/database/seeds/seed-pedidos.js <data> <idInicial>
+# Exemplo:
+node src/shared/database/seeds/seed-pedidos.js 2026-05-30 1
 ```
 
 ### Pendências
@@ -566,14 +570,22 @@ node src/shared/database/seeds/seed-pendencias.js
 
 ### Produtos Entregues
 
+Requer dois argumentos obrigatórios: a data do romaneio no formato `YYYY-MM-DD` e o ID inicial a partir do qual os registros serão numerados sequencialmente. A data é aplicada no campo `dataRomaneio` de todos os registros.
+
 ```bash
-node src/shared/database/seeds/seed-produtos-entregue.js
+node src/shared/database/seeds/seed-produtos-entregue.js <data> <idInicial>
+# Exemplo:
+node src/shared/database/seeds/seed-produtos-entregue.js 2026-05-30 1
 ```
 
 ### Produtos Recebidos
 
+Requer dois argumentos obrigatórios: a data do romaneio no formato `YYYY-MM-DD` e o ID inicial a partir do qual os registros serão numerados sequencialmente. A data é aplicada no campo `dataRomaneio` de todos os registros.
+
 ```bash
-node src/shared/database/seeds/seed-produtos-recebido.js
+node src/shared/database/seeds/seed-produtos-recebido.js <data> <idInicial>
+# Exemplo:
+node src/shared/database/seeds/seed-produtos-recebido.js 2026-05-30 1
 ```
 
 ### Checklist de Assistência
