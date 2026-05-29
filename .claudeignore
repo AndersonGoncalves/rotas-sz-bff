@@ -1,0 +1,19 @@
+# Ignorar dependências do Node (Esta pasta é imensa!)
+node_modules/
+
+# Ignorar a pasta de build (código JavaScript compilado)
+dist/
+
+# Ignorar configurações do editor e histórico do Git
+.vscode/
+.git/
+
+# Ignorar logs ou arquivos de ambiente locais
+*.log
+.env
+.env.*
+!.env.example
+
+# Opcional: Se a pasta 'collections' ou 'doc' tiver arquivos muito pesados de testes/documentação
+# collections/
+# doc/

@@ -20,6 +20,7 @@ API RESTful BFF (Backend for Frontend) construída com **Node.js**, **TypeScript
   - [src/shared/database/mongoose.connection.ts](#srcshareddatabasemongooseconnectionts)
   - [main.ts](#maints)
 - [Rotas Disponíveis](#rotas-disponíveis)
+- [Seeds de Banco de Dados](#seeds-de-banco-de-dados)
 - [Variáveis de Ambiente](#variáveis-de-ambiente)
 
 ---
@@ -526,6 +527,66 @@ O servidor escuta na porta **3001** por padrão.
 | `POST`   | `/titulos`                  | Cria um novo título                    |
 | `PATCH`  | `/titulos/:id`              | Atualiza campos parcialmente           |
 | `DELETE` | `/titulos/:id`              | Remove um título                       |
+
+---
+
+## Seeds de Banco de Dados
+
+Scripts para popular o banco com dados iniciais. Execute com o servidor em execução (`http://localhost:3001`).
+
+### Funcionários
+
+```bash
+node src/shared/database/seeds/seed-funcionarios.js
+```
+
+### Motivos de Retorno
+
+```bash
+node src/shared/database/seeds/seed-motivos-retorno.js
+```
+
+### Motivos de Situação
+
+```bash
+node src/shared/database/seeds/seed-motivos-situacao.js
+```
+
+### Pedidos
+
+```bash
+node src/shared/database/seeds/seed-pedidos.js
+```
+
+### Pendências
+
+```bash
+node src/shared/database/seeds/seed-pendencias.js
+```
+
+### Produtos Entregues
+
+```bash
+node src/shared/database/seeds/seed-produtos-entregue.js
+```
+
+### Produtos Recebidos
+
+```bash
+node src/shared/database/seeds/seed-produtos-recebido.js
+```
+
+### Checklist de Assistência
+
+```bash
+node src/shared/database/seeds/seed-checklist-assistencia.js
+```
+
+### Checklist de Assistência — Água Natural
+
+```bash
+node src/shared/database/seeds/seed-checklist-assistencia-agua-natural.js
+```
 
 ---
 
