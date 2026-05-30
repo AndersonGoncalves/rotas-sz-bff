@@ -734,6 +734,42 @@
         },
         {
           "v": "1",
+          "id": "ped-get-filter-tecnico",
+          "name": "Listar por técnico",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/pedidos",
+          "params": [
+            {
+              "key": "tecnico",
+              "value": "1866",
+              "active": true
+            },
+            {
+              "key": "month",
+              "value": "5",
+              "active": false
+            },
+            {
+              "key": "year",
+              "value": "2026",
+              "active": false
+            }
+          ],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "none",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "ped-get-id",
           "name": "Buscar por ID",
           "method": "GET",
