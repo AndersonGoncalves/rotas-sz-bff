@@ -287,11 +287,12 @@ export const swaggerSpec = {
     '/pedidos': {
       get: {
         tags: ['Pedidos'],
-        summary: 'Listar pedidos com filtros opcionais de data',
+        summary: 'Listar pedidos com filtros opcionais de data e técnico',
         parameters: [
           { name: 'month', in: 'query', schema: { type: 'integer', minimum: 1, maximum: 12 }, description: 'Mês (1-12)' },
           { name: 'year', in: 'query', schema: { type: 'integer' }, description: 'Ano (ex: 2025)' },
           { name: 'day', in: 'query', schema: { type: 'integer', minimum: 1, maximum: 31 }, description: 'Dia (1-31)' },
+          { name: 'tecnico', in: 'query', schema: { type: 'string' }, description: 'Código do técnico (codigoTecnico)' },
         ],
         responses: {
           200: { description: 'Lista de pedidos', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Pedido' } } } } },
