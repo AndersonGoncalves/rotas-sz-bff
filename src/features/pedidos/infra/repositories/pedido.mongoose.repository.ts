@@ -27,8 +27,11 @@ export class PedidoMongooseRepository implements IPedidoRepository {
     };
   }
 
-  async findAll(month?: number, year?: number, day?: number): Promise<IPedido[]> {
+  async findAll(month?: number, year?: number, day?: number, codigoTecnico?: string): Promise<IPedido[]> {
     const query: any = {};
+    if (codigoTecnico !== undefined) {
+      query.codigoTecnico = codigoTecnico;
+    }
     if (month !== undefined && year !== undefined) {
       const pad = (n: number) => String(n).padStart(2, '0');
       let start: string;
