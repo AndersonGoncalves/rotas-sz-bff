@@ -251,6 +251,299 @@ const pedidos = [
     "tiposPagamento": [{ "descricao": "VIPZON                                                      ", "id": "4716", "quantidade": 1, "valor": 0 }],
     "turno": "INTEGRAL"
   },
+  {
+    "id": "16",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "MEIRELES", "celular": "99710273", "cep": "60120020", "cidade": "FORTALEZA", "codigoExterno": "219213", "complemento": "PAT 102", "dataCadastro": "2022-03-21T09:56:00", "email": "", "estado": "CE", "foto": "", "id": "219213", "logradouro": "RUA SILVA PAULET", "nome": "VILMA BARRETO PERDIGAO PAES", "numero": "1151", "observacao": "PARA DIA 29/05", "pontoDeReferencia": "ENTRE A SANTOS DUMONT E TORRES CAMERA", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "219213", "codigoExterno": "16", "codigoTecnico": "1976", "codigoVendedor": "1694",
+    "dadosPedidoDeCobranca": "PARA DIA 29/05", "dataRomaneio": "2026-05-29T00:00:00", "dataVisita": "2026-05-29T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "219213", "index": 20,
+    "nomeCliente": "VILMA BARRETO PERDIGAO PAES", "nomeTecnico": "SAMUEL OLIVEIRA", "nomeVendedor": "ANDREA LINS",
+    "observacao": "PARA DIA 29/05", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [{ "codigoPedido": "16", "codigoProduto": "181", "descricao": "ELEM. FILTRANTE SOFT EVEREST (2 EM 1)", "id": "181", "idPedido": "16", "idProduto": "181", "precoMinimo": 0, "precoUnitario": 198, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 4, "valor": 198 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "17",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "FATIMA", "celular": "31993238499", "cep": "60415000", "cidade": "FORTALEZA", "codigoExterno": "227032", "complemento": "APTO 401", "dataCadastro": "2023-02-25T16:23:00", "email": "fcsjr79@gmail.com", "estado": "CE", "foto": "", "id": "227032", "logradouro": "RUA MARIO MAMEDE", "nome": "FRANCISCO CESAR SALOMAO JUNIOR", "numero": "745", "observacao": "AUT SR FRANCISCO", "pontoDeReferencia": "", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "227032", "codigoExterno": "17", "codigoTecnico": "1866", "codigoVendedor": "1560",
+    "dadosPedidoDeCobranca": "AUT SR FRANCISCO", "dataRomaneio": "2026-05-30T00:00:00", "dataVisita": "2026-05-30T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "227032", "index": 5,
+    "nomeCliente": "FRANCISCO CESAR SALOMAO JUNIOR", "nomeTecnico": "EMERSON", "nomeVendedor": "CARLA OLIVEIRA",
+    "observacao": "AUT SR FRANCISCO", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [{ "codigoPedido": "17", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "17", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 180, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 4, "valor": 180 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "18",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "ALDEOTA", "celular": "8532241172", "cep": "60115280", "cidade": "FORTALEZA", "codigoExterno": "74749", "complemento": "AP 300", "dataCadastro": "2000-02-17T00:00:00", "email": "", "estado": "CE", "foto": "", "id": "74749", "logradouro": "RUA DRUA  JOSE LOURENCO", "nome": "MARIA DO CARMO FERNANDES CAVALCANTE", "numero": "440", "observacao": "", "pontoDeReferencia": "A MESMA", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "74749", "codigoExterno": "18", "codigoTecnico": "1976", "codigoVendedor": "1694",
+    "dadosPedidoDeCobranca": "", "dataRomaneio": "2026-05-29T00:00:00", "dataVisita": "2026-05-29T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "74749", "index": 5,
+    "nomeCliente": "MARIA DO CARMO FERNANDES CAVALCANTE", "nomeTecnico": "SAMUEL OLIVEIRA", "nomeVendedor": "ANDREA LINS",
+    "observacao": "", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [{ "codigoPedido": "18", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "18", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 160, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 4, "valor": 160 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "19",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "PRAIA DE IRACEMA", "celular": "8586652476", "cep": "60060292", "cidade": "FORTALEZA", "codigoExterno": "163673", "complemento": "APT 702", "dataCadastro": "2016-06-14T15:27:00.000", "email": "", "estado": "CE", "foto": "", "id": "163673", "logradouro": "RUA JOO CORDEIRO", "nome": "Diociecio De Sousa Lima Neto", "numero": "949", "observacao": "AUT SR DIOCIECIO//VAI DECIDIR O PLANO COM TÉCNICO.", "pontoDeReferencia": "PROX. A AV. ANTONIO SALES", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "163673", "codigoExterno": "19", "codigoTecnico": "886", "codigoVendedor": "1487",
+    "dadosPedidoDeCobranca": "AUT SR DIOCIECIO//VAI DECIDIR O PLANO COM TÉCNICO.", "dataRomaneio": "2026-06-01T00:00:00.000", "dataVisita": "2026-06-01T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "163673", "index": 22,
+    "nomeCliente": "Diociecio De Sousa Lima Neto", "nomeTecnico": "TARCIANO QUEIROZ", "nomeVendedor": "NEUSA",
+    "observacao": "AUT SR DIOCIECIO//VAI DECIDIR O PLANO COM TÉCNICO.", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "0+12",
+    "produtos": [
+      { "desconto": 0, "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "devolvido": 1, "id": "1253", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON PLATINUM", "devolvido": 1, "id": "2558", "idProduto": "2558", "precoMinimo": 0, "precoUnitario": 1046, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON 1/8 PLATINUM", "devolvido": 1, "id": "2560", "idProduto": "2560", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 1, "valor": 0 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
+  {
+    "id": "20",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "DIONISIO TORRES", "celular": "999980988", "cep": "60135215", "cidade": "FORTALEZA", "codigoExterno": "208156", "complemento": "APT 201 / PORTARIA AUTOMATICA", "dataCadastro": "2020-11-27T12:43:00.000", "email": "", "estado": "CE", "foto": "", "id": "208156", "logradouro": "RUA FRANCISCO HOLANDA", "nome": "Francisca Maria Gordiano De Oliveira Barbosa", "numero": "821", "observacao": "AUT SRA FRANCISCA // PASSAR DPS DAS 09:00", "pontoDeReferencia": "PROX A ASSEMBLEIA LEGISLATIVA", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "208156", "codigoExterno": "20", "codigoTecnico": "1221", "codigoVendedor": "1560",
+    "dadosPedidoDeCobranca": "AUT SRA FRANCISCA // PASSAR DPS DAS 09:00", "dataRomaneio": "2026-05-30T00:00:00.000", "dataVisita": "2026-05-30T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "208156", "index": 3,
+    "nomeCliente": "Francisca Maria Gordiano De Oliveira Barbosa", "nomeTecnico": "TIAGO SOARES", "nomeVendedor": "CARLA OLIVEIRA",
+    "observacao": "AUT SRA FRANCISCA // PASSAR DPS DAS 09:00", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "0+2",
+    "produtos": [
+      { "desconto": 0, "descricao": "ELEM. FILTRANTE 5 HPC200 5P S/ROSCA HIDRO", "devolvido": 1, "id": "813", "idProduto": "813", "precoMinimo": 0, "precoUnitario": 65, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 1, "valor": 0 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
+  {
+    "id": "21",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "ALDEOTA", "celular": "85987944642", "cep": "60140110", "cidade": "FORTALEZA", "codigoExterno": "230094", "complemento": "APT 901", "dataCadastro": "2023-07-10T13:00:00.000", "email": "", "estado": "CE", "foto": "", "id": "230094", "logradouro": "RUA CATO MAMEDE", "nome": "Mariana Teles Monteiro", "numero": "250", "observacao": "AUT SRA.MARIANA/TROCA DE ELEM.FILTRANTE/CLT VIP", "pontoDeReferencia": "", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "230094", "codigoExterno": "21", "codigoTecnico": "1221", "codigoVendedor": "2047",
+    "dadosPedidoDeCobranca": "AUT SRA.MARIANA/TROCA DE ELEM.FILTRANTE/CLT VIP", "dataRomaneio": "2026-05-30T00:00:00.000", "dataVisita": "2026-05-30T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "230094", "index": 1,
+    "nomeCliente": "Mariana Teles Monteiro", "nomeTecnico": "TIAGO SOARES", "nomeVendedor": "VITORIA ALMADA",
+    "observacao": "AUT SRA.MARIANA/TROCA DE ELEM.FILTRANTE/CLT VIP", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "VIPZON",
+    "produtos": [
+      { "desconto": 0, "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "devolvido": 0, "id": "1253", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON 1/8 PLATINUM", "devolvido": 0, "id": "2560", "idProduto": "2560", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "VIPZON                                                      ", "id": "4716", "quantidade": 1, "valor": 0 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
+  {
+    "id": "22",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "INDUSTRIAL", "celular": "91587474", "cep": "61925315", "cidade": "MARACANAU", "codigoExterno": "70343", "complemento": "A", "dataCadastro": "1999-03-11T00:00:00", "email": "", "estado": "CE", "foto": "", "id": "70343", "logradouro": "AVENIDA EDSON MAGALHES", "nome": "THAYNARA REGIA EVANGELISTA DE SOUSA", "numero": "11", "observacao": "SRA THAYNARA / 1 TROCA DE 8 / VALOR DA PROMOÇÃO", "pontoDeReferencia": "EM FRENTE AO COLEGIO JB N", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "70343", "codigoExterno": "22", "codigoTecnico": "2023", "codigoVendedor": "1402",
+    "dadosPedidoDeCobranca": "SRA THAYNARA / 1 TROCA DE 8 / VALOR DA PROMOÇÃO", "dataRomaneio": "2026-05-30T00:00:00", "dataVisita": "2026-05-30T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "70343", "index": 4,
+    "nomeCliente": "THAYNARA REGIA EVANGELISTA DE SOUSA", "nomeTecnico": "HERBERSON BARROS", "nomeVendedor": "VANIA",
+    "observacao": "SRA THAYNARA / 1 TROCA DE 8 / VALOR DA PROMOÇÃO", "pendencia": "", "prazoPagamento": "0+12",
+    "produtos": [
+      { "codigoPedido": "22", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "22", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" },
+      { "codigoPedido": "22", "codigoProduto": "2558", "descricao": "VIPZON PLATINUM", "id": "2558", "idPedido": "22", "idProduto": "2558", "precoMinimo": 0, "precoUnitario": 984.72, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" },
+      { "codigoPedido": "22", "codigoProduto": "2560", "descricao": "VIPZON 1/8 PLATINUM", "id": "2560", "idPedido": "22", "idProduto": "2560", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 12, "valor": 984.72 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "23",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "PRESIDENTE KENNEDY", "celular": "34785053", "cep": "60357320", "cidade": "FORTALEZA", "codigoExterno": "96692", "complemento": "ALTOS A", "dataCadastro": "2006-04-17T16:56:00.000", "email": "", "estado": "CE", "foto": "", "id": "96692", "logradouro": "QUADRA L", "nome": "Maria Iralda Araujo Lelis", "numero": "292", "observacao": "DECEDIR COM OTECNICO", "pontoDeReferencia": "POR TRAS DO COLEGIO INACIO COSTA", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "96692", "codigoExterno": "23", "codigoTecnico": "886", "codigoVendedor": "269",
+    "dadosPedidoDeCobranca": "DECEDIR COM OTECNICO", "dataRomaneio": "2026-05-30T00:00:00.000", "dataVisita": "2026-05-30T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "96692", "index": 8,
+    "nomeCliente": "Maria Iralda Araujo Lelis", "nomeTecnico": "TARCIANO QUEIROZ", "nomeVendedor": "THANYA",
+    "observacao": "DECEDIR COM OTECNICO", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "A VISTA",
+    "produtos": [
+      { "desconto": 0, "descricao": "ELEMENTO FILTRANTE PRIME ALCALINO", "devolvido": 0, "id": "2500", "idProduto": "2500", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON PRIME DIAMOND", "devolvido": 0, "id": "2571", "idProduto": "2571", "precoMinimo": 0, "precoUnitario": 578, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON PRIME 4/4 DIAMOND", "devolvido": 0, "id": "2575", "idProduto": "2575", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "DINHEIRO                                                    ", "id": "481", "quantidade": 1, "valor": 578 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
+  {
+    "id": "24",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "DIONISIO TORRES", "celular": "8532578431", "cep": "60135460", "cidade": "FORTALEZA", "codigoExterno": "448", "complemento": "APTº 800", "dataCadastro": "1999-03-16T00:00:00", "email": "", "estado": "CE", "foto": "", "id": "448", "logradouro": "RUA ISRAEL BEZERRA", "nome": "CARLOS ROBERTO CIDRAO MORAIS", "numero": "383", "observacao": "AUT SRA CARLOS", "pontoDeReferencia": "PROXIMO DO COLEGIO SANTO INACIO", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "448", "codigoExterno": "24", "codigoTecnico": "2023", "codigoVendedor": "1258",
+    "dadosPedidoDeCobranca": "AUT SRA CARLOS", "dataRomaneio": "2026-06-01T00:00:00", "dataVisita": "2026-06-01T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "448", "index": 11,
+    "nomeCliente": "CARLOS ROBERTO CIDRAO MORAIS", "nomeTecnico": "HERBERSON BARROS", "nomeVendedor": "THATIANA",
+    "observacao": "AUT SRA CARLOS", "pendencia": "", "prazoPagamento": "A VISTA",
+    "produtos": [{ "codigoPedido": "24", "codigoProduto": "2500", "descricao": "ELEMENTO FILTRANTE PRIME ALCALINO", "id": "2500", "idPedido": "24", "idProduto": "2500", "precoMinimo": 0, "precoUnitario": 110, "quantidade": 1, "situacaoRomaneio": "ATENDIMENTO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "DEPÓSITO EM CONTA                                           ", "id": "457", "quantidade": 1, "valor": 110 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "25",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "COCO", "celular": "92113434", "cep": "60192050", "cidade": "FORTALEZA", "codigoExterno": "242502", "complemento": "AP 2102-TORRE LILAC", "dataCadastro": "2025-02-15T11:02:00", "email": "", "estado": "CE", "foto": "", "id": "242502", "logradouro": "RUA BENTO ALBUQUERQUE", "nome": "FLAVIO RIBEIRO SANTIAGO", "numero": "2300", "observacao": "AUT SR FLAVIO ", "pontoDeReferencia": "NO COND LAPLACE", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "242502", "codigoExterno": "25", "codigoTecnico": "1924", "codigoVendedor": "1858",
+    "dadosPedidoDeCobranca": "AUT SR FLAVIO ", "dataRomaneio": "2026-06-01T00:00:00", "dataVisita": "2026-06-01T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "242502", "index": 6,
+    "nomeCliente": "FLAVIO RIBEIRO SANTIAGO", "nomeTecnico": "NIELSON ARAUJO", "nomeVendedor": "ANA BEATRIZ",
+    "observacao": "AUT SR FLAVIO ", "pendencia": "", "prazoPagamento": "VIPZON",
+    "produtos": [
+      { "codigoPedido": "25", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "25", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" },
+      { "codigoPedido": "25", "codigoProduto": "2481", "descricao": "VIPZON 3/4 DIAMOND/BRONZE", "id": "2481", "idPedido": "25", "idProduto": "2481", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "VIPZON                                                      ", "id": "4716", "quantidade": 1, "valor": 0 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "26",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "ICARAI", "celular": "85985834697", "cep": "61624477", "cidade": "CAUCAIA", "codigoExterno": "241387", "complemento": "CCOND. ICARAI GOLD 2, CASA 2", "dataCadastro": "2024-12-26T10:18:00.000", "email": "andreiam25sousa@gmail.com", "estado": "CE", "foto": "", "id": "241387", "logradouro": " RUA K", "nome": "Andreia Mendes De Sousa", "numero": "450", "observacao": "SRA ANDREIA / RETIRAR SOFT VAI MUDAR DE ENDEREçO", "pontoDeReferencia": " BARRA NOVA", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "241387", "codigoExterno": "26", "codigoTecnico": "1894", "codigoVendedor": "1402",
+    "dadosPedidoDeCobranca": "SRA ANDREIA / RETIRAR SOFT VAI MUDAR DE ENDEREçO", "dataRomaneio": "2026-05-29T00:00:00.000", "dataVisita": "2026-05-29T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "241387", "index": 7,
+    "lancadoComercial": true, "lancadoLogistica": true,
+    "nomeCliente": "Andreia Mendes De Sousa", "nomeTecnico": "WELTON FERNANDES", "nomeVendedor": "VANIA",
+    "observacao": "SRA ANDREIA / RETIRAR SOFT VAI MUDAR DE ENDEREçO", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [
+      { "desconto": 0, "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "devolucaoLancada": true, "devolvido": 1, "id": "1253", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 208, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VISITA SOFT INST/REINST/ASSIST.", "devolvido": 0, "id": "2496", "idProduto": "2496", "precoMinimo": 0, "precoUnitario": 90, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 1, "valor": 90 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
+  {
+    "id": "27",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "MEIRELES", "celular": "996820808", "cep": "60110370", "cidade": "FORTALEZA", "codigoExterno": "98159", "complemento": "A/MEGA ÓTICA", "dataCadastro": "2006-07-22T11:13:00", "email": "", "estado": "CE", "foto": "", "id": "98159", "logradouro": "RUA ANTONIO AUGUSTO", "nome": "RAIMUNDO PESSOA DIAS JUNIOR", "numero": "1260", "observacao": "AUT SR EDNA / P DIA 29 05", "pontoDeReferencia": "PROX.QUASE ESQUINA COM SANTOS DUMONT", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "98159", "codigoExterno": "27", "codigoTecnico": "1976", "codigoVendedor": "1659",
+    "dadosPedidoDeCobranca": "AUT SR EDNA / P DIA 29 05", "dataRomaneio": "2026-05-29T00:00:00", "dataVisita": "2026-05-29T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "98159", "index": 15,
+    "nomeCliente": "RAIMUNDO PESSOA DIAS JUNIOR", "nomeTecnico": "SAMUEL OLIVEIRA", "nomeVendedor": "ANDRESSA SILVA",
+    "observacao": "AUT SR EDNA / P DIA 29 05", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [{ "codigoPedido": "27", "codigoProduto": "181", "descricao": "ELEM. FILTRANTE SOFT EVEREST (2 EM 1)", "id": "181", "idPedido": "27", "idProduto": "181", "precoMinimo": 0, "precoUnitario": 208, "quantidade": 1, "situacaoRomaneio": "ATENDIMENTO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 4, "valor": 208 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "28",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "PIRATININGA", "celular": "85984077072", "cep": "61905395", "cidade": "MARACANAU", "codigoExterno": "239141", "complemento": "", "dataCadastro": "2024-09-14T18:36:00", "email": "camilaedanyllo@hotmail.com", "estado": "CE", "foto": "", "id": "239141", "logradouro": "RUA ELSON CARLOS", "nome": "DANYLLO  ALEXANDRE CESAR", "numero": "263", "observacao": "AUT SR DANYLLO - P/ DIA 30/05 ", "pontoDeReferencia": "PROX A AVEND PADRE JOSE", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "239141", "codigoExterno": "28", "codigoTecnico": "2023", "codigoVendedor": "1953",
+    "dadosPedidoDeCobranca": "AUT SR DANYLLO - P/ DIA 30/05 ", "dataRomaneio": "2026-05-30T00:00:00", "dataVisita": "2026-05-30T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "239141", "index": 9,
+    "nomeCliente": "DANYLLO  ALEXANDRE CESAR", "nomeTecnico": "HERBERSON BARROS", "nomeVendedor": "VIVIANE ANDRADE",
+    "observacao": "AUT SR DANYLLO - P/ DIA 30/05 ", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [{ "codigoPedido": "28", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "28", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 180, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 4, "valor": 180 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "29",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "AQUIRAZ", "celular": "85 91727822", "cep": "61700000", "cidade": "AQUIRAZ", "codigoExterno": "220492", "complemento": "TAPERA ESQUINA RUA PEDRO PAULO NOGUEIRA", "dataCadastro": "2022-05-06T11:49:00", "email": "", "estado": "CE", "foto": "", "id": "220492", "logradouro": "RUA DO CANTOR ", "nome": "ANA CRISTINA DE OLIVEIRA JERONIMO", "numero": "03", "observacao": "AUT SR ANA", "pontoDeReferencia": "UMA RUA ANTES DO CAMPO LADO DIREITO", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "220492", "codigoExterno": "29", "codigoTecnico": "2023", "codigoVendedor": "936",
+    "dadosPedidoDeCobranca": "AUT SR ANA", "dataRomaneio": "2026-05-29T00:00:00", "dataVisita": "2026-05-29T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "220492", "index": 4,
+    "nomeCliente": "ANA CRISTINA DE OLIVEIRA JERONIMO", "nomeTecnico": "HERBERSON BARROS", "nomeVendedor": "SAMARA LOURENCO",
+    "observacao": "AUT SR ANA", "pendencia": "", "prazoPagamento": "0+4",
+    "produtos": [{ "codigoPedido": "29", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "29", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 190, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 4, "valor": 190 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "30",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "EDSON QUEIROZ", "celular": "988026018", "cep": "60834355", "cidade": "FORTALEZA", "codigoExterno": "215485", "complemento": "CASA DE ESQUINA", "dataCadastro": "2021-10-20T14:36:00.000", "email": "rafaelcoutovieira@gmail.com", "estado": "CE", "foto": "", "id": "215485", "logradouro": "RUA NESTOR FONTENELE VASCONCELOS", "nome": "Elizabete Couto Vieira", "numero": "251", "observacao": "AUT ELIZABETE - A TARDE", "pontoDeReferencia": "FICA EM FRENTE AO MOTEL HIPNOSE", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "215485", "codigoExterno": "30", "codigoTecnico": "286", "codigoVendedor": "1858",
+    "dadosPedidoDeCobranca": "AUT ELIZABETE - A TARDE", "dataRomaneio": "2026-05-29T00:00:00.000", "dataVisita": "2026-05-29T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "215485", "index": 2,
+    "lancadoComercial": true, "lancadoLogistica": true,
+    "nomeCliente": "Elizabete Couto Vieira", "nomeTecnico": "MACIEL", "nomeVendedor": "ANA BEATRIZ",
+    "observacao": "AUT ELIZABETE - A TARDE", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "VIPZON",
+    "produtos": [
+      { "desconto": 0, "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "devolvido": 0, "id": "1253", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON 4/6 RUBI", "devolvido": 0, "id": "2538", "idProduto": "2538", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "VIPZON                                                      ", "id": "4716", "quantidade": 1, "valor": 0 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
+  {
+    "id": "31",
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "NOVO ORIENTE", "celular": "8586800537", "cep": "61921120", "cidade": "MARACANAU", "codigoExterno": "119912", "complemento": "", "dataCadastro": "2010-06-05T11:03:00", "email": "", "estado": "CE", "foto": "", "id": "119912", "logradouro": "R 11", "nome": "MARIA MOREIRA MARINHEIRO", "numero": "17", "observacao": "AUT SRA MARIA   NEG VIP", "pontoDeReferencia": "PROXIMO AO PRACINHA DO ACARUCUZINHO", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "119912", "codigoExterno": "31", "codigoTecnico": "2023", "codigoVendedor": "1104",
+    "dadosPedidoDeCobranca": "AUT SRA MARIA   NEG VIP", "dataRomaneio": "2026-05-30T00:00:00", "dataVisita": "2026-05-30T00:00:00",
+    "enderecoCobranca": "", "horaInstalacao": "", "idCliente": "119912", "index": 7,
+    "nomeCliente": "MARIA MOREIRA MARINHEIRO", "nomeTecnico": "HERBERSON BARROS", "nomeVendedor": "ADRIANI ARAGAO",
+    "observacao": "AUT SRA MARIA   NEG VIP", "pendencia": "", "prazoPagamento": "0+1",
+    "produtos": [{ "codigoPedido": "31", "codigoProduto": "1253", "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "id": "1253", "idPedido": "31", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 208, "quantidade": 1, "situacaoRomaneio": "REAGENDADO" }],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "EM ABERTO", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "CARTÃO DE CRÉDITO                                           ", "id": "482", "quantidade": 1, "valor": 208 }],
+    "turno": "INTEGRAL"
+  },
+  {
+    "id": "32",
+    "acrescimo": 0,
+    "assinatura": "",
+    "fotos": [],
+    "cliente": { "bairro": "SAO JOAO DO TAUAPE", "celular": "997232003", "cep": "60120100", "cidade": "FORTALEZA", "codigoExterno": "213913", "complemento": "BLOCO A- APTO 301", "dataCadastro": "2021-08-09T11:28:00.000", "email": "", "estado": "CE", "foto": "", "id": "213913", "logradouro": "RUA FREI VIDAL", "nome": "Ortulina Sales Andrade", "numero": "2045", "observacao": "AUT ORTULINA ", "pontoDeReferencia": " CONDOMINIO JARDIM DE NAZARE", "telegram": "", "whatsapp": "" },
+    "codigoCliente": "213913", "codigoExterno": "32", "codigoTecnico": "286", "codigoVendedor": "1858",
+    "dadosPedidoDeCobranca": "AUT ORTULINA ", "dataRomaneio": "2026-05-30T00:00:00.000", "dataVisita": "2026-05-30T00:00:00.000",
+    "desconto": 0, "enderecoCobranca": "", "frete": 0, "horaInstalacao": "", "idCliente": "213913", "index": 11,
+    "nomeCliente": "Ortulina Sales Andrade", "nomeTecnico": "MACIEL", "nomeVendedor": "ANA BEATRIZ",
+    "observacao": "AUT ORTULINA ", "observacaoTecnico": "", "pedidoTeste": "0", "pendencia": "", "prazoPagamento": "VIPZON",
+    "produtos": [
+      { "desconto": 0, "descricao": "FILTRO ORIGINAL SUPERZON AGUA GELADA", "devolvido": 1, "id": "1253", "idProduto": "1253", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 },
+      { "desconto": 0, "descricao": "VIPZON 1/4 DIAMOND/BRONZE", "devolvido": 1, "id": "2479", "idProduto": "2479", "precoMinimo": 0, "precoUnitario": 0, "quantidade": 1 }
+    ],
+    "quemAssinou": "", "situacao": 0, "situacaoRomaneio": "FINALIZADO", "tipoPedido": "", "tipoVenda": "VENDA",
+    "tiposPagamento": [{ "descricao": "VIPZON                                                      ", "id": "4716", "quantidade": 1, "valor": 0 }],
+    "transformadoEmVipzon": false, "turno": "INTEGRAL"
+  },
 ];
 
 async function prepareRun() {
@@ -270,7 +563,11 @@ async function prepareRun() {
   }
 
   if (items.length === 0) return 1;
-  const maxId = Math.max(...items.map(item => parseInt(item.id, 10) || 0));
+  const seedIds = items
+    .map(item => parseInt(item.id, 10) || 0)
+    .filter(id => id > 0 && id < 100000); // ignora IDs baseados em timestamp do sistema real
+  if (seedIds.length === 0) return 1;
+  const maxId = Math.max(...seedIds);
   return isFinite(maxId) ? maxId + 1 : 1;
 }
 
