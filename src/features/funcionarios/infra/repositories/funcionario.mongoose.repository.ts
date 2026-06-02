@@ -10,7 +10,6 @@ export class FuncionarioMongooseRepository implements IFuncionarioRepository {
       codigoExterno: doc.codigoExterno,
       nome: doc.nome,
       email: doc.email,
-      foto: doc.foto,
       assinatura: doc.assinatura,
     };
   }

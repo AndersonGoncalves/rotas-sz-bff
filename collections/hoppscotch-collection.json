@@ -386,7 +386,7 @@
           },
           "body": {
             "contentType": "application/json",
-            "body": "{\n  \"id\": \"-OZQP3J0nEoT_KordHHQ\",\n  \"funcao\": \"Técnico\",\n  \"codigoExterno\": \"1894\",\n  \"nome\": \"Welton\",\n  \"email\": \"Welton@superzon.com.br\",\n  \"foto\": \"\",\n  \"assinatura\": \"\"\n}"
+            "body": "{\n  \"id\": \"-OZQP3J0nEoT_KordHHQ\",\n  \"funcao\": \"Técnico\",\n  \"codigoExterno\": \"1894\",\n  \"nome\": \"Welton\",\n  \"email\": \"Welton@superzon.com.br\",\n  \"assinatura\": \"\"\n}"
           },
           "requestVariables": []
         },

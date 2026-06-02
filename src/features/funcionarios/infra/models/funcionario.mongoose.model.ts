@@ -6,7 +6,6 @@ const funcionarioSchema = new mongoose.Schema(
     codigoExterno: { type: String, default: '' },
     nome: { type: String, required: true },
     email: { type: String, required: true },
-    foto: { type: String, default: null },
     assinatura: { type: String, default: null },
   },
   { timestamps: false, versionKey: false },
