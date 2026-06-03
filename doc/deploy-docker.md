@@ -5,6 +5,7 @@ Docker empacota a aplicação + Node.js + todas as dependências em uma **imagem
 > Para a alternativa sem Docker, consulte [deploy-manual.md](deploy-manual.md).
 
 > **Como funciona resumidamente:**
+>
 > 1. Você cria dois arquivos de configuração na raiz do projeto (`Dockerfile` e `docker-compose.yml`).
 > 2. O Docker lê esses arquivos e monta tudo automaticamente.
 > 3. Um único comando sobe a API e o banco de dados juntos.
@@ -62,9 +63,9 @@ Crie o arquivo `docker-compose.yml` na raiz do projeto:
 ```yaml
 services:
   api:
-    build: .          # usa o Dockerfile que você criou no Passo 1
+    build: . # usa o Dockerfile que você criou no Passo 1
     ports:
-      - "3001:3001"   # expõe a porta 3001 para fora do container
+      - "3001:3001" # expõe a porta 3001 para fora do container
     environment:
       SERVER_PORT: 3001
       DB_URL: mongodb://mongo:27017/rotas-sz
@@ -74,11 +75,11 @@ services:
     restart: unless-stopped
 
   mongo:
-    image: mongo:7    # baixa a imagem oficial do MongoDB
+    image: mongo:7 # baixa a imagem oficial do MongoDB
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db   # salva os dados fora do container
+      - mongo_data:/data/db # salva os dados fora do container
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
@@ -87,7 +88,7 @@ services:
       retries: 5
 
 volumes:
-  mongo_data:   # volume nomeado: dados persistem mesmo se o container for recriado
+  mongo_data: # volume nomeado: dados persistem mesmo se o container for recriado
 ```
 
 > `restart: unless-stopped` faz os containers reiniciarem automaticamente se o servidor for reiniciado.
@@ -195,7 +196,7 @@ systemctl --user enable docker-desktop
 
 **1.3 — Resolver erro de KVM (se o Docker Desktop não abrir)**
 
-O Docker Desktop no Linux exige suporte a KVM (virtualização de hardware). Se ao iniciar aparecer a mensagem *"KVM is not enabled on host"*, siga os passos abaixo.
+O Docker Desktop no Linux exige suporte a KVM (virtualização de hardware). Se ao iniciar aparecer a mensagem _"KVM is not enabled on host"_, siga os passos abaixo.
 
 Verifique se a CPU suporta virtualização (resultado deve ser maior que 0):
 
@@ -326,6 +327,19 @@ O Docker Desktop é o programa que vai criar e rodar os containers da aplicaçã
 
 Após reiniciar, abra o **Docker Desktop** pelo menu Iniciar. Aguarde até o ícone da baleia na bandeja do sistema (canto inferior direito) ficar estável — isso indica que o Docker está pronto.
 
+> **Problema comum: "WSL needs updating"**
+>
+> Se ao abrir o Docker Desktop aparecer a mensagem **"WSL needs updating"** (sua versão do WSL está desatualizada), siga estes passos:
+>
+> 1. Abra o **PowerShell como Administrador** (clique com o botão direito no ícone do PowerShell e escolha "Executar como administrador").
+> 2. Execute o comando:
+>    ```powershell
+>    wsl --update
+>    ```
+> 3. Aguarde a atualização concluir.
+> 4. Feche e reabra o **Docker Desktop**.
+> 5. Aguarde o ícone da baleia ficar estável novamente.
+
 Para confirmar que o Docker foi instalado corretamente, abra o PowerShell e execute:
 
 ```powershell
@@ -342,7 +356,7 @@ Se ambos os comandos mostrarem versões, está tudo certo.
 Agora que o Git está instalado, você pode baixar o projeto do GitHub. No PowerShell, execute:
 
 ```powershell
-git clone https://github.com/seu-usuario/rotas-sz-bff.git
+git clone https://github.com/AndersonGoncalves/rotas-sz-bff.git
 cd rotas-sz-bff
 ```
 
@@ -368,6 +382,7 @@ docker compose up -d
 ```
 
 O que cada parte significa:
+
 - `docker compose` — chama o Docker para gerenciar os containers.
 - `up` — cria e inicia os containers.
 - `-d` — roda em segundo plano (você continua usando o terminal normalmente enquanto a aplicação roda).
@@ -561,12 +576,12 @@ Os dados do banco **não ficam dentro do container** — se o container for remo
 
 ### Dados de conexão
 
-| Campo        | Valor                     |
-| ------------ | ------------------------- |
+| Campo        | Valor                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------ |
 | Host         | `localhost` (se for o próprio computador) ou o IP da máquina na rede (ex: `192.168.1.100`) |
-| Porta        | `27017`                   |
-| Banco        | `rotas-sz`                |
-| Autenticação | Nenhuma (sem usuário/senha) |
+| Porta        | `27017`                                                                                    |
+| Banco        | `rotas-sz`                                                                                 |
+| Autenticação | Nenhuma (sem usuário/senha)                                                                |
 
 ### MongoDB Compass
 
