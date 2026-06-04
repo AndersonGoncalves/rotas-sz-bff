@@ -6,62 +6,65 @@ export const swaggerSpec = {
     version: '1.0.0',
   },
   servers: [
+    { url: 'http://54.87.117.64:3001', description: 'Produção' },
     { url: 'http://localhost:3001', description: 'Desenvolvimento local' },
   ],
   tags: [
-    { name: 'Checklist Assistência', description: 'Checklists de assistência técnica' },
+    { name: 'Checklist Assistência Água Gelada', description: 'Checklists de assistência para purificadores de água gelada' },
     { name: 'Checklist Assistência Água Natural', description: 'Checklists de assistência para purificadores de água natural' },
+    { name: 'Clientes', description: 'Gestão de clientes' },
     { name: 'Funcionários', description: 'Gestão de funcionários' },
     { name: 'Motivos de Retorno', description: 'Motivos de retorno de pedidos' },
     { name: 'Motivos de Situação', description: 'Motivos de situação de visitas' },
     { name: 'Pedidos', description: 'Gestão de pedidos e romaneios' },
     { name: 'Pendências', description: 'Gestão de pendências de pedidos' },
+    { name: 'Produtos', description: 'Gestão de produtos' },
     { name: 'Produtos Entregue', description: 'Controle de produtos entregues' },
     { name: 'Produtos Recebido', description: 'Controle de produtos recebidos' },
     { name: 'Visitas', description: 'Gestão de visitas comerciais' },
   ],
   paths: {
-    '/checklist-assistencia': {
+    '/checklist-assistencia-agua-gelada': {
       get: {
-        tags: ['Checklist Assistência'],
-        summary: 'Listar checklists de assistência',
+        tags: ['Checklist Assistência Água Gelada'],
+        summary: 'Listar checklists de assistência água gelada',
         responses: {
           200: {
             description: 'Lista de checklists',
-            content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/ChecklistAssistencia' } } } },
+            content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/ChecklistAssistenciaAguaGelada' } } } },
           },
         },
       },
       post: {
-        tags: ['Checklist Assistência'],
-        summary: 'Criar checklist de assistência',
+        tags: ['Checklist Assistência Água Gelada'],
+        summary: 'Criar checklist de assistência água gelada',
         requestBody: {
           required: true,
-          content: { 'application/json': { schema: { $ref: '#/components/schemas/ChecklistAssistenciaInput' } } },
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/ChecklistAssistenciaAguaGeladaInput' } } },
         },
         responses: {
           201: { description: 'Criado com sucesso', content: { 'application/json': { schema: { $ref: '#/components/schemas/CreatedResponse' } } } },
-          400: { description: 'Campos obrigatórios ausentes' },
+          400: { description: 'Campos obrigatórios: pedidoId, nomeCliente, numeroSerie, modelo, dataChecklist' },
         },
       },
     },
-    '/checklist-assistencia/{id}': {
+    '/checklist-assistencia-agua-gelada/{id}': {
       get: {
-        tags: ['Checklist Assistência'],
-        summary: 'Buscar checklist de assistência por ID',
+        tags: ['Checklist Assistência Água Gelada'],
+        summary: 'Buscar checklist de assistência água gelada por ID',
         parameters: [{ $ref: '#/components/parameters/id' }],
         responses: {
-          200: { description: 'Checklist encontrado', content: { 'application/json': { schema: { $ref: '#/components/schemas/ChecklistAssistencia' } } } },
+          200: { description: 'Checklist encontrado', content: { 'application/json': { schema: { $ref: '#/components/schemas/ChecklistAssistenciaAguaGelada' } } } },
           404: { description: 'Não encontrado' },
         },
       },
       patch: {
-        tags: ['Checklist Assistência'],
-        summary: 'Atualizar parcialmente checklist de assistência',
+        tags: ['Checklist Assistência Água Gelada'],
+        summary: 'Atualizar parcialmente checklist de assistência água gelada',
         parameters: [{ $ref: '#/components/parameters/id' }],
         requestBody: {
           required: true,
-          content: { 'application/json': { schema: { $ref: '#/components/schemas/ChecklistAssistenciaInput' } } },
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/ChecklistAssistenciaAguaGeladaInput' } } },
         },
         responses: {
           204: { description: 'Atualizado com sucesso' },
@@ -119,6 +122,65 @@ export const swaggerSpec = {
       },
     },
 
+    '/clientes': {
+      get: {
+        tags: ['Clientes'],
+        summary: 'Listar clientes ou buscar por texto',
+        parameters: [
+          { name: 'q', in: 'query', schema: { type: 'string' }, description: 'Texto para busca por nome, email, celular etc.' },
+          { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 }, description: 'Quantidade máxima de resultados (padrão: 10)' },
+        ],
+        responses: {
+          200: { description: 'Lista de clientes', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Cliente' } } } } },
+        },
+      },
+      post: {
+        tags: ['Clientes'],
+        summary: 'Criar cliente',
+        requestBody: {
+          required: true,
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/ClienteInput' } } },
+        },
+        responses: {
+          201: { description: 'Criado com sucesso', content: { 'application/json': { schema: { $ref: '#/components/schemas/CreatedResponse' } } } },
+          400: { description: 'O campo "nome" é obrigatório' },
+        },
+      },
+    },
+    '/clientes/{id}': {
+      get: {
+        tags: ['Clientes'],
+        summary: 'Buscar cliente por ID',
+        parameters: [{ $ref: '#/components/parameters/id' }],
+        responses: {
+          200: { description: 'Cliente encontrado', content: { 'application/json': { schema: { $ref: '#/components/schemas/Cliente' } } } },
+          404: { description: 'Não encontrado' },
+        },
+      },
+      patch: {
+        tags: ['Clientes'],
+        summary: 'Atualizar parcialmente cliente',
+        parameters: [{ $ref: '#/components/parameters/id' }],
+        requestBody: {
+          required: true,
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/ClienteInput' } } },
+        },
+        responses: {
+          204: { description: 'Atualizado com sucesso' },
+          404: { description: 'Não encontrado' },
+        },
+      },
+      delete: {
+        tags: ['Clientes'],
+        summary: 'Remover cliente',
+        parameters: [{ $ref: '#/components/parameters/id' }],
+        responses: {
+          204: { description: 'Removido com sucesso' },
+          404: { description: 'Não encontrado' },
+        },
+      },
+    },
+
     '/funcionarios': {
       get: {
         tags: ['Funcionários'],
@@ -136,7 +198,7 @@ export const swaggerSpec = {
         },
         responses: {
           201: { description: 'Criado com sucesso', content: { 'application/json': { schema: { $ref: '#/components/schemas/CreatedResponse' } } } },
-          400: { description: 'Campos obrigatórios ausentes: funcao, nome, email' },
+          400: { description: 'Campos obrigatórios: funcao, nome' },
         },
       },
     },
@@ -402,6 +464,65 @@ export const swaggerSpec = {
       },
     },
 
+    '/produtos': {
+      get: {
+        tags: ['Produtos'],
+        summary: 'Listar produtos ou buscar por texto',
+        parameters: [
+          { name: 'q', in: 'query', schema: { type: 'string' }, description: 'Texto para busca por nome, referência, código de barras etc.' },
+          { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 }, description: 'Quantidade máxima de resultados (padrão: 10)' },
+        ],
+        responses: {
+          200: { description: 'Lista de produtos', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Produto' } } } } },
+        },
+      },
+      post: {
+        tags: ['Produtos'],
+        summary: 'Criar produto',
+        requestBody: {
+          required: true,
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/ProdutoInput' } } },
+        },
+        responses: {
+          201: { description: 'Criado com sucesso', content: { 'application/json': { schema: { $ref: '#/components/schemas/CreatedResponse' } } } },
+          400: { description: 'Campos obrigatórios: dataCadastro, nome, quantidadeEmEstoque, precoDeCusto, precoDeVenda' },
+        },
+      },
+    },
+    '/produtos/{id}': {
+      get: {
+        tags: ['Produtos'],
+        summary: 'Buscar produto por ID',
+        parameters: [{ $ref: '#/components/parameters/id' }],
+        responses: {
+          200: { description: 'Produto encontrado', content: { 'application/json': { schema: { $ref: '#/components/schemas/Produto' } } } },
+          404: { description: 'Não encontrado' },
+        },
+      },
+      patch: {
+        tags: ['Produtos'],
+        summary: 'Atualizar parcialmente produto',
+        parameters: [{ $ref: '#/components/parameters/id' }],
+        requestBody: {
+          required: true,
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/ProdutoInput' } } },
+        },
+        responses: {
+          204: { description: 'Atualizado com sucesso' },
+          404: { description: 'Não encontrado' },
+        },
+      },
+      delete: {
+        tags: ['Produtos'],
+        summary: 'Remover produto',
+        parameters: [{ $ref: '#/components/parameters/id' }],
+        responses: {
+          204: { description: 'Removido com sucesso' },
+          404: { description: 'Não encontrado' },
+        },
+      },
+    },
+
     '/produtos-entregue': {
       get: {
         tags: ['Produtos Entregue'],
@@ -566,7 +687,7 @@ export const swaggerSpec = {
           id: { type: 'string', example: '665f1a2b3c4d5e6f7a8b9c0d' },
         },
       },
-      ChecklistAssistencia: {
+      ChecklistAssistenciaAguaGelada: {
         type: 'object',
         properties: {
           id: { type: 'string' },
@@ -612,7 +733,7 @@ export const swaggerSpec = {
           dataChecklist: { type: 'string', format: 'date-time' },
         },
       },
-      ChecklistAssistenciaInput: {
+      ChecklistAssistenciaAguaGeladaInput: {
         type: 'object',
         required: ['pedidoId', 'nomeCliente', 'numeroSerie', 'modelo', 'dataChecklist'],
         properties: {
@@ -700,6 +821,52 @@ export const swaggerSpec = {
           dataChecklist: { type: 'string', format: 'date-time' },
         },
       },
+      Cliente: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          codigoExterno: { type: 'string' },
+          dataCadastro: { type: 'string', format: 'date-time' },
+          nome: { type: 'string' },
+          foto: { type: 'string' },
+          celular: { type: 'string' },
+          whatsapp: { type: 'string' },
+          telegram: { type: 'string' },
+          email: { type: 'string', format: 'email' },
+          cep: { type: 'string' },
+          logradouro: { type: 'string' },
+          numero: { type: 'string' },
+          complemento: { type: 'string' },
+          bairro: { type: 'string' },
+          cidade: { type: 'string' },
+          estado: { type: 'string' },
+          pontoDeReferencia: { type: 'string' },
+          observacao: { type: 'string' },
+        },
+      },
+      ClienteInput: {
+        type: 'object',
+        required: ['nome'],
+        properties: {
+          codigoExterno: { type: 'string' },
+          dataCadastro: { type: 'string', format: 'date-time' },
+          nome: { type: 'string' },
+          foto: { type: 'string' },
+          celular: { type: 'string' },
+          whatsapp: { type: 'string' },
+          telegram: { type: 'string' },
+          email: { type: 'string', format: 'email' },
+          cep: { type: 'string' },
+          logradouro: { type: 'string' },
+          numero: { type: 'string' },
+          complemento: { type: 'string' },
+          bairro: { type: 'string' },
+          cidade: { type: 'string' },
+          estado: { type: 'string' },
+          pontoDeReferencia: { type: 'string' },
+          observacao: { type: 'string' },
+        },
+      },
       Funcionario: {
         type: 'object',
         properties: {
@@ -713,7 +880,7 @@ export const swaggerSpec = {
       },
       FuncionarioInput: {
         type: 'object',
-        required: ['funcao', 'nome', 'email'],
+        required: ['funcao', 'nome'],
         properties: {
           funcao: { type: 'string', example: 'Técnico' },
           codigoExterno: { type: 'string' },
@@ -741,6 +908,48 @@ export const swaggerSpec = {
         required: ['descricao'],
         properties: {
           descricao: { type: 'string' },
+        },
+      },
+      Produto: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          dataCadastro: { type: 'string', format: 'date-time' },
+          codigoBarras: { type: 'string' },
+          codigoExterno: { type: 'string' },
+          nome: { type: 'string' },
+          referencia: { type: 'string' },
+          descricao: { type: 'string' },
+          marca: { type: 'string' },
+          categoria: { type: 'string' },
+          ncm: { type: 'string' },
+          quantidadeEmEstoque: { type: 'number' },
+          localNoDeposito: { type: 'string' },
+          precoDeCusto: { type: 'number' },
+          precoDeVenda: { type: 'number' },
+          unidadeMedida: { type: 'string', example: 'Un' },
+          fotos: { type: 'array', items: { type: 'string' } },
+        },
+      },
+      ProdutoInput: {
+        type: 'object',
+        required: ['dataCadastro', 'nome', 'quantidadeEmEstoque', 'precoDeCusto', 'precoDeVenda'],
+        properties: {
+          dataCadastro: { type: 'string', format: 'date-time' },
+          codigoBarras: { type: 'string' },
+          codigoExterno: { type: 'string' },
+          nome: { type: 'string' },
+          referencia: { type: 'string' },
+          descricao: { type: 'string' },
+          marca: { type: 'string' },
+          categoria: { type: 'string' },
+          ncm: { type: 'string' },
+          quantidadeEmEstoque: { type: 'number' },
+          localNoDeposito: { type: 'string' },
+          precoDeCusto: { type: 'number' },
+          precoDeVenda: { type: 'number' },
+          unidadeMedida: { type: 'string', default: 'Un' },
+          fotos: { type: 'array', items: { type: 'string' } },
         },
       },
       Carrinho: {
