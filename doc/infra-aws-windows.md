@@ -23,11 +23,11 @@ Este documento cobre o dia a dia de manutenção do servidor AWS a partir de uma
 |-----------------------|---------------------------------------|
 | Provedor              | AWS EC2                               |
 | Sistema operacional   | Ubuntu                                |
-| IP público            | `54.198.39.78`                        |
+| IP público            | `54.87.117.64`                        |
 | Usuário SSH           | `ubuntu`                              |
 | Chave privada         | `C:\Users\seu-usuario\chave-servidor.pem` |
-| URL da API            | `http://54.198.39.78:3001`            |
-| MongoDB externo       | `mongodb://54.198.39.78:27017`        |
+| URL da API            | `http://54.87.117.64:3001`            |
+| MongoDB externo       | `mongodb://54.87.117.64:27017`        |
 
 > Substitua `seu-usuario` pelo nome do seu usuário no Windows. Exemplo: `C:\Users\Anderson\chave-servidor.pem`.
 
@@ -43,14 +43,15 @@ O SSH rejeita a chave `.pem` se outras contas do Windows tiverem acesso a ela. E
 
 ```powershell
 # Remover permissões herdadas
-icacls "C:\Users\seu-usuario\chave-servidor.pem" /inheritance:r
+icacls "D:\AWS\chave-servidor.pem" /inheritance:r
+
 
 # Conceder acesso somente ao seu usuário
-icacls "C:\Users\seu-usuario\chave-servidor.pem" /grant:r "$($env:USERNAME):(R)"
+icacls "D:\AWS\chave-servidor.pem" /grant:r "$($env:USERNAME):(R)"
 
 # Remover outros usuários (incluindo SYSTEM e Administradores)
-icacls "C:\Users\seu-usuario\chave-servidor.pem" /remove "BUILTIN\Administrators"
-icacls "C:\Users\seu-usuario\chave-servidor.pem" /remove "NT AUTHORITY\SYSTEM"
+icacls "D:\AWS\chave-servidor.pem" /remove "BUILTIN\Administrators"
+icacls "D:\AWS\chave-servidor.pem" /remove "NT AUTHORITY\SYSTEM"
 ```
 
 > Se ainda aparecer o erro `UNPROTECTED PRIVATE KEY FILE`, repita os comandos acima.
@@ -60,7 +61,7 @@ icacls "C:\Users\seu-usuario\chave-servidor.pem" /remove "NT AUTHORITY\SYSTEM"
 Abra o **PowerShell** e execute:
 
 ```powershell
-ssh -i "C:\Users\seu-usuario\chave-servidor.pem" ubuntu@54.198.39.78
+ssh -i "D:\AWS\chave-servidor.pem" ubuntu@54.87.117.64
 ```
 
 Na primeira conexão aparecerá a pergunta:
@@ -205,7 +206,7 @@ exit
 1. Baixe e instale o [MongoDB Compass](https://www.mongodb.com/try/download/compass).
 2. Abra o Compass e cole a string de conexão:
    ```
-   mongodb://54.198.39.78:27017
+   mongodb://54.87.117.64:27017
    ```
 3. Clique em **Connect**.
 
@@ -217,16 +218,16 @@ exit
 
 | Serviço               | Porta | URL / String de conexão             |
 |-----------------------|-------|-------------------------------------|
-| API / BFF (Node.js)   | 3001  | `http://54.198.39.78:3001`          |
-| Banco de dados (MongoDB) | 27017 | `mongodb://54.198.39.78:27017`  |
+| API / BFF (Node.js)   | 3001  | `http://54.87.117.64:3001`          |
+| Banco de dados (MongoDB) | 27017 | `mongodb://54.87.117.64:27017`  |
 
 ### Testar se a API está respondendo (no PowerShell)
 
 ```powershell
-Invoke-WebRequest -Uri "http://54.198.39.78:3001"
+Invoke-WebRequest -Uri "http://54.87.117.64:3001"
 ```
 
-Ou simplesmente abra `http://54.198.39.78:3001` no navegador.
+Ou simplesmente abra `http://54.87.117.64:3001` no navegador.
 
 ---
 
@@ -276,7 +277,7 @@ docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 Adicione a configuração de keep-alive criando (ou editando) o arquivo `C:\Users\seu-usuario\.ssh\config` no seu Windows:
 
 ```
-Host 54.198.39.78
+Host 54.87.117.64
     ServerAliveInterval 60
     ServerAliveCountMax 3
 ```

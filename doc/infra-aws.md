@@ -27,12 +27,12 @@ Este documento cobre o dia a dia de manutenção do servidor Ubuntu na AWS que r
 |-------------------|------------------------------------------|
 | Provedor          | AWS EC2                                  |
 | Sistema operacional | Ubuntu                                 |
-| IP público        | `54.198.39.78`                           |
+| IP público        | `54.87.117.64`                           |
 | Usuário SSH       | `ubuntu`                                 |
 | Chave privada     | `/home/anderson/Downloads/chave-servidor.pem` |
 | Security Group    | `launch-wizard-1`                        |
-| URL da API        | `http://54.198.39.78:3001`               |
-| MongoDB externo   | `mongodb://54.198.39.78:27017`           |
+| URL da API        | `http://54.87.117.64:3001`               |
+| MongoDB externo   | `mongodb://54.87.117.64:27017`           |
 
 ---
 
@@ -49,7 +49,7 @@ chmod 400 /home/anderson/Downloads/chave-servidor.pem
 ### Conectar ao servidor
 
 ```bash
-ssh -i /home/anderson/Downloads/chave-servidor.pem ubuntu@54.198.39.78
+ssh -i /home/anderson/Downloads/chave-servidor.pem ubuntu@54.87.117.64
 ```
 
 Quando aparecer a pergunta `Are you sure you want to continue connecting?`, digite `yes` e pressione **Enter**.
@@ -194,7 +194,7 @@ exit
 ### Acessar o MongoDB pelo MongoDB Compass (interface gráfica, no seu computador local)
 
 1. Abra o MongoDB Compass.
-2. Cole a string de conexão: `mongodb://54.198.39.78:27017`
+2. Cole a string de conexão: `mongodb://54.87.117.64:27017`
 3. Clique em **Connect**.
 
 > A porta `27017` precisa estar liberada no Security Group da AWS. Veja a seção [7](#7-liberar-portas-no-security-group-da-aws).
@@ -207,13 +207,13 @@ Com os containers rodando, os serviços ficam disponíveis no IP público da ins
 
 | Serviço              | Porta | URL / String de conexão              |
 |----------------------|-------|--------------------------------------|
-| API / BFF (Node.js)  | 3001  | `http://54.198.39.78:3001`           |
-| Banco de dados (MongoDB) | 27017 | `mongodb://54.198.39.78:27017`   |
+| API / BFF (Node.js)  | 3001  | `http://54.87.117.64:3001`           |
+| Banco de dados (MongoDB) | 27017 | `mongodb://54.87.117.64:27017`   |
 
 ### Testar se a API está respondendo
 
 ```bash
-curl http://54.198.39.78:3001
+curl http://54.87.117.64:3001
 ```
 
 Ou abra a URL no navegador. Se retornar alguma resposta JSON, a API está no ar.
