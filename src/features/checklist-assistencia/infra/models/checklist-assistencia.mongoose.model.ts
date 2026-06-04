@@ -49,4 +49,4 @@ const checklistAssistenciaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const ChecklistAssistenciaModel = mongoose.model('ChecklistAssistencia', checklistAssistenciaSchema, 'checklist_assistencia');
+export const ChecklistAssistenciaModel = mongoose.model('ChecklistAssistencia', checklistAssistenciaSchema, 'checklist_assistencia_agua_gelada');
