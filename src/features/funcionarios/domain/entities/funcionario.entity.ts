@@ -3,6 +3,6 @@ export interface IFuncionario {
   funcao: string;
   codigoExterno?: string;
   nome: string;
-  email: string;
+  email?: string;
   assinatura?: string;
 }
