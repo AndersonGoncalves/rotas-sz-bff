@@ -128,7 +128,6 @@ export const swaggerSpec = {
         summary: 'Listar clientes ou buscar por texto',
         parameters: [
           { name: 'q', in: 'query', schema: { type: 'string' }, description: 'Texto para busca por nome, email, celular etc.' },
-          { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 }, description: 'Quantidade máxima de resultados (padrão: 10)' },
         ],
         responses: {
           200: { description: 'Lista de clientes', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Cliente' } } } } },
@@ -470,7 +469,6 @@ export const swaggerSpec = {
         summary: 'Listar produtos ou buscar por texto',
         parameters: [
           { name: 'q', in: 'query', schema: { type: 'string' }, description: 'Texto para busca por nome, referência, código de barras etc.' },
-          { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 }, description: 'Quantidade máxima de resultados (padrão: 10)' },
         ],
         responses: {
           200: { description: 'Lista de produtos', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Produto' } } } } },
