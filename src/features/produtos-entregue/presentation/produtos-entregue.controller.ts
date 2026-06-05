@@ -1,7 +1,7 @@
-import * as restify from 'restify';
-import { BadRequestError, NotFoundError } from 'restify-errors';
-import { BaseRouter } from '../../../shared/router/base.router';
-import { IProdutosEntregueRepository } from '../domain/repositories/produtos-entregue.repository.interface';
+import * as restify from "restify";
+import { BadRequestError, NotFoundError } from "restify-errors";
+import { BaseRouter } from "../../../shared/router/base.router";
+import { IProdutosEntregueRepository } from "../domain/repositories/produtos-entregue.repository.interface";
 
 export class ProdutosEntregueController extends BaseRouter {
   constructor(private readonly repo: IProdutosEntregueRepository) {
@@ -9,35 +9,51 @@ export class ProdutosEntregueController extends BaseRouter {
   }
 
   applyRoutes(application: restify.Server): void {
-    application.get('/produtos-entregue', async (req, res, next) => {
-      try { res.json(await this.repo.findAll()); return next(); }
-      catch (e) { return next(e); }
+    application.get("/produtos_entregue", async (req, res, next) => {
+      try {
+        res.json(await this.repo.findAll());
+        return next();
+      } catch (e) {
+        return next(e);
+      }
     });
 
-    application.get('/produtos-entregue/:id', async (req, res, next) => {
-      try { this.render(res, next)(await this.repo.findById(req.params.id)); }
-      catch (e) { return next(e); }
+    application.get("/produtos_entregue/:id", async (req, res, next) => {
+      try {
+        this.render(res, next)(await this.repo.findById(req.params.id));
+      } catch (e) {
+        return next(e);
+      }
     });
 
-    application.post('/produtos-entregue', async (req, res, next) => {
+    application.post("/produtos_entregue", async (req, res, next) => {
       try {
         const { dataRomaneio, codigoTecnico } = req.body;
         if (!dataRomaneio || !codigoTecnico) {
-          return next(new BadRequestError('Campos obrigatórios: dataRomaneio, codigoTecnico'));
+          return next(
+            new BadRequestError(
+              "Campos obrigatórios: dataRomaneio, codigoTecnico",
+            ),
+          );
         }
         const created = await this.repo.create({ dataRomaneio, codigoTecnico });
         res.json(201, { id: created.id });
         return next();
-      } catch (e) { return next(e); }
+      } catch (e) {
+        return next(e);
+      }
     });
 
-    application.patch('/produtos-entregue/:id', async (req, res, next) => {
+    application.patch("/produtos_entregue/:id", async (req, res, next) => {
       try {
         const updated = await this.repo.update(req.params.id, req.body);
-        if (!updated) return next(new NotFoundError('Produtos entregue não encontrado'));
+        if (!updated)
+          return next(new NotFoundError("Produtos entregue não encontrado"));
         res.send(204);
         return next();
-      } catch (e) { return next(e); }
+      } catch (e) {
+        return next(e);
+      }
     });
   }
 }
