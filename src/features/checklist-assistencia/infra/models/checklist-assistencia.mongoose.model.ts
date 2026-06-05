@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const boolField = { type: Boolean, default: false };
-const strField = { type: String, default: '' };
+const strField = { type: String, default: "" };
 
 const checklistAssistenciaSchema = new mongoose.Schema(
   {
@@ -49,4 +49,8 @@ const checklistAssistenciaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
-export const ChecklistAssistenciaModel = mongoose.model('ChecklistAssistencia', checklistAssistenciaSchema, 'checklist_assistencia_agua_gelada');
+export const ChecklistAssistenciaModel = mongoose.model(
+  "ChecklistAssistencia",
+  checklistAssistenciaSchema,
+  "checklist_assistencia",
+);
