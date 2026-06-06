@@ -6,6 +6,8 @@ services:
     environment:
       SERVER_PORT: 3001
       DB_URL: mongodb://mongo:27017/rotas-sz
+      AWS_BUCKET_NAME: api-node-storage-anderson-goncalves
+      AWS_REGION: us-east-1
     depends_on:
       mongo:
         condition: service_healthy

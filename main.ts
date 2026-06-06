@@ -1,5 +1,7 @@
 import { Server } from './src/shared/http/server';
 import { SwaggerController } from './src/shared/swagger/swagger.controller';
+import { StorageController } from './src/shared/storage/storage.controller';
+import { S3Service } from './src/shared/storage/s3.service';
 
 // Clientes
 import { ClientesController } from './src/features/clientes/presentation/clientes.controller';
@@ -63,6 +65,7 @@ const server = new Server();
 server
   .bootstrap([
     new SwaggerController(),
+    new StorageController(new S3Service()),
     new ChecklistAssistenciaController(new ChecklistAssistenciaMongooseRepository()),
     new ChecklistAssistenciaAguaNaturalController(new ChecklistAssistenciaAguaNaturalMongooseRepository()),
     new FuncionariosController(new FuncionarioMongooseRepository()),

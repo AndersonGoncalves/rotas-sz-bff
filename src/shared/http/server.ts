@@ -24,7 +24,7 @@ export class Server {
     });
 
     this.application.use(restify.plugins.queryParser());
-    this.application.use(restify.plugins.bodyParser());
+    this.application.use(restify.plugins.bodyParser({ mapFiles: true }));
 
     // CORS
     this.application.use((req, res, next) => {

@@ -22,6 +22,7 @@ export const swaggerSpec = {
     { name: 'Produtos Entregue', description: 'Controle de produtos entregues' },
     { name: 'Produtos Recebido', description: 'Controle de produtos recebidos' },
     { name: 'Visitas', description: 'Gestão de visitas comerciais' },
+    { name: 'Storage', description: 'Upload e acesso a arquivos no Amazon S3' },
   ],
   paths: {
     '/checklist-assistencia-agua-gelada': {
@@ -607,6 +608,65 @@ export const swaggerSpec = {
       },
     },
 
+    '/storage/upload': {
+      post: {
+        tags: ['Storage'],
+        summary: 'Fazer upload de um arquivo para o S3',
+        description: 'Envie o arquivo no campo `file` como `multipart/form-data`. Retorna a chave (key) do arquivo no S3 e uma URL temporária de acesso (válida por 1 hora).',
+        requestBody: {
+          required: true,
+          content: {
+            'multipart/form-data': {
+              schema: {
+                type: 'object',
+                required: ['file'],
+                properties: {
+                  file: { type: 'string', format: 'binary', description: 'Arquivo a ser enviado' },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          201: {
+            description: 'Upload realizado com sucesso',
+            content: { 'application/json': { schema: { $ref: '#/components/schemas/UploadResponse' } } },
+          },
+          400: { description: 'Campo "file" não enviado' },
+        },
+      },
+    },
+    '/storage/presigned-url': {
+      get: {
+        tags: ['Storage'],
+        summary: 'Obter URL temporária de acesso a um arquivo',
+        description: 'Gera uma URL pré-assinada válida por 1 hora para ler/baixar o arquivo diretamente do S3.',
+        parameters: [
+          { name: 'key', in: 'query', required: true, schema: { type: 'string', example: 'uploads/1749218400000.jpg' }, description: 'Chave (key) do arquivo no S3, retornada no upload' },
+        ],
+        responses: {
+          200: {
+            description: 'URL gerada com sucesso',
+            content: { 'application/json': { schema: { $ref: '#/components/schemas/UploadResponse' } } },
+          },
+          400: { description: 'Parâmetro "key" não informado' },
+        },
+      },
+    },
+    '/storage': {
+      delete: {
+        tags: ['Storage'],
+        summary: 'Remover um arquivo do S3',
+        parameters: [
+          { name: 'key', in: 'query', required: true, schema: { type: 'string', example: 'uploads/1749218400000.jpg' }, description: 'Chave (key) do arquivo no S3' },
+        ],
+        responses: {
+          204: { description: 'Arquivo removido com sucesso' },
+          400: { description: 'Parâmetro "key" não informado' },
+        },
+      },
+    },
+
     '/visitas': {
       get: {
         tags: ['Visitas'],
@@ -673,6 +733,13 @@ export const swaggerSpec = {
       },
     },
     schemas: {
+      UploadResponse: {
+        type: 'object',
+        properties: {
+          key: { type: 'string', example: 'uploads/1749218400000.jpg', description: 'Chave do arquivo no S3 — salve junto ao registro no banco' },
+          url: { type: 'string', example: 'https://s3.amazonaws.com/...', description: 'URL temporária de acesso (válida por 1 hora)' },
+        },
+      },
       CreatedResponse: {
         type: 'object',
         properties: {
