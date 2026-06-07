@@ -131,7 +131,7 @@
           "id": "checklist-get-all",
           "name": "Listar todos",
           "method": "GET",
-          "endpoint": "http://localhost:3001/checklist-assistencia",
+          "endpoint": "http://localhost:3001/checklist_assistencia",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -148,10 +148,24 @@
         },
         {
           "v": "1",
+          "id": "checklist-get-importado",
+          "name": "Listar por importado",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/checklist_assistencia",
+          "params": [{ "key": "importado", "value": "false", "active": true }],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "checklist-get-id",
           "name": "Buscar por ID",
           "method": "GET",
-          "endpoint": "http://localhost:3001/checklist-assistencia/<<id>>",
+          "endpoint": "http://localhost:3001/checklist_assistencia/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -171,7 +185,7 @@
           "id": "checklist-post",
           "name": "Adicionar checklist",
           "method": "POST",
-          "endpoint": "http://localhost:3001/checklist-assistencia",
+          "endpoint": "http://localhost:3001/checklist_assistencia",
           "params": [],
           "headers": [
             {
@@ -197,7 +211,7 @@
           "id": "checklist-patch",
           "name": "Atualizar checklist",
           "method": "PATCH",
-          "endpoint": "http://localhost:3001/checklist-assistencia/<<id>>",
+          "endpoint": "http://localhost:3001/checklist_assistencia/<<id>>",
           "params": [],
           "headers": [
             {
@@ -230,7 +244,7 @@
           "id": "checklist-an-get-all",
           "name": "Listar todos",
           "method": "GET",
-          "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural",
+          "endpoint": "http://localhost:3001/checklist_assistencia_agua_natural",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -247,10 +261,24 @@
         },
         {
           "v": "1",
+          "id": "checklist-an-get-importado",
+          "name": "Listar por importado",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/checklist_assistencia_agua_natural",
+          "params": [{ "key": "importado", "value": "false", "active": true }],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "checklist-an-get-id",
           "name": "Buscar por ID",
           "method": "GET",
-          "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural/<<id>>",
+          "endpoint": "http://localhost:3001/checklist_assistencia_agua_natural/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -270,7 +298,7 @@
           "id": "checklist-an-post",
           "name": "Adicionar checklist",
           "method": "POST",
-          "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural",
+          "endpoint": "http://localhost:3001/checklist_assistencia_agua_natural",
           "params": [],
           "headers": [
             {
@@ -296,7 +324,7 @@
           "id": "checklist-an-patch",
           "name": "Atualizar checklist",
           "method": "PATCH",
-          "endpoint": "http://localhost:3001/checklist-assistencia-agua-natural/<<id>>",
+          "endpoint": "http://localhost:3001/checklist_assistencia_agua_natural/<<id>>",
           "params": [],
           "headers": [
             {
@@ -686,7 +714,7 @@
           "id": "ped-get-all",
           "name": "Listar todos",
           "method": "GET",
-          "endpoint": "http://localhost:3001/pedidos",
+          "endpoint": "http://localhost:3001/pedido",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -703,10 +731,24 @@
         },
         {
           "v": "1",
+          "id": "ped-get-importado",
+          "name": "Listar por importado",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/pedido",
+          "params": [{ "key": "importado", "value": "false", "active": true }],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "ped-get-filter",
           "name": "Listar por mês/ano",
           "method": "GET",
-          "endpoint": "http://localhost:3001/pedidos",
+          "endpoint": "http://localhost:3001/pedido",
           "params": [
             {
               "key": "month",
@@ -737,7 +779,7 @@
           "id": "ped-get-filter-tecnico",
           "name": "Listar por técnico",
           "method": "GET",
-          "endpoint": "http://localhost:3001/pedidos",
+          "endpoint": "http://localhost:3001/pedido",
           "params": [
             {
               "key": "tecnico",
@@ -773,7 +815,7 @@
           "id": "ped-get-id",
           "name": "Buscar por ID",
           "method": "GET",
-          "endpoint": "http://localhost:3001/pedidos/<<id>>",
+          "endpoint": "http://localhost:3001/pedido/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -793,7 +835,7 @@
           "id": "ped-put",
           "name": "Salvar pedido — PUT com ID do app",
           "method": "PUT",
-          "endpoint": "http://localhost:3001/pedidos/<<id_gerado_pelo_app>>",
+          "endpoint": "http://localhost:3001/pedido/<<id_gerado_pelo_app>>",
           "params": [],
           "headers": [
             {
@@ -819,7 +861,7 @@
           "id": "ped-patch",
           "name": "Atualizar pedido (parcial)",
           "method": "PATCH",
-          "endpoint": "http://localhost:3001/pedidos/<<id>>",
+          "endpoint": "http://localhost:3001/pedido/<<id>>",
           "params": [],
           "headers": [
             {
@@ -845,7 +887,7 @@
           "id": "ped-delete",
           "name": "Remover pedido",
           "method": "DELETE",
-          "endpoint": "http://localhost:3001/pedidos/<<id>>",
+          "endpoint": "http://localhost:3001/pedido/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -872,7 +914,7 @@
           "id": "pend-get-all",
           "name": "Listar todas",
           "method": "GET",
-          "endpoint": "http://localhost:3001/pendencias",
+          "endpoint": "http://localhost:3001/pendencia",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -889,10 +931,24 @@
         },
         {
           "v": "1",
+          "id": "pend-get-importado",
+          "name": "Listar por importado",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/pendencia",
+          "params": [{ "key": "importado", "value": "false", "active": true }],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "pend-get-id",
           "name": "Buscar por ID",
           "method": "GET",
-          "endpoint": "http://localhost:3001/pendencias/<<id>>",
+          "endpoint": "http://localhost:3001/pendencia/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -912,7 +968,7 @@
           "id": "pend-post",
           "name": "Adicionar pendência",
           "method": "POST",
-          "endpoint": "http://localhost:3001/pendencias",
+          "endpoint": "http://localhost:3001/pendencia",
           "params": [],
           "headers": [
             {
@@ -938,7 +994,7 @@
           "id": "pend-patch",
           "name": "Atualizar pendência",
           "method": "PATCH",
-          "endpoint": "http://localhost:3001/pendencias/<<id>>",
+          "endpoint": "http://localhost:3001/pendencia/<<id>>",
           "params": [],
           "headers": [
             {
@@ -964,7 +1020,7 @@
           "id": "pend-delete",
           "name": "Remover pendência",
           "method": "DELETE",
-          "endpoint": "http://localhost:3001/pendencias/<<id>>",
+          "endpoint": "http://localhost:3001/pendencia/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -991,7 +1047,7 @@
           "id": "pe-get-all",
           "name": "Listar todos",
           "method": "GET",
-          "endpoint": "http://localhost:3001/produtos-entregue",
+          "endpoint": "http://localhost:3001/produtos_entregue",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -1008,10 +1064,24 @@
         },
         {
           "v": "1",
+          "id": "pe-get-importado",
+          "name": "Listar por importado",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/produtos_entregue",
+          "params": [{ "key": "importado", "value": "false", "active": true }],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "pe-get-id",
           "name": "Buscar por ID",
           "method": "GET",
-          "endpoint": "http://localhost:3001/produtos-entregue/<<id>>",
+          "endpoint": "http://localhost:3001/produtos_entregue/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -1031,7 +1101,7 @@
           "id": "pe-post",
           "name": "Registrar entrega",
           "method": "POST",
-          "endpoint": "http://localhost:3001/produtos-entregue",
+          "endpoint": "http://localhost:3001/produtos_entregue",
           "params": [],
           "headers": [
             {
@@ -1057,7 +1127,7 @@
           "id": "pe-patch",
           "name": "Atualizar entrega",
           "method": "PATCH",
-          "endpoint": "http://localhost:3001/produtos-entregue/<<id>>",
+          "endpoint": "http://localhost:3001/produtos_entregue/<<id>>",
           "params": [],
           "headers": [
             {
@@ -1090,7 +1160,7 @@
           "id": "pr-get-all",
           "name": "Listar todos",
           "method": "GET",
-          "endpoint": "http://localhost:3001/produtos-recebido",
+          "endpoint": "http://localhost:3001/produtos_recebido",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -1107,10 +1177,24 @@
         },
         {
           "v": "1",
+          "id": "pr-get-importado",
+          "name": "Listar por importado",
+          "method": "GET",
+          "endpoint": "http://localhost:3001/produtos_recebido",
+          "params": [{ "key": "importado", "value": "false", "active": true }],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": { "authType": "none", "authActive": true },
+          "body": { "contentType": null, "body": null },
+          "requestVariables": []
+        },
+        {
+          "v": "1",
           "id": "pr-get-id",
           "name": "Buscar por ID",
           "method": "GET",
-          "endpoint": "http://localhost:3001/produtos-recebido/<<id>>",
+          "endpoint": "http://localhost:3001/produtos_recebido/<<id>>",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -1130,7 +1214,7 @@
           "id": "pr-post",
           "name": "Registrar recebimento",
           "method": "POST",
-          "endpoint": "http://localhost:3001/produtos-recebido",
+          "endpoint": "http://localhost:3001/produtos_recebido",
           "params": [],
           "headers": [
             {
@@ -1156,7 +1240,7 @@
           "id": "pr-patch",
           "name": "Atualizar recebimento",
           "method": "PATCH",
-          "endpoint": "http://localhost:3001/produtos-recebido/<<id>>",
+          "endpoint": "http://localhost:3001/produtos_recebido/<<id>>",
           "params": [],
           "headers": [
             {

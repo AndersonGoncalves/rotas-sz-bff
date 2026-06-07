@@ -6,31 +6,63 @@ export class PedidoMongooseRepository implements IPedidoRepository {
   private toEntity(doc: any): IPedido {
     return {
       id: doc._id.toString(),
-      codigoCliente: doc.codigoCliente, codigoExterno: doc.codigoExterno,
-      idCliente: doc.idCliente, nomeCliente: doc.nomeCliente,
-      codigoTecnico: doc.codigoTecnico, codigoVendedor: doc.codigoVendedor,
-      nomeVendedor: doc.nomeVendedor, nomeTecnico: doc.nomeTecnico,
-      dataRomaneio: doc.dataRomaneio, dataVisita: doc.dataVisita,
-      pendencia: doc.pendencia, prazoPagamento: doc.prazoPagamento,
-      situacao: doc.situacao, frete: doc.frete, acrescimo: doc.acrescimo, desconto: doc.desconto,
-      observacao: doc.observacao, situacaoRomaneio: doc.situacaoRomaneio,
-      tiposPagamento: doc.tiposPagamento, tipoVenda: doc.tipoVenda,
-      tipoPedido: doc.tipoPedido, turno: doc.turno, pedidoTeste: doc.pedidoTeste,
-      index: doc.index, cliente: doc.cliente,
-      produtos: doc.produtos, servicos: doc.servicos, fotos: doc.fotos,
-      assinatura: doc.assinatura, horaInstalacao: doc.horaInstalacao,
-      lancado: doc.lancado, lancadoLogistica: doc.lancadoLogistica, lancadoComercial: doc.lancadoComercial,
-      quemAssinou: doc.quemAssinou, transformadoEmVipzon: doc.transformadoEmVipzon,
-      ordemServicoEnviada: doc.ordemServicoEnviada, numeroInformadoPeloTecnico: doc.numeroInformadoPeloTecnico,
-      observacaoTecnico: doc.observacaoTecnico, enderecoCobranca: doc.enderecoCobranca,
+      codigoCliente: doc.codigoCliente,
+      codigoExterno: doc.codigoExterno,
+      idCliente: doc.idCliente,
+      nomeCliente: doc.nomeCliente,
+      codigoTecnico: doc.codigoTecnico,
+      codigoVendedor: doc.codigoVendedor,
+      nomeVendedor: doc.nomeVendedor,
+      nomeTecnico: doc.nomeTecnico,
+      dataRomaneio: doc.dataRomaneio,
+      dataVisita: doc.dataVisita,
+      pendencia: doc.pendencia,
+      prazoPagamento: doc.prazoPagamento,
+      situacao: doc.situacao,
+      frete: doc.frete,
+      acrescimo: doc.acrescimo,
+      desconto: doc.desconto,
+      observacao: doc.observacao,
+      situacaoRomaneio: doc.situacaoRomaneio,
+      tiposPagamento: doc.tiposPagamento,
+      tipoVenda: doc.tipoVenda,
+      tipoPedido: doc.tipoPedido,
+      turno: doc.turno,
+      pedidoTeste: doc.pedidoTeste,
+      index: doc.index,
+      cliente: doc.cliente,
+      produtos: doc.produtos,
+      servicos: doc.servicos,
+      fotos: doc.fotos,
+      assinatura: doc.assinatura,
+      horaInstalacao: doc.horaInstalacao,
+      lancado: doc.lancado,
+      lancadoLogistica: doc.lancadoLogistica,
+      lancadoComercial: doc.lancadoComercial,
+      quemAssinou: doc.quemAssinou,
+      transformadoEmVipzon: doc.transformadoEmVipzon,
+      ordemServicoEnviada: doc.ordemServicoEnviada,
+      numeroInformadoPeloTecnico: doc.numeroInformadoPeloTecnico,
+      observacaoTecnico: doc.observacaoTecnico,
+      enderecoCobranca: doc.enderecoCobranca,
       dadosPedidoDeCobranca: doc.dadosPedidoDeCobranca,
+      importado: doc.importado,
     };
   }
 
-  async findAll(month?: number, year?: number, day?: number, codigoTecnico?: string): Promise<IPedido[]> {
+  async findAll(
+    month?: number,
+    year?: number,
+    day?: number,
+    codigoTecnico?: string,
+    importado?: boolean,
+  ): Promise<IPedido[]> {
     const query: any = {};
     if (codigoTecnico !== undefined) {
       query.codigoTecnico = codigoTecnico;
+    }
+    if (importado !== undefined) {
+      query.importado = importado === false ? { $ne: true } : true;
     }
     if (month !== undefined && year !== undefined) {
       const pad = (n: number) => String(n).padStart(2, '0');
@@ -63,13 +95,21 @@ export class PedidoMongooseRepository implements IPedidoRepository {
     const doc = await PedidoModel.findByIdAndUpdate(
       id,
       { _id: id, ...data },
-      { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true },
+      {
+        upsert: true,
+        new: true,
+        runValidators: true,
+        setDefaultsOnInsert: true,
+      },
     );
     return this.toEntity(doc);
   }
 
   async update(id: string, data: Partial<Omit<IPedido, 'id'>>): Promise<IPedido | null> {
-    const doc = await PedidoModel.findByIdAndUpdate(id, data, { runValidators: true, new: true });
+    const doc = await PedidoModel.findByIdAndUpdate(id, data, {
+      runValidators: true,
+      new: true,
+    });
     return doc ? this.toEntity(doc) : null;
   }
 

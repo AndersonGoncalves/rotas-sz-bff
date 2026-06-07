@@ -20,8 +20,13 @@ const checklistAguaNaturalSchema = new mongoose.Schema(
     maisInformacoes: strField,
     descricaoDoDefeito: strField,
     dataChecklist: { type: String, required: true },
+    importado: { type: Boolean, default: false },
   },
   { timestamps: false, versionKey: false },
 );
 
-export const ChecklistAssistenciaAguaNaturalModel = mongoose.model('ChecklistAssistenciaAguaNatural', checklistAguaNaturalSchema, 'checklist_assistencia_agua_natural');
+export const ChecklistAssistenciaAguaNaturalModel = mongoose.model(
+  'ChecklistAssistenciaAguaNatural',
+  checklistAguaNaturalSchema,
+  'checklist_assistencia_agua_natural',
+);

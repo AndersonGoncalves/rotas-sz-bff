@@ -4,11 +4,20 @@ import { ProdutosRecebidoModel } from '../models/produtos-recebido.mongoose.mode
 
 export class ProdutosRecebidoMongooseRepository implements IProdutosRecebidoRepository {
   private toEntity(doc: any): IProdutosRecebido {
-    return { id: doc._id.toString(), dataRomaneio: doc.dataRomaneio, codigoTecnico: doc.codigoTecnico };
+    return {
+      id: doc._id.toString(),
+      dataRomaneio: doc.dataRomaneio,
+      codigoTecnico: doc.codigoTecnico,
+      importado: doc.importado,
+    };
   }
 
-  async findAll(): Promise<IProdutosRecebido[]> {
-    const docs = await ProdutosRecebidoModel.find().sort({ dataRomaneio: -1 });
+  async findAll(importado?: boolean): Promise<IProdutosRecebido[]> {
+    const query: any = {};
+    if (importado !== undefined) {
+      query.importado = importado === false ? { $ne: true } : true;
+    }
+    const docs = await ProdutosRecebidoModel.find(query).sort({ dataRomaneio: -1 });
     return docs.map((d) => this.toEntity(d));
   }
 
@@ -21,8 +30,14 @@ export class ProdutosRecebidoMongooseRepository implements IProdutosRecebidoRepo
     return this.toEntity(await new ProdutosRecebidoModel(data).save());
   }
 
-  async update(id: string, data: Partial<Omit<IProdutosRecebido, 'id'>>): Promise<IProdutosRecebido | null> {
-    const doc = await ProdutosRecebidoModel.findByIdAndUpdate(id, data, { runValidators: true, new: true });
+  async update(
+    id: string,
+    data: Partial<Omit<IProdutosRecebido, 'id'>>,
+  ): Promise<IProdutosRecebido | null> {
+    const doc = await ProdutosRecebidoModel.findByIdAndUpdate(id, data, {
+      runValidators: true,
+      new: true,
+    });
     return doc ? this.toEntity(doc) : null;
   }
 }

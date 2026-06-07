@@ -1,7 +1,7 @@
-import * as restify from "restify";
-import { BadRequestError, NotFoundError } from "restify-errors";
-import { BaseRouter } from "../../../shared/router/base.router";
-import { IProdutosRecebidoRepository } from "../domain/repositories/produtos-recebido.repository.interface";
+import * as restify from 'restify';
+import { BadRequestError, NotFoundError } from 'restify-errors';
+import { BaseRouter } from '../../../shared/router/base.router';
+import { IProdutosRecebidoRepository } from '../domain/repositories/produtos-recebido.repository.interface';
 
 export class ProdutosRecebidoController extends BaseRouter {
   constructor(private readonly repo: IProdutosRecebidoRepository) {
@@ -9,16 +9,18 @@ export class ProdutosRecebidoController extends BaseRouter {
   }
 
   applyRoutes(application: restify.Server): void {
-    application.get("/produtos_recebido", async (req, res, next) => {
+    application.get('/produtos_recebido', async (req, res, next) => {
       try {
-        res.json(await this.repo.findAll());
+        const importado =
+          req.query.importado !== undefined ? req.query.importado === 'true' : undefined;
+        res.json(await this.repo.findAll(importado));
         return next();
       } catch (e) {
         return next(e);
       }
     });
 
-    application.get("/produtos_recebido/:id", async (req, res, next) => {
+    application.get('/produtos_recebido/:id', async (req, res, next) => {
       try {
         this.render(res, next)(await this.repo.findById(req.params.id));
       } catch (e) {
@@ -26,15 +28,11 @@ export class ProdutosRecebidoController extends BaseRouter {
       }
     });
 
-    application.post("/produtos_recebido", async (req, res, next) => {
+    application.post('/produtos_recebido', async (req, res, next) => {
       try {
         const { dataRomaneio, codigoTecnico } = req.body;
         if (!dataRomaneio || !codigoTecnico) {
-          return next(
-            new BadRequestError(
-              "Campos obrigatórios: dataRomaneio, codigoTecnico",
-            ),
-          );
+          return next(new BadRequestError('Campos obrigatórios: dataRomaneio, codigoTecnico'));
         }
         const created = await this.repo.create({ dataRomaneio, codigoTecnico });
         res.json(201, { id: created.id });
@@ -44,11 +42,10 @@ export class ProdutosRecebidoController extends BaseRouter {
       }
     });
 
-    application.patch("/produtos_recebido/:id", async (req, res, next) => {
+    application.patch('/produtos_recebido/:id', async (req, res, next) => {
       try {
         const updated = await this.repo.update(req.params.id, req.body);
-        if (!updated)
-          return next(new NotFoundError("Produtos recebido não encontrado"));
+        if (!updated) return next(new NotFoundError('Produtos recebido não encontrado'));
         res.send(204);
         return next();
       } catch (e) {

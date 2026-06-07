@@ -25,10 +25,13 @@ export const swaggerSpec = {
     { name: 'Storage', description: 'Upload e acesso a arquivos no Amazon S3' },
   ],
   paths: {
-    '/checklist-assistencia-agua-gelada': {
+    '/checklist_assistencia': {
       get: {
         tags: ['Checklist Assistência Água Gelada'],
         summary: 'Listar checklists de assistência água gelada',
+        parameters: [
+          { name: 'importado', in: 'query', schema: { type: 'boolean' }, description: 'Filtrar por status de importação (true/false)' },
+        ],
         responses: {
           200: {
             description: 'Lista de checklists',
@@ -49,7 +52,7 @@ export const swaggerSpec = {
         },
       },
     },
-    '/checklist-assistencia-agua-gelada/{id}': {
+    '/checklist_assistencia/{id}': {
       get: {
         tags: ['Checklist Assistência Água Gelada'],
         summary: 'Buscar checklist de assistência água gelada por ID',
@@ -74,10 +77,13 @@ export const swaggerSpec = {
       },
     },
 
-    '/checklist-assistencia-agua-natural': {
+    '/checklist_assistencia_agua_natural': {
       get: {
         tags: ['Checklist Assistência Água Natural'],
         summary: 'Listar checklists de assistência água natural',
+        parameters: [
+          { name: 'importado', in: 'query', schema: { type: 'boolean' }, description: 'Filtrar por status de importação (true/false)' },
+        ],
         responses: {
           200: {
             description: 'Lista de checklists',
@@ -98,7 +104,7 @@ export const swaggerSpec = {
         },
       },
     },
-    '/checklist-assistencia-agua-natural/{id}': {
+    '/checklist_assistencia_agua_natural/{id}': {
       get: {
         tags: ['Checklist Assistência Água Natural'],
         summary: 'Buscar checklist de assistência água natural por ID',
@@ -343,7 +349,7 @@ export const swaggerSpec = {
       },
     },
 
-    '/pedidos': {
+    '/pedido': {
       get: {
         tags: ['Pedidos'],
         summary: 'Listar pedidos com filtros opcionais de data e técnico',
@@ -352,13 +358,14 @@ export const swaggerSpec = {
           { name: 'year', in: 'query', schema: { type: 'integer' }, description: 'Ano (ex: 2025)' },
           { name: 'day', in: 'query', schema: { type: 'integer', minimum: 1, maximum: 31 }, description: 'Dia (1-31)' },
           { name: 'tecnico', in: 'query', schema: { type: 'string' }, description: 'Código do técnico (codigoTecnico)' },
+          { name: 'importado', in: 'query', schema: { type: 'boolean' }, description: 'Filtrar por status de importação (true/false)' },
         ],
         responses: {
           200: { description: 'Lista de pedidos', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Pedido' } } } } },
         },
       },
     },
-    '/pedidos/{id}': {
+    '/pedido/{id}': {
       get: {
         tags: ['Pedidos'],
         summary: 'Buscar pedido por ID',
@@ -406,10 +413,13 @@ export const swaggerSpec = {
       },
     },
 
-    '/pendencias': {
+    '/pendencia': {
       get: {
         tags: ['Pendências'],
         summary: 'Listar pendências',
+        parameters: [
+          { name: 'importado', in: 'query', schema: { type: 'boolean' }, description: 'Filtrar por status de importação (true/false)' },
+        ],
         responses: {
           200: { description: 'Lista de pendências', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Pendencia' } } } } },
         },
@@ -427,7 +437,7 @@ export const swaggerSpec = {
         },
       },
     },
-    '/pendencias/{id}': {
+    '/pendencia/{id}': {
       get: {
         tags: ['Pendências'],
         summary: 'Buscar pendência por ID',
@@ -516,10 +526,13 @@ export const swaggerSpec = {
       },
     },
 
-    '/produtos-entregue': {
+    '/produtos_entregue': {
       get: {
         tags: ['Produtos Entregue'],
         summary: 'Listar registros de produtos entregues',
+        parameters: [
+          { name: 'importado', in: 'query', schema: { type: 'boolean' }, description: 'Filtrar por status de importação (true/false)' },
+        ],
         responses: {
           200: { description: 'Lista de registros', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/ProdutosEntregue' } } } } },
         },
@@ -537,7 +550,7 @@ export const swaggerSpec = {
         },
       },
     },
-    '/produtos-entregue/{id}': {
+    '/produtos_entregue/{id}': {
       get: {
         tags: ['Produtos Entregue'],
         summary: 'Buscar registro de produtos entregues por ID',
@@ -562,10 +575,13 @@ export const swaggerSpec = {
       },
     },
 
-    '/produtos-recebido': {
+    '/produtos_recebido': {
       get: {
         tags: ['Produtos Recebido'],
         summary: 'Listar registros de produtos recebidos',
+        parameters: [
+          { name: 'importado', in: 'query', schema: { type: 'boolean' }, description: 'Filtrar por status de importação (true/false)' },
+        ],
         responses: {
           200: { description: 'Lista de registros', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/ProdutosRecebido' } } } } },
         },
@@ -583,7 +599,7 @@ export const swaggerSpec = {
         },
       },
     },
-    '/produtos-recebido/{id}': {
+    '/produtos_recebido/{id}': {
       get: {
         tags: ['Produtos Recebido'],
         summary: 'Buscar registro de produtos recebidos por ID',
@@ -790,6 +806,7 @@ export const swaggerSpec = {
           maisInformacoes: { type: 'string' },
           descricaoDoDefeito: { type: 'string' },
           dataChecklist: { type: 'string', format: 'date-time' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       ChecklistAssistenciaAguaGeladaInput: {
@@ -836,6 +853,7 @@ export const swaggerSpec = {
           maisInformacoes: { type: 'string', default: '' },
           descricaoDoDefeito: { type: 'string', default: '' },
           dataChecklist: { type: 'string', format: 'date-time' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       ChecklistAssistenciaAguaNatural: {
@@ -857,6 +875,7 @@ export const swaggerSpec = {
           maisInformacoes: { type: 'string' },
           descricaoDoDefeito: { type: 'string' },
           dataChecklist: { type: 'string', format: 'date-time' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       ChecklistAssistenciaAguaNaturalInput: {
@@ -878,6 +897,7 @@ export const swaggerSpec = {
           maisInformacoes: { type: 'string', default: '' },
           descricaoDoDefeito: { type: 'string', default: '' },
           dataChecklist: { type: 'string', format: 'date-time' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       Cliente: {
@@ -1079,6 +1099,7 @@ export const swaggerSpec = {
           observacaoTecnico: { type: 'string' },
           enderecoCobranca: { type: 'string', nullable: true },
           dadosPedidoDeCobranca: { type: 'string', nullable: true },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       PedidoInput: {
@@ -1124,6 +1145,7 @@ export const swaggerSpec = {
           observacaoTecnico: { type: 'string' },
           enderecoCobranca: { type: 'string', nullable: true },
           dadosPedidoDeCobranca: { type: 'string', nullable: true },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       Pendencia: {
@@ -1137,6 +1159,7 @@ export const swaggerSpec = {
           idMotivoRetorno: { type: 'string', nullable: true },
           pendencia: { type: 'string' },
           observacao: { type: 'string' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       PendenciaInput: {
@@ -1150,6 +1173,7 @@ export const swaggerSpec = {
           idMotivoRetorno: { type: 'string', nullable: true },
           pendencia: { type: 'string' },
           observacao: { type: 'string', default: '' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       ProdutosEntregue: {
@@ -1158,6 +1182,7 @@ export const swaggerSpec = {
           id: { type: 'string' },
           dataRomaneio: { type: 'string', format: 'date-time' },
           codigoTecnico: { type: 'string' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       ProdutosRecebido: {
@@ -1166,6 +1191,7 @@ export const swaggerSpec = {
           id: { type: 'string' },
           dataRomaneio: { type: 'string', format: 'date-time' },
           codigoTecnico: { type: 'string' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       ProdutosMovimentacaoInput: {

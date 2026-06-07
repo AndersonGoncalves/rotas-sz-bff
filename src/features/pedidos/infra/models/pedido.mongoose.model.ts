@@ -56,6 +56,7 @@ const pedidoSchema = new mongoose.Schema(
     tipoVenda: { type: String, default: '' },
     tiposPagamento: { type: [tipoPagamentoSchema], default: [] },
     turno: { type: String, default: '' },
+    importado: { type: Boolean, default: false },
   },
   { timestamps: false, versionKey: false },
 );

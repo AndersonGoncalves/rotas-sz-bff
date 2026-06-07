@@ -62,4 +62,5 @@ export interface IPedido {
   observacaoTecnico?: string;
   enderecoCobranca?: string | null;
   dadosPedidoDeCobranca?: string | null;
+  importado?: boolean | null;
 }

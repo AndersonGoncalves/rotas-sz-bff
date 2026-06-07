@@ -1,7 +1,7 @@
-import * as restify from "restify";
-import { BadRequestError, NotFoundError } from "restify-errors";
-import { BaseRouter } from "../../../shared/router/base.router";
-import { IPendenciaRepository } from "../domain/repositories/pendencia.repository.interface";
+import * as restify from 'restify';
+import { BadRequestError, NotFoundError } from 'restify-errors';
+import { BaseRouter } from '../../../shared/router/base.router';
+import { IPendenciaRepository } from '../domain/repositories/pendencia.repository.interface';
 
 export class PendenciasController extends BaseRouter {
   constructor(private readonly repo: IPendenciaRepository) {
@@ -9,16 +9,18 @@ export class PendenciasController extends BaseRouter {
   }
 
   applyRoutes(application: restify.Server): void {
-    application.get("/pendencia", async (req, res, next) => {
+    application.get('/pendencia', async (req, res, next) => {
       try {
-        res.json(await this.repo.findAll());
+        const importado =
+          req.query.importado !== undefined ? req.query.importado === 'true' : undefined;
+        res.json(await this.repo.findAll(importado));
         return next();
       } catch (e) {
         return next(e);
       }
     });
 
-    application.get("/pendencia/:id", async (req, res, next) => {
+    application.get('/pendencia/:id', async (req, res, next) => {
       try {
         this.render(res, next)(await this.repo.findById(req.params.id));
       } catch (e) {
@@ -26,7 +28,7 @@ export class PendenciasController extends BaseRouter {
       }
     });
 
-    application.post("/pendencia", async (req, res, next) => {
+    application.post('/pendencia', async (req, res, next) => {
       try {
         const {
           pedidoId,
@@ -38,19 +40,15 @@ export class PendenciasController extends BaseRouter {
           idMotivoRetorno,
         } = req.body;
         if (!pedidoId || !nomeCliente || !pendencia) {
-          return next(
-            new BadRequestError(
-              "Campos obrigatórios: pedidoId, nomeCliente, pendencia",
-            ),
-          );
+          return next(new BadRequestError('Campos obrigatórios: pedidoId, nomeCliente, pendencia'));
         }
         const created = await this.repo.create({
           pedidoId,
-          codigoCliente: codigoCliente ?? "",
-          idCliente: idCliente ?? "",
+          codigoCliente: codigoCliente ?? '',
+          idCliente: idCliente ?? '',
           nomeCliente,
           pendencia,
-          observacao: observacao ?? "",
+          observacao: observacao ?? '',
           idMotivoRetorno: idMotivoRetorno ?? null,
         });
         res.json(201, { id: created.id });
@@ -60,11 +58,10 @@ export class PendenciasController extends BaseRouter {
       }
     });
 
-    application.patch("/pendencia/:id", async (req, res, next) => {
+    application.patch('/pendencia/:id', async (req, res, next) => {
       try {
         const updated = await this.repo.update(req.params.id, req.body);
-        if (!updated)
-          return next(new NotFoundError("Pendência não encontrada"));
+        if (!updated) return next(new NotFoundError('Pendência não encontrada'));
         res.send(204);
         return next();
       } catch (e) {
@@ -72,10 +69,10 @@ export class PendenciasController extends BaseRouter {
       }
     });
 
-    application.del("/pendencia/:id", async (req, res, next) => {
+    application.del('/pendencia/:id', async (req, res, next) => {
       try {
         if (!(await this.repo.delete(req.params.id)))
-          return next(new NotFoundError("Pendência não encontrada"));
+          return next(new NotFoundError('Pendência não encontrada'));
         res.send(204);
         return next();
       } catch (e) {

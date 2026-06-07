@@ -9,6 +9,7 @@ const pendenciaSchema = new mongoose.Schema(
     idMotivoRetorno: { type: String, default: null },
     pendencia: { type: String, required: true },
     observacao: { type: String, default: '' },
+    importado: { type: Boolean, default: false },
   },
   { timestamps: false, versionKey: false },
 );

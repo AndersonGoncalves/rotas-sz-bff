@@ -6,15 +6,23 @@ export class PendenciaMongooseRepository implements IPendenciaRepository {
   private toEntity(doc: any): IPendencia {
     return {
       id: doc._id.toString(),
-      pedidoId: doc.pedidoId, codigoCliente: doc.codigoCliente,
-      idCliente: doc.idCliente, nomeCliente: doc.nomeCliente,
+      pedidoId: doc.pedidoId,
+      codigoCliente: doc.codigoCliente,
+      idCliente: doc.idCliente,
+      nomeCliente: doc.nomeCliente,
       idMotivoRetorno: doc.idMotivoRetorno,
-      pendencia: doc.pendencia, observacao: doc.observacao,
+      pendencia: doc.pendencia,
+      observacao: doc.observacao,
+      importado: doc.importado,
     };
   }
 
-  async findAll(): Promise<IPendencia[]> {
-    const docs = await PendenciaModel.find();
+  async findAll(importado?: boolean): Promise<IPendencia[]> {
+    const query: any = {};
+    if (importado !== undefined) {
+      query.importado = importado === false ? { $ne: true } : true;
+    }
+    const docs = await PendenciaModel.find(query);
     return docs.map((d) => this.toEntity(d));
   }
 
@@ -29,7 +37,10 @@ export class PendenciaMongooseRepository implements IPendenciaRepository {
   }
 
   async update(id: string, data: Partial<Omit<IPendencia, 'id'>>): Promise<IPendencia | null> {
-    const doc = await PendenciaModel.findByIdAndUpdate(id, data, { runValidators: true, new: true });
+    const doc = await PendenciaModel.findByIdAndUpdate(id, data, {
+      runValidators: true,
+      new: true,
+    });
     return doc ? this.toEntity(doc) : null;
   }
 

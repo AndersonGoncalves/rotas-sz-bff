@@ -15,4 +15,5 @@ export interface IChecklistAssistenciaAguaNatural {
   maisInformacoes: string;
   descricaoDoDefeito: string;
   dataChecklist: string;
+  importado?: boolean | null;
 }

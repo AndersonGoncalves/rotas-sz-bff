@@ -40,4 +40,5 @@ export interface IChecklistAssistencia {
   maisInformacoes: string;
   descricaoDoDefeito: string;
   dataChecklist: string;
+  importado?: boolean | null;
 }

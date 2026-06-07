@@ -7,4 +7,5 @@ export interface IPendencia {
   idMotivoRetorno?: string | null;
   pendencia: string;
   observacao: string;
+  importado?: boolean | null;
 }
