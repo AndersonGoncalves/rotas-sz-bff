@@ -128,23 +128,23 @@ docker ps -a
 
 ---
 
-## 3. Atualizar a aplicação
-
-Quando você fizer um `git push` de uma nova versão, siga este fluxo dentro do servidor:
-
-```bash
-# 1. Entrar na pasta do projeto
-cd rotas-sz-bff
-
-# 2. Baixar as alterações mais recentes do GitHub
-git pull
-
-# 3. Reconstruir a imagem da API com o novo código
-docker compose build api
-
-# 4. Reiniciar os containers com a nova imagem
-docker compose up -d
-```
+> ## 3. Atualizar a aplicação
+>
+> Quando você fizer um `git push` de uma nova versão, siga este fluxo dentro do servidor:
+>
+> ```bash
+> # 1. Entrar na pasta do projeto
+> cd rotas-sz-bff
+>
+> # 2. Baixar as alterações mais recentes do GitHub
+> git pull
+>
+> # 3. Reconstruir a imagem da API com o novo código
+> docker compose build api
+>
+> # 4. Reiniciar os containers com a nova imagem
+> docker compose up -d
+> ```
 
 ---
 

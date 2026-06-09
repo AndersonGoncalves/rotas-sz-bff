@@ -1200,6 +1200,7 @@ export const swaggerSpec = {
         properties: {
           dataRomaneio: { type: 'string', format: 'date-time' },
           codigoTecnico: { type: 'string' },
+          importado: { type: 'boolean', nullable: true },
         },
       },
       Visita: {
