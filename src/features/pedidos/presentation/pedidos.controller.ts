@@ -82,6 +82,7 @@ export class PedidosController extends BaseRouter {
           observacaoTecnico: body.observacaoTecnico ?? '',
           enderecoCobranca: body.enderecoCobranca ?? null,
           dadosPedidoDeCobranca: body.dadosPedidoDeCobranca ?? null,
+          importado: false,
         });
         res.send(200);
         return next();

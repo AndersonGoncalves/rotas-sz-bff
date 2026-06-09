@@ -34,7 +34,7 @@ export class ProdutosRecebidoController extends BaseRouter {
         if (!dataRomaneio || !codigoTecnico) {
           return next(new BadRequestError('Campos obrigatórios: dataRomaneio, codigoTecnico'));
         }
-        const created = await this.repo.create({ dataRomaneio, codigoTecnico });
+        const created = await this.repo.create({ dataRomaneio, codigoTecnico, importado: false });
         res.json(201, { id: created.id });
         return next();
       } catch (e) {

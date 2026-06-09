@@ -50,6 +50,7 @@ export class PendenciasController extends BaseRouter {
           pendencia,
           observacao: observacao ?? '',
           idMotivoRetorno: idMotivoRetorno ?? null,
+          importado: false,
         });
         res.json(201, { id: created.id });
         return next();
