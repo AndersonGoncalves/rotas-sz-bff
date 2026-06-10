@@ -10,13 +10,20 @@ export class FuncionariosController extends BaseRouter {
 
   applyRoutes(application: restify.Server): void {
     application.get('/funcionarios', async (req, res, next) => {
-      try { res.json(await this.repo.findAll()); return next(); }
-      catch (e) { return next(e); }
+      try {
+        res.json(await this.repo.findAll());
+        return next();
+      } catch (e) {
+        return next(e);
+      }
     });
 
     application.get('/funcionarios/:id', async (req, res, next) => {
-      try { this.render(res, next)(await this.repo.findById(req.params.id)); }
-      catch (e) { return next(e); }
+      try {
+        this.render(res, next)(await this.repo.findById(req.params.id));
+      } catch (e) {
+        return next(e);
+      }
     });
 
     application.post('/funcionarios', async (req, res, next) => {
@@ -28,7 +35,9 @@ export class FuncionariosController extends BaseRouter {
         const created = await this.repo.create({ funcao, nome, email, codigoExterno, assinatura });
         res.json(201, { id: created.id });
         return next();
-      } catch (e) { return next(e); }
+      } catch (e) {
+        return next(e);
+      }
     });
 
     application.patch('/funcionarios/:id', async (req, res, next) => {
@@ -37,15 +46,20 @@ export class FuncionariosController extends BaseRouter {
         if (!updated) return next(new NotFoundError('Funcionário não encontrado'));
         res.send(204);
         return next();
-      } catch (e) { return next(e); }
+      } catch (e) {
+        return next(e);
+      }
     });
 
     application.del('/funcionarios/:id', async (req, res, next) => {
       try {
-        if (!(await this.repo.delete(req.params.id))) return next(new NotFoundError('Funcionário não encontrado'));
+        if (!(await this.repo.delete(req.params.id)))
+          return next(new NotFoundError('Funcionário não encontrado'));
         res.send(204);
         return next();
-      } catch (e) { return next(e); }
+      } catch (e) {
+        return next(e);
+      }
     });
   }
 }
