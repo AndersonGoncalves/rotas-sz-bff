@@ -114,6 +114,13 @@ docker compose down -v   # remove containers e o volume do banco
 docker compose up -d     # sobe do zero com autenticação ativa
 ```
 
+Para subir com **modo debug** (porta 9229 para attach do debugger):
+
+```bash
+docker compose down -v
+docker compose -f docker-compose.yml -f docker-compose.debug.yml up -d
+```
+
 > O MongoDB só aplica `MONGO_INITDB_ROOT_*` na **primeira inicialização**. Por isso o volume precisa ser recriado.
 
 ### 2.5. Restaurar os dados
