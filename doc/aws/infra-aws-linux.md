@@ -164,21 +164,36 @@ docker compose logs -f
 
 ## 5. Banco de dados MongoDB
 
+> **Autenticação obrigatória:** o MongoDB está configurado com usuário e senha (definidos no `.env`). Conectar sem credenciais não retorna dados — o `show dbs` aparece vazio ou sem resposta.
+
 ### Acessar o MongoDB pelo terminal (dentro do servidor)
 
+Sempre passe as credenciais ao conectar. Pegue o valor de `MONGO_PASSWORD` no arquivo `.env` e use diretamente no comando, **sem** `< >`:
+
 ```bash
-docker exec -it rotas-sz-bff-mongo-1 mongosh
+docker exec -it rotas-sz-bff-mongo-1 mongosh \
+  -u admin \
+  -p SUA_SENHA_AQUI \
+  --authenticationDatabase admin
 ```
 
-> O nome do container pode variar. Para confirmar o nome exato, rode `docker ps` e olhe a coluna `NAMES`.
+Exemplo com a senha do `.env`:
+
+```bash
+docker exec -it rotas-sz-bff-mongo-1 mongosh -u admin -p SUA_SENHA_AQUI --authenticationDatabase admin
+```
+
+> Para confirmar o nome exato do container, rode `docker ps` e olhe a coluna `NAMES`.
 
 ### Comandos básicos dentro do mongosh
+
+Após conectar, o prompt exibirá `test>`. Digite os comandos abaixo:
 
 ```javascript
 // Listar todos os bancos de dados
 show dbs
 
-// Selecionar o banco da aplicação (verifique o nome no seu .env ou docker-compose.yml)
+// Selecionar o banco da aplicação
 use rotas-sz
 
 // Listar as coleções (tabelas) do banco
@@ -191,10 +206,27 @@ db.pedidos.find().pretty()
 exit
 ```
 
+> **Atenção:** os comandos `show dbs`, `use rotas-sz` etc. só funcionam **dentro do mongosh** (no prompt `test>`). Se forem digitados no terminal comum do servidor, o erro `Command 'show' not found` será exibido.
+
+### Alternativa: autenticar depois de conectar
+
+Se você já entrou no `mongosh` sem credenciais e quer evitar reconectar:
+
+```javascript
+use admin
+db.auth('admin', 'SUA_SENHA_AQUI')
+
+use rotas-sz
+show collections
+```
+
 ### Acessar o MongoDB pelo MongoDB Compass (interface gráfica, no seu computador local)
 
 1. Abra o MongoDB Compass.
-2. Cole a string de conexão: `mongodb://54.87.117.64:27017`
+2. Cole a string de conexão com credenciais:
+   ```
+   mongodb://admin:SUA_SENHA_AQUI@54.87.117.64:27017/rotas-sz?authSource=admin
+   ```
 3. Clique em **Connect**.
 
 > A porta `27017` precisa estar liberada no Security Group da AWS. Veja a seção [7](#7-liberar-portas-no-security-group-da-aws).
