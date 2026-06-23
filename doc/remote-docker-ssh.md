@@ -34,11 +34,60 @@ ssh-copy-id anderson@192.168.1.25
 
 Após isso, o comando SSH funciona sem solicitar senha.
 
-## Verificar se os containers subiram
+## Gerenciar os containers remotamente
+
+Todos os comandos abaixo rodam via SSH da sua máquina Windows (ou qualquer outra máquina remota).
+
+### Ver status
 
 ```bash
 ssh anderson@192.168.1.25 "docker compose -f /home/anderson/DevPrograms/Projetos/rotas-sz-bff/docker-compose.yml ps"
 ```
+
+### Ver logs
+
+```bash
+# Todos os containers
+ssh anderson@192.168.1.25 "docker compose -f /home/anderson/DevPrograms/Projetos/rotas-sz-bff/docker-compose.yml logs"
+
+# Apenas a API (em tempo real)
+ssh anderson@192.168.1.25 "docker compose -f /home/anderson/DevPrograms/Projetos/rotas-sz-bff/docker-compose.yml logs -f api"
+```
+
+### Parar os containers
+
+```bash
+ssh anderson@192.168.1.25 "docker compose -f /home/anderson/DevPrograms/Projetos/rotas-sz-bff/docker-compose.yml stop"
+```
+
+### Reiniciar os containers
+
+```bash
+ssh anderson@192.168.1.25 "docker compose -f /home/anderson/DevPrograms/Projetos/rotas-sz-bff/docker-compose.yml restart"
+```
+
+### Derrubar e remover os containers
+
+```bash
+ssh anderson@192.168.1.25 "docker compose -f /home/anderson/DevPrograms/Projetos/rotas-sz-bff/docker-compose.yml down"
+```
+
+### Gerenciar diretamente no Ubuntu
+
+Se preferir rodar os comandos diretamente no terminal do Ubuntu (sem SSH):
+
+```bash
+cd /home/anderson/DevPrograms/Projetos/rotas-sz-bff
+
+docker compose ps
+docker compose logs -f
+docker compose stop
+docker compose restart
+docker compose down
+docker compose up -d
+```
+
+> O Docker Desktop no Ubuntu usa um contexto separado (`desktop-linux`) e **não mostra** esses containers. Use sempre o terminal para gerenciá-los.
 
 ## Acessar a API pelo celular ou outra máquina
 
