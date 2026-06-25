@@ -1,24 +1,15 @@
-const BASE_URL = 'http://localhost:3001/motivos-retorno';
+const fs = require('fs');
+const path = require('path');
 
-const motivosRetorno = [
-  { id: '-OXy64zwZRcF4ohaSEGA', descricao: '00-SEM CONTATO' },
-  { id: '-OYbrvdYHh43mhYOtvG5', descricao: '01-NÃO PEDIU O ATENDIMENTO' },
-  { id: '-OYbsKVb76rXOOP1nFxm', descricao: '02-PRODUTO ERRADO' },
-  { id: '-OYbsQXDaQDIL-y19bnk', descricao: '03-CLT REAGENDOU' },
-  { id: '-OYbsU1NMYzeXeKPzggR', descricao: '04-CLT CANCELOU' },
-  { id: '-OYbsjZ-wTXhRhOfdVHF', descricao: '05-NÃO DEU TEMPO' },
-  { id: '-OYbsnDHnM1U6cJr-9SM', descricao: '06-RESTRIÇÃO DE HORÁRIO' },
-  { id: '-OYbwL9r0r8MCUMDB1Yq', descricao: '07-ENDEREÇO NÃO LOCALIZADO' },
-  { id: '-OYbwOQk8zilDGLyiZ9W', descricao: '08-FORA DE ROTA' },
-  { id: '-OYbwcYJHINx7lLOt3eH', descricao: '09-PEDIDO DUPLICADO' },
-  { id: '-OYbwgXYWxOie3jN1VaW', descricao: '10-ROTA EXTRA' },
-  { id: '-OYbwkF6TblvuUkDDdF8', descricao: '11-SEM AUTORIZAÇÃO' },
-  { id: '-OYbwnh7bJ3mbtaR9t1s', descricao: '12-LIMITE DE ESPERA' },
-  { id: '-OYbwqYaNqXRPzC9ZTTd', descricao: '13-PRODUTO EM FALTA' },
-  { id: '-OYbwtWa-lDS7iUHIYSU', descricao: '14-OUTROS MOTIVOS' },
-  { id: '-OYbwwZU86M17xq2Z7-w', descricao: '16-CASA FECHADA' },
-  { id: '-OYbx3ToaVN0_7IfmnKQ', descricao: '15-RESGATEZON' },
-];
+const urlArg = process.argv[2] || 'http://localhost:3001';
+const BASE_URL = `${urlArg}/motivos-retorno`;
+
+const JSON_PATH = path.join(__dirname, 'dados', 'rotas-sz-default-rtdb-motivoRetorno-export.json');
+
+function extractItems() {
+  const raw = JSON.parse(fs.readFileSync(JSON_PATH, 'utf-8'));
+  return Object.entries(raw).map(([key, item]) => ({ ...item, id: item.id || key }));
+}
 
 async function post(motivo, index) {
   try {
@@ -37,10 +28,11 @@ async function post(motivo, index) {
 }
 
 async function main() {
-  console.log(`Enviando ${motivosRetorno.length} motivos de retorno para ${BASE_URL}\n`);
-  const results = await Promise.all(motivosRetorno.map((m, i) => post(m, i)));
+  const items = extractItems();
+  console.log(`Enviando ${items.length} motivos de retorno para ${BASE_URL}\n`);
+  const results = await Promise.all(items.map((m, i) => post(m, i)));
   const ok = results.filter(Boolean).length;
-  console.log(`\nConcluído: ${ok}/${motivosRetorno.length} inseridos com sucesso.`);
+  console.log(`\nConcluído: ${ok}/${items.length} inseridos com sucesso.`);
 }
 
 main();

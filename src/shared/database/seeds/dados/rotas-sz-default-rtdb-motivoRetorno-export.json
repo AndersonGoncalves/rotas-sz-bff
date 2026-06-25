@@ -1,0 +1,70 @@
+{
+  "-OXy64zwZRcF4ohaSEGA": {
+    "descricao": "00-SEM CONTATO",
+    "id": "-OXy64zwZRcF4ohaSEGA"
+  },
+  "-OYbrvdYHh43mhYOtvG5": {
+    "descricao": "01-NÃO PEDIU O ATENDIMENTO ",
+    "id": ""
+  },
+  "-OYbsKVb76rXOOP1nFxm": {
+    "descricao": "02-PRODUTO ERRADO ",
+    "id": ""
+  },
+  "-OYbsQXDaQDIL-y19bnk": {
+    "descricao": "03-CLT REAGENDOU ",
+    "id": ""
+  },
+  "-OYbsU1NMYzeXeKPzggR": {
+    "descricao": "04-CLT CANCELOU ",
+    "id": ""
+  },
+  "-OYbsjZ-wTXhRhOfdVHF": {
+    "descricao": "05- NÃO DEU TEMPO ",
+    "id": ""
+  },
+  "-OYbsnDHnM1U6cJr-9SM": {
+    "descricao": "06-RESTRIÇÃO DE HORÁRIO",
+    "id": "-OYbsnDHnM1U6cJr-9SM"
+  },
+  "-OYbwL9r0r8MCUMDB1Yq": {
+    "descricao": "07- ENDEREÇO. NÃO LOCALIZADO",
+    "id": ""
+  },
+  "-OYbwOQk8zilDGLyiZ9W": {
+    "descricao": "08- FORA DE ROTA ",
+    "id": ""
+  },
+  "-OYbwcYJHINx7lLOt3eH": {
+    "descricao": "09-PEDIDO DUPLICADO",
+    "id": ""
+  },
+  "-OYbwgXYWxOie3jN1VaW": {
+    "descricao": "10-ROTA EXTRA ",
+    "id": ""
+  },
+  "-OYbwkF6TblvuUkDDdF8": {
+    "descricao": "11-SEM AUTORIZAÇÃO ",
+    "id": ""
+  },
+  "-OYbwnh7bJ3mbtaR9t1s": {
+    "descricao": "12-LIMITE DE ESPERA",
+    "id": ""
+  },
+  "-OYbwqYaNqXRPzC9ZTTd": {
+    "descricao": "13-PRODUTO EM FALTA",
+    "id": ""
+  },
+  "-OYbwtWa-lDS7iUHIYSU": {
+    "descricao": "14-OUTROS MOTIVOS",
+    "id": "-OYbwtWa-lDS7iUHIYSU"
+  },
+  "-OYbwwZU86M17xq2Z7-w": {
+    "descricao": "16-CASA FECHADA",
+    "id": ""
+  },
+  "-OYbx3ToaVN0_7IfmnKQ": {
+    "descricao": "15-RESGATEZON",
+    "id": ""
+  }
+}

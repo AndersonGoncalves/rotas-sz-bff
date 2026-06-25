@@ -1,12 +1,15 @@
-const BASE_URL = 'http://localhost:3001/motivos-situacao';
+const fs = require('fs');
+const path = require('path');
 
-const motivosSituacao = [
-  { id: '-ORObL4q1LXZacWr1l6F', descricao: 'Responsável não estava' },
-  { id: '-ORObTlt4CCumRPWLBr3', descricao: 'Sem condições financeiras' },
-  { id: '-ORuzea4OGWkLPf1akZD', descricao: 'Local de instalação não finalizado' },
-  { id: '-ORuzhwyZiSyQSvYTlFf', descricao: 'Cliente Recusou o Teste' },
-  { id: '-ORuzoKo1cUjXZv1pWNc', descricao: 'Endereço não localizado' },
-];
+const urlArg = process.argv[2] || 'http://localhost:3001';
+const BASE_URL = `${urlArg}/motivos-situacao`;
+
+const JSON_PATH = path.join(__dirname, 'dados', 'rotas-sz-default-rtdb-motivoSituacao-export.json');
+
+function extractItems() {
+  const raw = JSON.parse(fs.readFileSync(JSON_PATH, 'utf-8'));
+  return Object.entries(raw).map(([key, item]) => ({ ...item, id: item.id || key }));
+}
 
 async function post(motivo, index) {
   try {
@@ -25,10 +28,11 @@ async function post(motivo, index) {
 }
 
 async function main() {
-  console.log(`Enviando ${motivosSituacao.length} motivos de situação para ${BASE_URL}\n`);
-  const results = await Promise.all(motivosSituacao.map((m, i) => post(m, i)));
+  const items = extractItems();
+  console.log(`Enviando ${items.length} motivos de situação para ${BASE_URL}\n`);
+  const results = await Promise.all(items.map((m, i) => post(m, i)));
   const ok = results.filter(Boolean).length;
-  console.log(`\nConcluído: ${ok}/${motivosSituacao.length} inseridos com sucesso.`);
+  console.log(`\nConcluído: ${ok}/${items.length} inseridos com sucesso.`);
 }
 
 main();

@@ -1,32 +1,55 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 
-const dataArg = process.argv[2];
+const dataArg = process.argv[2] || null;
+const urlArg = process.argv[3] || null;
 
-if (!dataArg) {
-  console.error('Uso: node seed-all.js <data>');
-  console.error('Exemplo: node seed-all.js 2026-05-30');
-  process.exit(1);
-}
-
-const seeds = [
+// Seeds que aceitam data opcional como argumento (data=argv[2], url=argv[3])
+const seedsComData = [
   'seed-pedidos.js',
   'seed-produtos-entregue.js',
   'seed-produtos-recebido.js',
 ];
 
-for (const seed of seeds) {
+// Seeds que não possuem argumento de data (url=argv[2])
+const seedsSemData = [
+  'seed-pendencias.js',
+  'seed-checklist-assistencia.js',
+  'seed-checklist-assistencia-agua-natural.js',
+  'seed-funcionarios.js',
+  'seed-motivos-retorno.js',
+  'seed-motivos-situacao.js',
+];
+
+function run(seed, args = []) {
   const separator = '='.repeat(52);
   console.log(`\n${separator}`);
   console.log(` ${seed}`);
   console.log(separator);
 
-  const result = spawnSync('node', [path.join(__dirname, seed), dataArg], { stdio: 'inherit' });
+  const result = spawnSync('node', [path.join(__dirname, seed), ...args], { stdio: 'inherit' });
 
   if (result.status !== 0) {
-    console.error(`\n[!] ${seed} encerrou com erro. Interrompendo.`);
-    process.exit(result.status || 1);
+    console.error(`\n[!] ${seed} encerrou com erro. Continuando para o próximo.\n`);
   }
+}
+
+if (dataArg) {
+  console.log(`Data romaneio override: ${dataArg}`);
+} else {
+  console.log('Sem override de data — usando as datas dos arquivos JSON.');
+}
+if (urlArg) {
+  console.log(`URL override         : ${urlArg}`);
+}
+console.log();
+
+for (const seed of seedsComData) {
+  run(seed, [...(dataArg ? [dataArg] : []), ...(urlArg ? [urlArg] : [])]);
+}
+
+for (const seed of seedsSemData) {
+  run(seed, urlArg ? [urlArg] : []);
 }
 
 console.log('\nTodos os seeds concluídos com sucesso.');

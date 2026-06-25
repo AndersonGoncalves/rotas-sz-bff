@@ -1,55 +1,51 @@
-const BASE_URL = 'http://localhost:3001/produtos-entregue';
+const fs = require('fs');
+const path = require('path');
 
-const dataArg = process.argv[2];
+const urlArg = process.argv[3] || 'http://localhost:3001';
+const BASE_URL = `${urlArg}/produtos_entregue`;
 
-if (!dataArg) {
-  console.error('Uso: node seed-produtos-entregue.js <data>');
-  console.error('Exemplo: node seed-produtos-entregue.js 2026-05-30');
-  process.exit(1);
+const dataArg = process.argv[2] || null;
+const dataRomaneioOverride = dataArg ? `${dataArg}T00:00:00.000` : null;
+
+const JSON_PATH = path.join(__dirname, 'dados', 'rotas-sz-default-rtdb-produtos_entregue-export.json');
+
+function extractItems() {
+  const raw = JSON.parse(fs.readFileSync(JSON_PATH, 'utf-8'));
+  return Object.entries(raw).map(([key, item]) => ({ ...item, id: item.id || key }));
 }
 
-const dataRomaneioOverride = `${dataArg}T00:00:00.000`;
-
-const produtosEntregue = [
-  { id: '1',  codigoTecnico: '1221' },
-  { id: '2',  codigoTecnico: '886'  },
-  { id: '3',  codigoTecnico: '1852' },
-  { id: '4',  codigoTecnico: '1894' },
-  { id: '5',  codigoTecnico: '1879' },
-  { id: '6',  codigoTecnico: '1866' },
-  { id: '7',  codigoTecnico: '2023' },
-  { id: '8',  codigoTecnico: '1924' },
-  { id: '9',  codigoTecnico: '286'  },
-  { id: '10', codigoTecnico: '1976' },
-];
-
-async function prepareRun() {
-  let items = [];
+async function checkDuplicates(items) {
   try {
     const res = await fetch(BASE_URL);
-    if (res.ok) {
-      const data = await res.json();
-      items = Array.isArray(data) ? data : [];
+    if (!res.ok) return;
+    const existing = await res.json();
+    const list = Array.isArray(existing) ? existing : [];
+
+    const datasParaChecar = dataArg
+      ? [dataArg]
+      : [...new Set(items.map((p) => (p.dataRomaneio || '').substring(0, 10)).filter(Boolean))];
+
+    for (const dt of datasParaChecar) {
+      const existentes = list.filter((item) => (item.dataRomaneio || '').startsWith(dt));
+      if (existentes.length > 0) {
+        console.error(
+          `[!] Já existem ${existentes.length} registro(s) com dataRomaneio ${dt}. Abortando.`,
+        );
+        process.exit(1);
+      }
     }
-  } catch { /* API inacessível — prossegue com ID 1 */ }
-
-  const existentes = items.filter(item => (item.dataRomaneio || '').startsWith(dataArg));
-  if (existentes.length > 0) {
-    console.error(`[!] Já existem ${existentes.length} registro(s) com dataRomaneio ${dataArg}. Abortando.`);
-    process.exit(1);
+  } catch {
+    /* API inacessível — prossegue */
   }
-
-  if (items.length === 0) return 1;
-  const maxId = Math.max(...items.map(item => parseInt(item.id, 10) || 0));
-  return isFinite(maxId) ? maxId + 1 : 1;
 }
 
 async function post(item, index) {
   try {
+    const payload = dataRomaneioOverride ? { ...item, dataRomaneio: dataRomaneioOverride } : { ...item };
     const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: item.id, codigoTecnico: item.codigoTecnico, dataRomaneio: dataRomaneioOverride }),
+      body: JSON.stringify(payload),
     });
     const status = res.ok ? '✓' : '✗';
     console.log(`[${String(index + 1).padStart(2, '0')}] ${status} ${res.status} — id: ${item.id} | tecnico: ${item.codigoTecnico}`);
@@ -61,18 +57,22 @@ async function post(item, index) {
 }
 
 async function main() {
-  const startId = await prepareRun();
-  const items = produtosEntregue.map((item, i) => ({ ...item, id: String(startId + i) }));
-  const lastId = startId + items.length - 1;
+  const items = extractItems();
+  await checkDuplicates(items);
 
-  console.log(`Data romaneio : ${dataRomaneioOverride}`);
-  console.log(`IDs gerados   : ${startId} → ${lastId}  (${items.length} registros)`);
-  console.log(`Próximo ID    : ${lastId + 1}\n`);
+  if (dataRomaneioOverride) {
+    console.log(`Data romaneio : ${dataRomaneioOverride}`);
+  } else {
+    const datas = [
+      ...new Set(items.map((p) => (p.dataRomaneio || '').substring(0, 10)).filter(Boolean)),
+    ];
+    console.log(`Datas romaneio: ${datas.join(', ')}`);
+  }
+  console.log(`Registros: ${items.length}\n`);
 
   const results = await Promise.all(items.map((item, i) => post(item, i)));
   const ok = results.filter(Boolean).length;
   console.log(`\nConcluído: ${ok}/${items.length} inseridos com sucesso.`);
-  console.log(`Próximo idInicial para a próxima execução: ${lastId + 1}`);
 }
 
 main();

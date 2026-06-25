@@ -1,99 +1,97 @@
 ## Seeds de Banco de Dados
 
-Scripts para popular o banco com dados iniciais. Execute com o servidor em execução (`http://localhost:3001`).
+Scripts para importar dados do Firebase Realtime Database para o MongoDB via API REST.  
+Os arquivos JSON exportados do Firebase ficam na pasta `dados/`.
 
-### Seed Completo (pedidos + produtos entregues + produtos recebidos)
-
-Executa os três seeds em sequência com a mesma data. Se qualquer um abortar (ex.: data já existente), os demais não são executados.
-
-```bash
-npm run seed -- 2026-05-30
-```
-
-Ou diretamente:
-
-```bash
-node src/shared/database/seeds/seed-all.js 2026-05-30
-```
-
-### Funcionários
-
-```bash
-node src/shared/database/seeds/seed-funcionarios.js
-```
-
-### Motivos de Retorno
-
-```bash
-node src/shared/database/seeds/seed-motivos-retorno.js
-```
-
-### Motivos de Situação
-
-```bash
-node src/shared/database/seeds/seed-motivos-situacao.js
-```
-
-### Pedidos
-
-Requer a data do romaneio no formato `YYYY-MM-DD`. O ID inicial é determinado automaticamente consultando o maior `id` já existente na coleção e incrementando. A data é aplicada nos campos `dataRomaneio` e `dataVisita` de todos os pedidos.
-
-```bash
-node src/shared/database/seeds/seed-pedidos.js <data>
-# Exemplo:
-node src/shared/database/seeds/seed-pedidos.js 2026-05-30
-```
-
-### Pendências
-
-```bash
-node src/shared/database/seeds/seed-pendencias.js
-```
-
-### Produtos Entregues
-
-Requer a data do romaneio no formato `YYYY-MM-DD`. O ID inicial é determinado automaticamente consultando o maior `id` já existente na coleção e incrementando. A data é aplicada no campo `dataRomaneio` de todos os registros.
-
-```bash
-node src/shared/database/seeds/seed-produtos-entregue.js <data>
-# Exemplo:
-node src/shared/database/seeds/seed-produtos-entregue.js 2026-05-30
-```
-
-### Produtos Recebidos
-
-Requer a data do romaneio no formato `YYYY-MM-DD`. O ID inicial é determinado automaticamente consultando o maior `id` já existente na coleção e incrementando. A data é aplicada no campo `dataRomaneio` de todos os registros.
-
-```bash
-node src/shared/database/seeds/seed-produtos-recebido.js <data>
-# Exemplo:
-node src/shared/database/seeds/seed-produtos-recebido.js 2026-05-30
-```
-
-### Checklist de Assistência
-
-```bash
-node src/shared/database/seeds/seed-checklist-assistencia.js
-```
-
-### Checklist de Assistência — Água Natural
-
-```bash
-node src/shared/database/seeds/seed-checklist-assistencia-agua-natural.js
-```
+**Pré-requisito:** o servidor deve estar rodando antes de executar qualquer seed.
 
 ---
 
-## Endpoints utilizados
+## Fonte dos dados
 
-| Script                    | Endpoint                        |
-|---------------------------|---------------------------------|
-| seed-funcionarios.js      | POST /funcionarios              |
-| seed-motivos-retorno.js   | POST /motivos-retorno           |
-| seed-motivos-situacao.js  | POST /motivos-situacao          |
+O Firebase exporta um objeto com os IDs como chaves — o mesmo valor está dentro do objeto em `id`:
+
+```json
+{
+  "976858": { "id": "976858", "nomeCliente": "...", ... },
+  "977184": { "id": "977184", "nomeCliente": "...", ... }
+}
+```
+
+Os scripts leem o JSON, extraem os objetos e os enviam para a API usando o `id` já existente — sem gerar ou incrementar IDs.
+
+---
+
+## Arquivos de dados esperados
+
+| Arquivo (dentro de `dados/`) | Seed | Endpoint |
+| ---------------------------- | ---- | -------- |
+| `rotas-sz-default-rtdb-pedido-export.json` | `seed-pedidos.js` | `PUT /pedido/:id` |
+| `rotas-sz-default-rtdb-produtos_entregue-export.json` | `seed-produtos-entregue.js` | `POST /produtos-entregue` |
+| `rotas-sz-default-rtdb-produtos_recebido-export.json` | `seed-produtos-recebido.js` | `POST /produtos-recebido` |
+| `rotas-sz-default-rtdb-pendencia-export.json` | `seed-pendencias.js` | `POST /pendencias` |
+| `rotas-sz-default-rtdb-checklist_assistencia-export.json` | `seed-checklist-assistencia.js` | `POST /checklist-assistencia` |
+| `rotas-sz-default-rtdb-checklist_assistencia_agua_natural-export.json` | `seed-checklist-assistencia-agua-natural.js` | `POST /checklist-assistencia-agua-natural` |
+| `rotas-sz-default-rtdb-funcionarios-export.json` | `seed-funcionarios.js` | `POST /funcionarios` |
+| `rotas-sz-default-rtdb-motivos_retorno-export.json` | `seed-motivos-retorno.js` | `POST /motivos-retorno` |
+| `rotas-sz-default-rtdb-motivos_situacao-export.json` | `seed-motivos-situacao.js` | `POST /motivos-situacao` |
+
+---
+
+## seed-all.js — rodar todos de uma vez
+
+```
+node seed-all.js [data] [url]
+```
+
+| Combinação | Comando |
+| ---------- | ------- |
+| Sem data, API local | `node seed-all.js` |
+| Com data, API local | `node seed-all.js 2026-06-24` |
+| Sem data, API remota | `node seed-all.js "" http://192.168.1.100:3001` |
+| Com data, API remota | `node seed-all.js 2026-06-24 http://192.168.1.100:3001` |
+
+> Para passar apenas a URL sem data, use `""` como primeiro argumento (string vazia).
+
+---
+
+## Seeds individuais
+
+### Com suporte a data
+
+```
+node <seed> [data] [url]
+```
+
+A data sobrescreve `dataRomaneio` e `dataVisita`. Se omitida, usa a data que já está no JSON.
+
+| Seed | API local, sem data | API local, com data | API remota, com data |
+| ---- | ------------------- | ------------------- | -------------------- |
+| `seed-pedidos.js` | `node seed-pedidos.js` | `node seed-pedidos.js 2026-06-24` | `node seed-pedidos.js 2026-06-24 http://host:3001` |
+| `seed-produtos-entregue.js` | `node seed-produtos-entregue.js` | `node seed-produtos-entregue.js 2026-06-24` | `node seed-produtos-entregue.js 2026-06-24 http://host:3001` |
+| `seed-produtos-recebido.js` | `node seed-produtos-recebido.js` | `node seed-produtos-recebido.js 2026-06-24` | `node seed-produtos-recebido.js 2026-06-24 http://host:3001` |
+
+> Esses seeds verificam a API antes de inserir e **abortam** se já existirem registros com a mesma `dataRomaneio`.
+
+### Sem suporte a data
+
+```
+node <seed> [url]
+```
+
+| Seed | API local | API remota |
+| ---- | --------- | ---------- |
+| `seed-pendencias.js` | `node seed-pendencias.js` | `node seed-pendencias.js http://host:3001` |
+| `seed-checklist-assistencia.js` | `node seed-checklist-assistencia.js` | `node seed-checklist-assistencia.js http://host:3001` |
+| `seed-checklist-assistencia-agua-natural.js` | `node seed-checklist-assistencia-agua-natural.js` | `node seed-checklist-assistencia-agua-natural.js http://host:3001` |
+| `seed-funcionarios.js` | `node seed-funcionarios.js` | `node seed-funcionarios.js http://host:3001` |
+| `seed-motivos-retorno.js` | `node seed-motivos-retorno.js` | `node seed-motivos-retorno.js http://host:3001` |
+| `seed-motivos-situacao.js` | `node seed-motivos-situacao.js` | `node seed-motivos-situacao.js http://host:3001` |
+
+---
 
 ## Observações
 
-- Os scripts enviam todas as requisições em paralelo.
-- Cada linha do terminal mostra `✓` (sucesso) ou `✗` (erro) para cada registro.
-- Registros com `id` vazio no Firebase foram mantidos com a chave do nó como identificador.
+- Todos os scripts enviam as requisições em paralelo.
+- Cada linha do terminal mostra `✓` (sucesso) ou `✗` (erro) com status HTTP para cada registro.
+- A URL padrão é `http://localhost:3001`. Passe outra URL para apontar para um servidor remoto.
