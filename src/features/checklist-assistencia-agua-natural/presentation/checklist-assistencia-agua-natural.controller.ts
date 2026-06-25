@@ -61,7 +61,7 @@ export class ChecklistAssistenciaAguaNaturalController extends BaseRouter {
           maisInformacoes: body.maisInformacoes ?? '',
           descricaoDoDefeito: body.descricaoDoDefeito ?? '',
           dataChecklist: body.dataChecklist,
-          importado: false,
+          importado: body.importado ?? false,
         });
         res.json(201, { id: created.id });
         return next();

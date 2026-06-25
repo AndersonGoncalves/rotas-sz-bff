@@ -30,11 +30,11 @@ export class ProdutosEntregueController extends BaseRouter {
 
     application.post('/produtos_entregue', async (req, res, next) => {
       try {
-        const { dataRomaneio, codigoTecnico } = req.body;
+        const { dataRomaneio, codigoTecnico, importado } = req.body;
         if (!dataRomaneio || !codigoTecnico) {
           return next(new BadRequestError('Campos obrigatórios: dataRomaneio, codigoTecnico'));
         }
-        const created = await this.repo.create({ dataRomaneio, codigoTecnico, importado: false });
+        const created = await this.repo.create({ dataRomaneio, codigoTecnico, importado: importado ?? false });
         res.json(201, { id: created.id });
         return next();
       } catch (e) {

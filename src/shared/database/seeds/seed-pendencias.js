@@ -40,6 +40,7 @@ async function post(item, index) {
       pendencia: item.pendencia,
       observacao: item.observacao,
       ...(item.idMotivoRetorno ? { idMotivoRetorno: item.idMotivoRetorno } : {}),
+      importado: item.importado ?? false,
     };
     const res = await fetch(BASE_URL, {
       method: 'POST',
