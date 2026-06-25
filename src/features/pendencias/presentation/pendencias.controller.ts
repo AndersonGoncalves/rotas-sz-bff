@@ -38,6 +38,7 @@ export class PendenciasController extends BaseRouter {
           pendencia,
           observacao,
           idMotivoRetorno,
+          dataRomaneio,
         } = req.body;
         if (!pedidoId || !nomeCliente || !pendencia) {
           return next(new BadRequestError('Campos obrigatórios: pedidoId, nomeCliente, pendencia'));
@@ -49,6 +50,7 @@ export class PendenciasController extends BaseRouter {
           nomeCliente,
           pendencia,
           observacao: observacao ?? '',
+          dataRomaneio: dataRomaneio ?? '',
           idMotivoRetorno: idMotivoRetorno ?? null,
           importado: req.body.importado ?? false,
         });

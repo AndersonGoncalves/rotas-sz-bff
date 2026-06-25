@@ -13,6 +13,7 @@ export class PendenciaMongooseRepository implements IPendenciaRepository {
       idMotivoRetorno: doc.idMotivoRetorno,
       pendencia: doc.pendencia,
       observacao: doc.observacao,
+      dataRomaneio: doc.dataRomaneio,
       importado: doc.importado,
     };
   }
