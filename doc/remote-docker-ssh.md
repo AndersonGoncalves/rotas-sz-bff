@@ -12,6 +12,27 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
+## Alterou o fonte? Faça rebuild antes de subir
+
+> **Sempre que alterar o código-fonte do projeto**, use os comandos abaixo em vez do simples `up -d`.
+> O `restart` e o `up -d` sem `--build` sobem a imagem antiga, ignorando suas mudanças.
+
+**No próprio Ubuntu:**
+
+```bash
+cd /home/anderson/DevPrograms/Projetos/rotas-sz-bff
+docker compose down
+docker compose up -d --build
+```
+
+**Via SSH (de outra máquina):**
+
+```bash
+ssh anderson@192.168.1.25 "cd /home/anderson/DevPrograms/Projetos/rotas-sz-bff && docker compose down && docker compose up -d --build"
+```
+
+---
+
 ## Subir o Docker da máquina remota
 
 Na outra máquina, execute:
