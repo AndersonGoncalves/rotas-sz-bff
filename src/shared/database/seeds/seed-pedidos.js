@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const urlArg = process.argv[3] || 'http://localhost:3001';
+
 const BASE_URL = `${urlArg}/pedido`;
 
 const dataArg = process.argv[2] || null;

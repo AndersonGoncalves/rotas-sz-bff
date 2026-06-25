@@ -5,11 +5,7 @@ const dataArg = process.argv[2] || null;
 const urlArg = process.argv[3] || null;
 
 // Seeds que aceitam data opcional como argumento (data=argv[2], url=argv[3])
-const seedsComData = [
-  'seed-pedidos.js',
-  'seed-produtos-entregue.js',
-  'seed-produtos-recebido.js',
-];
+const seedsComData = ['seed-pedidos.js', 'seed-produtos-entregue.js', 'seed-produtos-recebido.js'];
 
 // Seeds que não possuem argumento de data (url=argv[2])
 const seedsSemData = [

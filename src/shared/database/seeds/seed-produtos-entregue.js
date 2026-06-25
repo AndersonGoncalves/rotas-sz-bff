@@ -14,28 +14,25 @@ function extractItems() {
   return Object.entries(raw).map(([key, item]) => ({ ...item, id: item.id || key }));
 }
 
-async function checkDuplicates(items) {
+async function filterExisting(items) {
   try {
     const res = await fetch(BASE_URL);
-    if (!res.ok) return;
+    if (!res.ok) return items;
     const existing = await res.json();
-    const list = Array.isArray(existing) ? existing : [];
-
-    const datasParaChecar = dataArg
-      ? [dataArg]
-      : [...new Set(items.map((p) => (p.dataRomaneio || '').substring(0, 10)).filter(Boolean))];
-
-    for (const dt of datasParaChecar) {
-      const existentes = list.filter((item) => (item.dataRomaneio || '').startsWith(dt));
-      if (existentes.length > 0) {
-        console.error(
-          `[!] Já existem ${existentes.length} registro(s) com dataRomaneio ${dt}. Abortando.`,
-        );
-        process.exit(1);
-      }
+    const existingKeys = new Set(
+      (Array.isArray(existing) ? existing : []).map(
+        (e) => `${(e.dataRomaneio || '').substring(0, 10)}|${e.codigoTecnico}`,
+      ),
+    );
+    const dataKey = (item) =>
+      `${(dataRomaneioOverride || item.dataRomaneio || '').substring(0, 10)}|${item.codigoTecnico}`;
+    const novos = items.filter((item) => !existingKeys.has(dataKey(item)));
+    if (novos.length < items.length) {
+      console.log(`[i] ${items.length - novos.length} já existente(s) ignorado(s).`);
     }
+    return novos;
   } catch {
-    /* API inacessível — prossegue */
+    return items;
   }
 }
 
@@ -57,8 +54,12 @@ async function post(item, index) {
 }
 
 async function main() {
-  const items = extractItems();
-  await checkDuplicates(items);
+  const all = extractItems();
+  const items = await filterExisting(all);
+  if (items.length === 0) {
+    console.log('Nenhum produto entregue novo para inserir.');
+    return;
+  }
 
   if (dataRomaneioOverride) {
     console.log(`Data romaneio : ${dataRomaneioOverride}`);

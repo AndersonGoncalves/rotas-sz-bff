@@ -11,6 +11,26 @@ function extractItems() {
   return Object.entries(raw).map(([key, item]) => ({ ...item, id: item.id || key }));
 }
 
+async function filterExisting(items) {
+  try {
+    const res = await fetch(BASE_URL);
+    if (!res.ok) return items;
+    const existing = await res.json();
+    const existingDescricoes = new Set(
+      (Array.isArray(existing) ? existing : []).map((e) => String(e.descricao).toLowerCase()),
+    );
+    const novos = items.filter(
+      (item) => !existingDescricoes.has(String(item.descricao).toLowerCase()),
+    );
+    if (novos.length < items.length) {
+      console.log(`[i] ${items.length - novos.length} já existente(s) ignorado(s).`);
+    }
+    return novos;
+  } catch {
+    return items;
+  }
+}
+
 async function post(motivo, index) {
   try {
     const res = await fetch(BASE_URL, {
@@ -28,8 +48,13 @@ async function post(motivo, index) {
 }
 
 async function main() {
-  const items = extractItems();
-  console.log(`Enviando ${items.length} motivos de retorno para ${BASE_URL}\n`);
+  const all = extractItems();
+  const items = await filterExisting(all);
+  if (items.length === 0) {
+    console.log('Nenhum motivo de retorno novo para inserir.');
+    return;
+  }
+  console.log(`Enviando ${items.length} motivo(s) de retorno para ${BASE_URL}\n`);
   const results = await Promise.all(items.map((m, i) => post(m, i)));
   const ok = results.filter(Boolean).length;
   console.log(`\nConcluído: ${ok}/${items.length} inseridos com sucesso.`);

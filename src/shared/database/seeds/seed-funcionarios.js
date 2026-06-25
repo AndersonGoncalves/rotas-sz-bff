@@ -11,6 +11,24 @@ function extractItems() {
   return Object.entries(raw).map(([key, item]) => ({ ...item, id: item.id || key }));
 }
 
+async function filterExisting(items) {
+  try {
+    const res = await fetch(BASE_URL);
+    if (!res.ok) return items;
+    const existing = await res.json();
+    const existingCodigos = new Set(
+      (Array.isArray(existing) ? existing : []).map((e) => String(e.codigoExterno)),
+    );
+    const novos = items.filter((item) => !existingCodigos.has(String(item.codigoExterno)));
+    if (novos.length < items.length) {
+      console.log(`[i] ${items.length - novos.length} já existente(s) ignorado(s).`);
+    }
+    return novos;
+  } catch {
+    return items;
+  }
+}
+
 async function post(funcionario, index) {
   try {
     const res = await fetch(BASE_URL, {
@@ -28,8 +46,13 @@ async function post(funcionario, index) {
 }
 
 async function main() {
-  const items = extractItems();
-  console.log(`Enviando ${items.length} funcionários para ${BASE_URL}\n`);
+  const all = extractItems();
+  const items = await filterExisting(all);
+  if (items.length === 0) {
+    console.log('Nenhum funcionário novo para inserir.');
+    return;
+  }
+  console.log(`Enviando ${items.length} funcionário(s) para ${BASE_URL}\n`);
   const results = await Promise.all(items.map((f, i) => post(f, i)));
   const ok = results.filter(Boolean).length;
   console.log(`\nConcluído: ${ok}/${items.length} inseridos com sucesso.`);
