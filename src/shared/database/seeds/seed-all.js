@@ -41,7 +41,8 @@ if (urlArg) {
 console.log();
 
 for (const seed of seedsComData) {
-  run(seed, [...(dataArg ? [dataArg] : []), ...(urlArg ? [urlArg] : [])]);
+  const args = urlArg ? [dataArg || '', urlArg] : (dataArg ? [dataArg] : []);
+  run(seed, args);
 }
 
 for (const seed of seedsSemData) {
