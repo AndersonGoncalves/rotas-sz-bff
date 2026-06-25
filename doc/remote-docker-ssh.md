@@ -21,6 +21,7 @@ sudo systemctl start ssh
 
 ```bash
 cd /home/anderson/DevPrograms/Projetos/rotas-sz-bff
+git pull
 docker compose down
 docker compose up -d --build
 ```
@@ -28,7 +29,7 @@ docker compose up -d --build
 **Via SSH (de outra máquina):**
 
 ```bash
-ssh anderson@192.168.1.25 "cd /home/anderson/DevPrograms/Projetos/rotas-sz-bff && docker compose down && docker compose up -d --build"
+ssh anderson@192.168.1.25 "cd /home/anderson/DevPrograms/Projetos/rotas-sz-bff && git pull && docker compose down && docker compose up -d --build"
 ```
 
 ---
