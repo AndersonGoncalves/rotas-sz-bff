@@ -83,6 +83,7 @@ export class PedidosController extends BaseRouter {
           enderecoCobranca: body.enderecoCobranca ?? null,
           dadosPedidoDeCobranca: body.dadosPedidoDeCobranca ?? null,
           importado: body.importado ?? false,
+          pedidoOrigemId: body.pedidoOrigemId ?? null,
         });
         res.send(200);
         return next();
