@@ -4,7 +4,7 @@ services:
     ports:
       - "3001:3001"   # expõe a porta 3001 para fora do container
     env_file:
-      - .env
+      - .envs/.env
     environment:
       SERVER_PORT: 3001
       AWS_BUCKET_NAME: api-node-storage-anderson-goncalves
