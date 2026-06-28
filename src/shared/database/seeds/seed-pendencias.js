@@ -41,6 +41,7 @@ async function post(item, index) {
       observacao: item.observacao,
       ...(item.idMotivoRetorno ? { idMotivoRetorno: item.idMotivoRetorno } : {}),
       importado: item.importado ?? false,
+      ...(item.dataRomaneio ? { dataRomaneio: item.dataRomaneio } : {}),
     };
     const res = await fetch(BASE_URL, {
       method: 'POST',
