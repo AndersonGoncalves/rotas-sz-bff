@@ -530,6 +530,66 @@ O servidor escuta na porta **3001** por padrão.
 
 ---
 
+## Seeds de Banco de Dados
+
+Os seeds populam o banco via HTTP, fazendo `POST` direto na API em execução. Por padrão apontam para `http://localhost:3001`. Todos verificam duplicatas antes de inserir — registros já existentes são ignorados.
+
+### Rodar todos os seeds
+
+```bash
+npm run seed
+```
+
+Para especificar uma URL diferente de localhost, passe como segundo argumento (o primeiro é a data, veja abaixo):
+
+```bash
+npm run seed -- "" http://outro-servidor:3001
+```
+
+### Seeds com argumento de data
+
+Os seeds abaixo aceitam uma data de romaneio como primeiro argumento e a URL como segundo:
+
+| Seed | Argumento 1 | Argumento 2 |
+|---|---|---|
+| `seed-pedidos.js` | data (ex: `2024-01-01`) | URL do servidor |
+| `seed-produtos-entregue.js` | data | URL do servidor |
+| `seed-produtos-recebido.js` | data | URL do servidor |
+
+```bash
+# Com data e URL customizada
+node src/shared/database/seeds/seed-pedidos.js 2024-01-01 http://outro-servidor:3001
+
+# Só com data (URL padrão localhost:3001)
+node src/shared/database/seeds/seed-pedidos.js 2024-01-01
+
+# Só com URL customizada (sem data — usa as datas dos JSONs)
+node src/shared/database/seeds/seed-pedidos.js "" http://outro-servidor:3001
+```
+
+### Seeds sem argumento de data
+
+Os seeds abaixo aceitam apenas a URL como argumento:
+
+| Seed | Recurso |
+|---|---|
+| `seed-checklist-assistencia.js` | Checklist de assistência |
+| `seed-checklist-assistencia-agua-natural.js` | Checklist de assistência água natural |
+| `seed-funcionarios.js` | Funcionários |
+| `seed-motivos-retorno.js` | Motivos de retorno |
+| `seed-motivos-situacao.js` | Motivos de situação |
+| `seed-pendencias.js` | Pendências |
+
+```bash
+# URL padrão (localhost:3001)
+node src/shared/database/seeds/seed-funcionarios.js
+
+# URL customizada
+node src/shared/database/seeds/seed-funcionarios.js http://outro-servidor:3001
+```
+
+---
+
 ## Variáveis de Ambiente
 
 | Variável      | Padrão                              | Descrição                    |

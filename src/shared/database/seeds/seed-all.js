@@ -37,6 +37,8 @@ if (dataArg) {
 }
 if (urlArg) {
   console.log(`URL override         : ${urlArg}`);
+} else {
+  console.log(`URL                  : http://localhost:3001 (padrão)`);
 }
 console.log();
 
