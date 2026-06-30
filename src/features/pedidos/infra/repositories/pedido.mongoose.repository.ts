@@ -47,9 +47,7 @@ export class PedidoMongooseRepository implements IPedidoRepository {
       enderecoCobranca: doc.enderecoCobranca,
       dadosPedidoDeCobranca: doc.dadosPedidoDeCobranca,
       importado: doc.importado,
-      pedidoOrigemId: doc.pedidoOrigemId,
-      pedidoPecasId: doc.pedidoPecasId,
-      pedidoPecas: doc.pedidoPecas,
+      pedidoOrigemId: doc.pedidoOrigemId,      
     };
   }
 

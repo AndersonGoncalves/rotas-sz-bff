@@ -63,7 +63,5 @@ export interface IPedido {
   enderecoCobranca?: string | null;
   dadosPedidoDeCobranca?: string | null;
   importado?: boolean | null;
-  pedidoOrigemId?: string | null;
-  pedidoPecasId?: string | null;
-  pedidoPecas?: boolean | null;
+  pedidoOrigemId?: string | null;  
 }

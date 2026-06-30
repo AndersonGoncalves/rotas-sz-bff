@@ -1100,9 +1100,7 @@ export const swaggerSpec = {
           enderecoCobranca: { type: 'string', nullable: true },
           dadosPedidoDeCobranca: { type: 'string', nullable: true },
           importado: { type: 'boolean', nullable: true },
-          pedidoOrigemId: { type: 'string', nullable: true },
-          pedidoPecasId: { type: 'string', nullable: true },
-          pedidoPecas: { type: 'boolean', nullable: true },
+          pedidoOrigemId: { type: 'string', nullable: true },          
         },
       },
       PedidoInput: {
@@ -1149,9 +1147,7 @@ export const swaggerSpec = {
           enderecoCobranca: { type: 'string', nullable: true },
           dadosPedidoDeCobranca: { type: 'string', nullable: true },
           importado: { type: 'boolean', nullable: true },
-          pedidoOrigemId: { type: 'string', nullable: true },
-          pedidoPecasId: { type: 'string', nullable: true },
-          pedidoPecas: { type: 'boolean', nullable: true },
+          pedidoOrigemId: { type: 'string', nullable: true },          
         },
       },
       Pendencia: {
