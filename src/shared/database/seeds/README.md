@@ -1,9 +1,9 @@
 ## Seeds de Banco de Dados
 
-Scripts para importar dados do Firebase Realtime Database para o MongoDB via API REST.  
+Scripts para importar dados do Firebase Realtime Database para o MongoDB via API REST.
 Os arquivos JSON exportados do Firebase ficam na pasta `dados/`.
 
-**Pré-requisito:** o servidor deve estar rodando antes de executar qualquer seed.
+**Pré-requisito:** o servidor deve estar rodando em `http://localhost:3001` antes de executar qualquer seed.
 
 ---
 
@@ -22,71 +22,94 @@ Os scripts leem o JSON, extraem os objetos e os enviam para a API usando o `id` 
 
 ---
 
-## Arquivos de dados esperados
+## Rodar tudo de uma vez
+
+```bash
+node seed-all.js
+```
+
+---
+
+## Rodar um por um (copiar e colar)
+
+Execute a partir desta pasta (`src/shared/database/seeds`), na ordem abaixo.
+
+```bash
+node seed-pedidos.js
+```
+
+```bash
+node seed-produtos-entregue.js
+```
+
+```bash
+node seed-produtos-recebido.js
+```
+
+```bash
+node seed-pendencias.js
+```
+
+```bash
+node seed-checklist-assistencia.js
+```
+
+```bash
+node seed-checklist-assistencia-agua-natural.js
+```
+
+```bash
+node seed-funcionarios.js
+```
+
+```bash
+node seed-motivos-retorno.js
+```
+
+```bash
+node seed-motivos-situacao.js
+```
+
+---
+
+## Referência de endpoints
 
 | Arquivo (dentro de `dados/`) | Seed | Endpoint |
 | ---------------------------- | ---- | -------- |
 | `rotas-sz-default-rtdb-pedido-export.json` | `seed-pedidos.js` | `PUT /pedido/:id` |
-| `rotas-sz-default-rtdb-produtos_entregue-export.json` | `seed-produtos-entregue.js` | `POST /produtos-entregue` |
-| `rotas-sz-default-rtdb-produtos_recebido-export.json` | `seed-produtos-recebido.js` | `POST /produtos-recebido` |
-| `rotas-sz-default-rtdb-pendencia-export.json` | `seed-pendencias.js` | `POST /pendencias` |
-| `rotas-sz-default-rtdb-checklist_assistencia-export.json` | `seed-checklist-assistencia.js` | `POST /checklist-assistencia` |
-| `rotas-sz-default-rtdb-checklist_assistencia_agua_natural-export.json` | `seed-checklist-assistencia-agua-natural.js` | `POST /checklist-assistencia-agua-natural` |
+| `rotas-sz-default-rtdb-produtos_entregue-export.json` | `seed-produtos-entregue.js` | `POST /produtos_entregue` |
+| `rotas-sz-default-rtdb-produtos_recebido-export.json` | `seed-produtos-recebido.js` | `POST /produtos_recebido` |
+| `rotas-sz-default-rtdb-pendencia-export.json` | `seed-pendencias.js` | `POST /pendencia` |
+| `rotas-sz-default-rtdb-checklist_assistencia-export.json` | `seed-checklist-assistencia.js` | `POST /checklist_assistencia` |
+| `rotas-sz-default-rtdb-checklist_assistencia_agua_natural-export.json` | `seed-checklist-assistencia-agua-natural.js` | `POST /checklist_assistencia_agua_natural` |
 | `rotas-sz-default-rtdb-funcionarios-export.json` | `seed-funcionarios.js` | `POST /funcionarios` |
 | `rotas-sz-default-rtdb-motivos_retorno-export.json` | `seed-motivos-retorno.js` | `POST /motivos-retorno` |
 | `rotas-sz-default-rtdb-motivos_situacao-export.json` | `seed-motivos-situacao.js` | `POST /motivos-situacao` |
 
 ---
 
-## seed-all.js — rodar todos de uma vez
+## Opções avançadas (data e URL remota)
+
+Por padrão, todo comando acima aponta para `http://localhost:3001` e usa as datas já presentes no JSON. Para customizar:
 
 ```
 node seed-all.js [data] [url]
+node <seed-com-data> [data] [url]
+node <seed-sem-data> [url]
 ```
 
-| Combinação | Comando |
-| ---------- | ------- |
-| Sem data, API local | `node seed-all.js` |
-| Com data, API local | `node seed-all.js 2026-06-24` |
-| Sem data, API remota | `node seed-all.js "" http://192.168.1.100:3001` |
-| Com data, API remota | `node seed-all.js 2026-06-24 http://192.168.1.100:3001` |
+- `seed-pedidos.js`, `seed-produtos-entregue.js` e `seed-produtos-recebido.js` aceitam `data` (sobrescreve `dataRomaneio`/`dataVisita`) como primeiro argumento, e **abortam** se já existirem registros com a mesma `dataRomaneio`.
+- Os demais seeds não têm argumento de data; o primeiro argumento já é a URL.
+- Para passar só a URL em `seed-all.js` ou nos seeds com data, use `""` como primeiro argumento (data vazia).
 
-> Para passar apenas a URL sem data, use `""` como primeiro argumento (string vazia).
+Exemplos:
 
----
-
-## Seeds individuais
-
-### Com suporte a data
-
+```bash
+node seed-all.js 2026-06-24
+node seed-all.js "" http://192.168.1.100:3001
+node seed-pedidos.js 2026-06-24 http://192.168.1.100:3001
+node seed-funcionarios.js http://192.168.1.100:3001
 ```
-node <seed> [data] [url]
-```
-
-A data sobrescreve `dataRomaneio` e `dataVisita`. Se omitida, usa a data que já está no JSON.
-
-| Seed | API local, sem data | API local, com data | API remota, com data |
-| ---- | ------------------- | ------------------- | -------------------- |
-| `seed-pedidos.js` | `node seed-pedidos.js` | `node seed-pedidos.js 2026-06-24` | `node seed-pedidos.js 2026-06-24 http://host:3001` |
-| `seed-produtos-entregue.js` | `node seed-produtos-entregue.js` | `node seed-produtos-entregue.js 2026-06-24` | `node seed-produtos-entregue.js 2026-06-24 http://host:3001` |
-| `seed-produtos-recebido.js` | `node seed-produtos-recebido.js` | `node seed-produtos-recebido.js 2026-06-24` | `node seed-produtos-recebido.js 2026-06-24 http://host:3001` |
-
-> Esses seeds verificam a API antes de inserir e **abortam** se já existirem registros com a mesma `dataRomaneio`.
-
-### Sem suporte a data
-
-```
-node <seed> [url]
-```
-
-| Seed | API local | API remota |
-| ---- | --------- | ---------- |
-| `seed-pendencias.js` | `node seed-pendencias.js` | `node seed-pendencias.js http://host:3001` |
-| `seed-checklist-assistencia.js` | `node seed-checklist-assistencia.js` | `node seed-checklist-assistencia.js http://host:3001` |
-| `seed-checklist-assistencia-agua-natural.js` | `node seed-checklist-assistencia-agua-natural.js` | `node seed-checklist-assistencia-agua-natural.js http://host:3001` |
-| `seed-funcionarios.js` | `node seed-funcionarios.js` | `node seed-funcionarios.js http://host:3001` |
-| `seed-motivos-retorno.js` | `node seed-motivos-retorno.js` | `node seed-motivos-retorno.js http://host:3001` |
-| `seed-motivos-situacao.js` | `node seed-motivos-situacao.js` | `node seed-motivos-situacao.js http://host:3001` |
 
 ---
 

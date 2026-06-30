@@ -1,0 +1,21 @@
+{
+  "b0209b01a96fd4d788a5b528": {
+    "adesivoDesgastado": true,
+    "amarelado": true,
+    "codigoCliente": "165538",
+    "dataChecklist": "2026-06-29T08:23:40.667218",
+    "descricaoDoDefeito": "verificar ozônio \n",
+    "id": "b0209b01a96fd4d788a5b528",
+    "idCliente": "165538",
+    "importado": true,
+    "maisInformacoes": "",
+    "modelo": "prime branco",
+    "nomeCliente": "Orlando De Araujo Vilela Sales",
+    "numeroSerie": "123",
+    "pedidoId": "986774",
+    "rabicho": false,
+    "torneira": false,
+    "trincado": false,
+    "volante": true
+  }
+}

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const urlArg = process.argv[2] || 'http://localhost:3001';
-const BASE_URL = `${urlArg}/checklist-assistencia-agua-natural`;
+const BASE_URL = `${urlArg}/checklist_assistencia_agua_natural`;
 
 const JSON_PATH = path.join(__dirname, 'dados', 'rotas-sz-default-rtdb-checklist_assistencia_agua_natural-export.json');
 
