@@ -6,6 +6,7 @@ dist/
 
 # Environment variables
 .envs/.env
+.env
 
 # Logs
 logs/
