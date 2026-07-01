@@ -19,4 +19,6 @@ const tituloSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false }
 );
 
+tituloSchema.index({ dataVencimento: 1 });
+
 export const TituloModel = mongoose.model('Titulo', tituloSchema, 'titulo');

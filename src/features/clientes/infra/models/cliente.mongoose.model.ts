@@ -46,4 +46,6 @@ const clienteSchema = new mongoose.Schema(
   },
 );
 
+clienteSchema.index({ nome: 1 });
+
 export const ClienteModel = mongoose.model<IClienteDocument>('Cliente', clienteSchema, 'cliente');

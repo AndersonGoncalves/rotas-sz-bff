@@ -15,4 +15,6 @@ const pendenciaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
+pendenciaSchema.index({ importado: 1, dataRomaneio: -1 });
+
 export const PendenciaModel = mongoose.model('Pendencia', pendenciaSchema, 'pendencia');

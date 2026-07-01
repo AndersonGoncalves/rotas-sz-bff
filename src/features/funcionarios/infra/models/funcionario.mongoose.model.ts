@@ -11,4 +11,6 @@ const funcionarioSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
+funcionarioSchema.index({ nome: 1 });
+
 export const FuncionarioModel = mongoose.model('Funcionario', funcionarioSchema, 'funcionario');

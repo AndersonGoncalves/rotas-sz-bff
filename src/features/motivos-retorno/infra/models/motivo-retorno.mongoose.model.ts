@@ -7,4 +7,6 @@ const motivoRetornoSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
+motivoRetornoSchema.index({ descricao: 1 });
+
 export const MotivoRetornoModel = mongoose.model('MotivoRetorno', motivoRetornoSchema, 'motivoRetorno');

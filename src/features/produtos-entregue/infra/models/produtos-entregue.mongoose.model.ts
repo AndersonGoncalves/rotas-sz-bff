@@ -9,6 +9,8 @@ const produtosEntregueSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
+produtosEntregueSchema.index({ importado: 1, dataRomaneio: -1 });
+
 export const ProdutosEntregueModel = mongoose.model(
   'ProdutosEntregue',
   produtosEntregueSchema,

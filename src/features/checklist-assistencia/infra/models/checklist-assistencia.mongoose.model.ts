@@ -50,6 +50,8 @@ const checklistAssistenciaSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
+checklistAssistenciaSchema.index({ importado: 1, dataChecklist: -1 });
+
 export const ChecklistAssistenciaModel = mongoose.model(
   'ChecklistAssistencia',
   checklistAssistenciaSchema,

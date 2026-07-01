@@ -57,9 +57,11 @@ const pedidoSchema = new mongoose.Schema(
     tiposPagamento: { type: [tipoPagamentoSchema], default: [] },
     turno: { type: String, default: '' },
     importado: { type: Boolean, default: false },
-    pedidoOrigemId: { type: String, default: null },    
+    pedidoOrigemId: { type: String, default: null },
   },
   { timestamps: false, versionKey: false },
 );
+
+pedidoSchema.index({ codigoTecnico: 1, importado: 1, dataRomaneio: -1 });
 
 export const PedidoModel = mongoose.model('Pedido', pedidoSchema, 'pedido');

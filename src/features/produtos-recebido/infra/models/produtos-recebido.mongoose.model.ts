@@ -9,6 +9,8 @@ const produtosRecebidoSchema = new mongoose.Schema(
   { timestamps: false, versionKey: false },
 );
 
+produtosRecebidoSchema.index({ importado: 1, dataRomaneio: -1 });
+
 export const ProdutosRecebidoModel = mongoose.model(
   'ProdutosRecebido',
   produtosRecebidoSchema,
