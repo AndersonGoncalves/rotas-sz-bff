@@ -1,302 +1,194 @@
 {
-  "04be5d3628913cfe71dcbaf4": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "04be5d3628913cfe71dcbaf4",
-    "importado": true
-  },
-  "154615945701b45571e41a7f": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "154615945701b45571e41a7f",
-    "importado": true
-  },
-  "16cdf6862df6de7d3add02ef": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "16cdf6862df6de7d3add02ef",
-    "importado": true
-  },
-  "1e3f1d7066195f613ac6372c": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-27T00:00:00.000",
-    "id": "1e3f1d7066195f613ac6372c",
-    "importado": true
-  },
-  "285cd141c8fee0b080e5bcee": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "285cd141c8fee0b080e5bcee",
-    "importado": true
-  },
-  "2977acb1b49ea34ff86314e2": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-27T00:00:00.000",
-    "id": "2977acb1b49ea34ff86314e2",
-    "importado": true
-  },
-  "2da70e61f8cfa1789a052c02": {
+  "0b20e227c7027060b81c67d8": {
     "codigoTecnico": "2023",
-    "dataRomaneio": "2026-06-27T00:00:00.000",
-    "id": "2da70e61f8cfa1789a052c02",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "0b20e227c7027060b81c67d8",
     "importado": true
   },
-  "3c1415b4d6c6f8f828a668b7": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "3c1415b4d6c6f8f828a668b7",
-    "importado": true
-  },
-  "5486a41abef3bf493df6cec6": {
+  "0f5e08e7fc73b07c7499913a": {
     "codigoTecnico": "286",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "5486a41abef3bf493df6cec6",
-    "importado": true
-  },
-  "5750a20d23e25a91d97dd747": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "5750a20d23e25a91d97dd747",
-    "importado": true
-  },
-  "5f2138afc80f2e7e0fc1005a": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "5f2138afc80f2e7e0fc1005a",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "0f5e08e7fc73b07c7499913a",
     "importado": false
   },
-  "61d3f4a29cdd2ba0dd7ad1e1": {
+  "11eb85f63337872ffa18f072": {
+    "codigoTecnico": "1976",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "11eb85f63337872ffa18f072",
+    "importado": false
+  },
+  "18f91a49d595db93695d1e39": {
+    "codigoTecnico": "1894",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "18f91a49d595db93695d1e39",
+    "importado": true
+  },
+  "1fe000e806318a206be9e688": {
+    "codigoTecnico": "1894",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "1fe000e806318a206be9e688",
+    "importado": true
+  },
+  "2dbf6b50acfd67cf968a86a1": {
+    "codigoTecnico": "1976",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "2dbf6b50acfd67cf968a86a1",
+    "importado": true
+  },
+  "2edd9b1515fb6f18439bb1d6": {
+    "codigoTecnico": "886",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "2edd9b1515fb6f18439bb1d6",
+    "importado": true
+  },
+  "31e92bb75c35678d3d1eea7c": {
+    "codigoTecnico": "1924",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "31e92bb75c35678d3d1eea7c",
+    "importado": true
+  },
+  "5142878697cefc2a660dcc62": {
+    "codigoTecnico": "1221",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "5142878697cefc2a660dcc62",
+    "importado": false
+  },
+  "5665d2edd19a91c880174fd9": {
+    "codigoTecnico": "1879",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "5665d2edd19a91c880174fd9",
+    "importado": true
+  },
+  "5e0bae176dc841480491f6ce": {
+    "codigoTecnico": "1976",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "5e0bae176dc841480491f6ce",
+    "importado": true
+  },
+  "65c0d9626b2d50d63f74530e": {
+    "codigoTecnico": "1879",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "65c0d9626b2d50d63f74530e",
+    "importado": false
+  },
+  "755bbe547f0540a0090b0141": {
+    "codigoTecnico": "286",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "755bbe547f0540a0090b0141",
+    "importado": true
+  },
+  "7887a1522ace825dc358d6c5": {
+    "codigoTecnico": "1852",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "7887a1522ace825dc358d6c5",
+    "importado": true
+  },
+  "8628447c403b1d7f77081f60": {
+    "codigoTecnico": "1852",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "8628447c403b1d7f77081f60",
+    "importado": true
+  },
+  "884db08de9aeb41770c993fc": {
+    "codigoTecnico": "886",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "884db08de9aeb41770c993fc",
+    "importado": false
+  },
+  "8dd74cefac3d4c9eace22b9f": {
+    "codigoTecnico": "1221",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "8dd74cefac3d4c9eace22b9f",
+    "importado": true
+  },
+  "967d1d0e3f84cb018303c9f1": {
+    "codigoTecnico": "1221",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "967d1d0e3f84cb018303c9f1",
+    "importado": true
+  },
+  "aeb0aa8969173e797bac0679": {
+    "codigoTecnico": "1852",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "aeb0aa8969173e797bac0679",
+    "importado": false
+  },
+  "b6db60a853ca8cd9914ed074": {
+    "codigoTecnico": "1879",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "b6db60a853ca8cd9914ed074",
+    "importado": true
+  },
+  "b9baac0403ae980046094339": {
+    "codigoTecnico": "886",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "b9baac0403ae980046094339",
+    "importado": true
+  },
+  "bbdaabc38877392b23eebbc1": {
+    "codigoTecnico": "286",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "bbdaabc38877392b23eebbc1",
+    "importado": true
+  },
+  "bd696820e2a67d66a01bedfd": {
+    "codigoTecnico": "1221",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "bd696820e2a67d66a01bedfd",
+    "importado": true
+  },
+  "c2c9f96071cd75e871949285": {
+    "codigoTecnico": "1894",
+    "dataRomaneio": "2026-07-03T00:00:00.000",
+    "id": "c2c9f96071cd75e871949285",
+    "importado": false
+  },
+  "c4487c77d94ee92307b6e740": {
+    "codigoTecnico": "1879",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "c4487c77d94ee92307b6e740",
+    "importado": true
+  },
+  "c7a551f6e5705fe3e840a2e2": {
+    "codigoTecnico": "286",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "c7a551f6e5705fe3e840a2e2",
+    "importado": true
+  },
+  "c9885a82a6efaf29e776ce32": {
+    "codigoTecnico": "1924",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "c9885a82a6efaf29e776ce32",
+    "importado": true
+  },
+  "d0191fc505a16d164827935a": {
+    "codigoTecnico": "886",
+    "dataRomaneio": "2026-06-30T00:00:00.000",
+    "id": "d0191fc505a16d164827935a",
+    "importado": true
+  },
+  "d1483eb318971846f4846f75": {
+    "codigoTecnico": "1976",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "d1483eb318971846f4846f75",
+    "importado": true
+  },
+  "e032a7b961bed2ce293a5dce": {
+    "codigoTecnico": "1924",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "e032a7b961bed2ce293a5dce",
+    "importado": true
+  },
+  "e4c45ab5a852940c53db78ef": {
     "codigoTecnico": "2023",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "61d3f4a29cdd2ba0dd7ad1e1",
+    "dataRomaneio": "2026-07-01T00:00:00.000",
+    "id": "e4c45ab5a852940c53db78ef",
     "importado": true
   },
-  "72f0cddad3d35861ae6c3c87": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-27T00:00:00.000",
-    "id": "72f0cddad3d35861ae6c3c87",
-    "importado": true
-  },
-  "736360cf72d81ce89dd87487": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "736360cf72d81ce89dd87487",
-    "importado": true
-  },
-  "75fbc136424193ed8325ef3b": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "75fbc136424193ed8325ef3b",
-    "importado": true
-  },
-  "7c251901ff8da97dfc72bf24": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "7c251901ff8da97dfc72bf24",
-    "importado": true
-  },
-  "7d451abb7fd025922cf0eea2": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "7d451abb7fd025922cf0eea2",
-    "importado": true
-  },
-  "886703ac6c499e7e832b2a4e": {
-    "codigoTecnico": "286",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "886703ac6c499e7e832b2a4e",
-    "importado": true
-  },
-  "8a519f2272aa749bebcd7dbb": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-27T00:00:00.000",
-    "id": "8a519f2272aa749bebcd7dbb",
-    "importado": true
-  },
-  "8d7ace8c9afb37be2b1da112": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "8d7ace8c9afb37be2b1da112",
-    "importado": true
-  },
-  "908b86161f00e036e2b4b984": {
-    "codigoTecnico": "2023",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "908b86161f00e036e2b4b984",
-    "importado": false
-  },
-  "91409756a350df5a8e8f1c2b": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-27T00:00:00.000",
-    "id": "91409756a350df5a8e8f1c2b",
-    "importado": true
-  },
-  "958c93907a2e241ff2b457f6": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "958c93907a2e241ff2b457f6",
-    "importado": true
-  },
-  "95f64250a1f094b642497a01": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "95f64250a1f094b642497a01",
-    "importado": false
-  },
-  "971c5d3311ddd5f87cdd1ded": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "971c5d3311ddd5f87cdd1ded",
-    "importado": true
-  },
-  "9e03d43182e5e1e1c310bee8": {
+  "f05a5680092ec3c12b355db2": {
     "codigoTecnico": "1852",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "9e03d43182e5e1e1c310bee8",
-    "importado": true
-  },
-  "9f2c9d17ede74b2b9ff48cc4": {
-    "codigoTecnico": "2023",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "9f2c9d17ede74b2b9ff48cc4",
-    "importado": true
-  },
-  "a1d1acfd29f17f4418dda472": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "a1d1acfd29f17f4418dda472",
-    "importado": true
-  },
-  "a33be139688c1cfe98c5d03c": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "a33be139688c1cfe98c5d03c",
-    "importado": false
-  },
-  "a782ac0f437279c52b60d1e6": {
-    "codigoTecnico": "1852",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "a782ac0f437279c52b60d1e6",
-    "importado": true
-  },
-  "b6315d15cfa88b114b4ed95f": {
-    "codigoTecnico": "1852",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "b6315d15cfa88b114b4ed95f",
-    "importado": true
-  },
-  "b653afaeb753d7478f2e5421": {
-    "codigoTecnico": "286",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "b653afaeb753d7478f2e5421",
-    "importado": true
-  },
-  "bd26072780774d78f0ac08d9": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "bd26072780774d78f0ac08d9",
-    "importado": true
-  },
-  "c1b4bd532d3e599286503eba": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "c1b4bd532d3e599286503eba",
-    "importado": true
-  },
-  "c99460698de1aae3159bb71a": {
-    "codigoTecnico": "886",
-    "dataRomaneio": "2026-06-24T00:00:00.000",
-    "id": "c99460698de1aae3159bb71a",
-    "importado": true
-  },
-  "cc6825400c136ff31a0a2a7e": {
-    "codigoTecnico": "1852",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "cc6825400c136ff31a0a2a7e",
-    "importado": true
-  },
-  "d15d5262f60e3ee0f6e6fb2b": {
-    "codigoTecnico": "1852",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "d15d5262f60e3ee0f6e6fb2b",
-    "importado": true
-  },
-  "d3830c772f3a2920eeb09a2e": {
-    "codigoTecnico": "286",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "d3830c772f3a2920eeb09a2e",
-    "importado": true
-  },
-  "d58b7003efcab6b34b75e25e": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "d58b7003efcab6b34b75e25e",
-    "importado": true
-  },
-  "d73353ff390657487849b12a": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "d73353ff390657487849b12a",
-    "importado": false
-  },
-  "dcf21d588b09162bc95ebd7b": {
-    "codigoTecnico": "1221",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "dcf21d588b09162bc95ebd7b",
-    "importado": true
-  },
-  "dea190d01b462b3de9aa29fe": {
-    "codigoTecnico": "286",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "dea190d01b462b3de9aa29fe",
-    "importado": true
-  },
-  "dfaf3a1593a5b8e70ad9ceff": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "dfaf3a1593a5b8e70ad9ceff",
-    "importado": true
-  },
-  "e0ae614f247aa4fb49683425": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-25T00:00:00.000",
-    "id": "e0ae614f247aa4fb49683425",
-    "importado": true
-  },
-  "e15d731acc008bfd74b73ab3": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "e15d731acc008bfd74b73ab3",
-    "importado": false
-  },
-  "e6433dee55a0b23f29802532": {
-    "codigoTecnico": "1924",
-    "dataRomaneio": "2026-06-23T00:00:00.000",
-    "id": "e6433dee55a0b23f29802532",
-    "importado": true
-  },
-  "edd36be44bbe425142e57530": {
-    "codigoTecnico": "286",
-    "dataRomaneio": "2026-06-29T00:00:00.000",
-    "id": "edd36be44bbe425142e57530",
-    "importado": false
-  },
-  "f503299458237d3f9540290f": {
-    "codigoTecnico": "1879",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "f503299458237d3f9540290f",
-    "importado": true
-  },
-  "f84ba9a62b2d407994a94543": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-26T00:00:00.000",
-    "id": "f84ba9a62b2d407994a94543",
-    "importado": true
-  },
-  "fa10e11136899be347a12235": {
-    "codigoTecnico": "1976",
-    "dataRomaneio": "2026-06-22T00:00:00.000",
-    "id": "fa10e11136899be347a12235",
+    "dataRomaneio": "2026-07-02T00:00:00.000",
+    "id": "f05a5680092ec3c12b355db2",
     "importado": true
   }
 }
