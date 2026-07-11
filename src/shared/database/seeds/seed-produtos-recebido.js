@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const urlArg = process.argv[3] || 'http://localhost:3001';
+// Aceita data e url em qualquer ordem — o PowerShell pode descartar "" ao repassar argumentos.
+const rawArgs = process.argv.slice(2).filter(Boolean);
+const urlArg = rawArgs.find((a) => a.startsWith('http')) || 'http://localhost:3001';
+const dataArg = rawArgs.find((a) => a !== urlArg) || null;
 const BASE_URL = `${urlArg}/produtos_recebido`;
 
-const dataArg = process.argv[2] || null;
 const dataRomaneioOverride = dataArg ? `${dataArg}T00:00:00.000` : null;
 
 const JSON_PATH = path.join(__dirname, 'dados', 'rotas-sz-default-rtdb-produtos_recebido-export.json');

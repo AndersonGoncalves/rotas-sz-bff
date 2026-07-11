@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const urlArg = process.argv[3] || 'http://localhost:3001';
+// Aceita data e url em qualquer ordem — o PowerShell pode descartar "" ao repassar argumentos.
+const rawArgs = process.argv.slice(2).filter(Boolean);
+const urlArg = rawArgs.find((a) => a.startsWith('http')) || 'http://localhost:3001';
+const dataArg = rawArgs.find((a) => a !== urlArg) || null;
 
 const BASE_URL = `${urlArg}/pedido`;
 
-const dataArg = process.argv[2] || null;
 const dataRomaneioOverride = dataArg ? `${dataArg}T00:00:00.000` : null;
 
 const JSON_PATH = path.join(__dirname, 'dados', 'rotas-sz-default-rtdb-pedido-export.json');
@@ -16,10 +18,10 @@ function extractPedidos() {
   return Object.entries(raw).map(([key, pedido]) => ({ ...pedido, id: pedido.id || key }));
 }
 
-async function checkDuplicates(items) {
+async function findDatasBloqueadas(items) {
   try {
     const res = await fetch(BASE_URL);
-    if (!res.ok) return;
+    if (!res.ok) return new Set();
     const existing = await res.json();
     const list = Array.isArray(existing) ? existing : [];
 
@@ -27,17 +29,17 @@ async function checkDuplicates(items) {
       ? [dataArg]
       : [...new Set(items.map((p) => (p.dataRomaneio || '').substring(0, 10)).filter(Boolean))];
 
+    const bloqueadas = new Set();
     for (const dt of datasParaChecar) {
       const existentes = list.filter((item) => (item.dataRomaneio || '').startsWith(dt));
       if (existentes.length > 0) {
-        console.error(
-          `[!] Já existem ${existentes.length} pedido(s) com dataRomaneio ${dt}. Abortando.`,
-        );
-        process.exit(1);
+        console.log(`[i] Já existem ${existentes.length} pedido(s) com dataRomaneio ${dt}. Pulando essa data.`);
+        bloqueadas.add(dt);
       }
     }
+    return bloqueadas;
   } catch {
-    /* API inacessível — prossegue */
+    return new Set();
   }
 }
 
@@ -63,8 +65,17 @@ async function put(pedido, index) {
 }
 
 async function main() {
-  const items = extractPedidos();
-  await checkDuplicates(items);
+  const all = extractPedidos();
+  const datasBloqueadas = await findDatasBloqueadas(all);
+
+  const items = dataArg
+    ? (datasBloqueadas.has(dataArg) ? [] : all)
+    : all.filter((p) => !datasBloqueadas.has((p.dataRomaneio || '').substring(0, 10)));
+
+  if (items.length === 0) {
+    console.log('\nNenhum pedido novo para inserir (todas as datas já existem).');
+    return;
+  }
 
   if (dataRomaneioOverride) {
     console.log(`Data romaneio : ${dataRomaneioOverride}`);
@@ -74,7 +85,9 @@ async function main() {
     ];
     console.log(`Datas romaneio: ${datas.join(', ')}`);
   }
-  console.log(`Pedidos: ${items.length}\n`);
+  console.log(
+    `Pedidos: ${items.length}/${all.length}${all.length - items.length > 0 ? ` (${all.length - items.length} pulado(s) por data já existente)` : ''}\n`,
+  );
 
   const results = await Promise.all(items.map((p, i) => put(p, i)));
   const ok = results.filter(Boolean).length;

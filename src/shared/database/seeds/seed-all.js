@@ -1,8 +1,10 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 
-const dataArg = process.argv[2] || null;
-const urlArg = process.argv[3] || null;
+// Aceita data e url em qualquer ordem — o PowerShell pode descartar "" ao repassar argumentos.
+const rawArgs = process.argv.slice(2).filter(Boolean);
+const urlArg = rawArgs.find((a) => a.startsWith('http')) || null;
+const dataArg = rawArgs.find((a) => a !== urlArg) || null;
 
 // Seeds que aceitam data opcional como argumento (data=argv[2], url=argv[3])
 const seedsComData = ['seed-pedidos.js', 'seed-produtos-entregue.js', 'seed-produtos-recebido.js'];
