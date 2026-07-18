@@ -74,17 +74,17 @@ node seed-motivos-situacao.js
 
 ## Referência de endpoints
 
-| Arquivo (dentro de `dados/`) | Seed | Endpoint |
-| ---------------------------- | ---- | -------- |
-| `rotas-sz-default-rtdb-pedido-export.json` | `seed-pedidos.js` | `PUT /pedido/:id` |
-| `rotas-sz-default-rtdb-produtos_entregue-export.json` | `seed-produtos-entregue.js` | `POST /produtos_entregue` |
-| `rotas-sz-default-rtdb-produtos_recebido-export.json` | `seed-produtos-recebido.js` | `POST /produtos_recebido` |
-| `rotas-sz-default-rtdb-pendencia-export.json` | `seed-pendencias.js` | `POST /pendencia` |
-| `rotas-sz-default-rtdb-checklist_assistencia-export.json` | `seed-checklist-assistencia.js` | `POST /checklist_assistencia` |
+| Arquivo (dentro de `dados/`)                                           | Seed                                         | Endpoint                                   |
+| ---------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------ |
+| `rotas-sz-default-rtdb-pedido-export.json`                             | `seed-pedidos.js`                            | `PUT /pedido/:id`                          |
+| `rotas-sz-default-rtdb-produtos_entregue-export.json`                  | `seed-produtos-entregue.js`                  | `POST /produtos_entregue`                  |
+| `rotas-sz-default-rtdb-produtos_recebido-export.json`                  | `seed-produtos-recebido.js`                  | `POST /produtos_recebido`                  |
+| `rotas-sz-default-rtdb-pendencia-export.json`                          | `seed-pendencias.js`                         | `POST /pendencia`                          |
+| `rotas-sz-default-rtdb-checklist_assistencia-export.json`              | `seed-checklist-assistencia.js`              | `POST /checklist_assistencia`              |
 | `rotas-sz-default-rtdb-checklist_assistencia_agua_natural-export.json` | `seed-checklist-assistencia-agua-natural.js` | `POST /checklist_assistencia_agua_natural` |
-| `rotas-sz-default-rtdb-funcionarios-export.json` | `seed-funcionarios.js` | `POST /funcionarios` |
-| `rotas-sz-default-rtdb-motivos_retorno-export.json` | `seed-motivos-retorno.js` | `POST /motivos-retorno` |
-| `rotas-sz-default-rtdb-motivos_situacao-export.json` | `seed-motivos-situacao.js` | `POST /motivos-situacao` |
+| `rotas-sz-default-rtdb-funcionarios-export.json`                       | `seed-funcionarios.js`                       | `POST /funcionarios`                       |
+| `rotas-sz-default-rtdb-motivos_retorno-export.json`                    | `seed-motivos-retorno.js`                    | `POST /motivos-retorno`                    |
+| `rotas-sz-default-rtdb-motivos_situacao-export.json`                   | `seed-motivos-situacao.js`                   | `POST /motivos-situacao`                   |
 
 ---
 
@@ -108,7 +108,7 @@ Exemplos:
 node seed-all.js 2026-06-24
 node seed-all.js "" http://192.168.1.100:3001
 node seed-pedidos.js 2026-06-24 http://192.168.1.100:3001
-node seed-funcionarios.js http://192.168.1.100:3001
+node seed-funcionarios.js
 ```
 
 ---
@@ -118,3 +118,33 @@ node seed-funcionarios.js http://192.168.1.100:3001
 - Todos os scripts enviam as requisições em paralelo.
 - Cada linha do terminal mostra `✓` (sucesso) ou `✗` (erro) com status HTTP para cada registro.
 - A URL padrão é `http://localhost:3001`. Passe outra URL para apontar para um servidor remoto.
+
+## Quando for iniciar o banco (rodar um script de cada vez)
+
+- Base SZ
+
+```
+node seed-funcionarios http://3.218.168.154:3001
+node seed-motivos-situacao http://3.218.168.154:3001
+node seed-motivos-retorno http://3.218.168.154:3001
+node seed-checklist-assistencia-agua-natural http://3.218.168.154:3001
+node seed-checklist-assistencia http://3.218.168.154:3001
+node seed-pedidos http://3.218.168.154:3001
+node seed-pendencias http://3.218.168.154:3001
+node seed-produtos-entregue http://3.218.168.154:3001
+node seed-produtos-recebido http://3.218.168.154:3001
+```
+
+- Base Anderson
+
+```
+node seed-funcionarios http://54.87.117.64:3001
+node seed-motivos-situacao http://54.87.117.64:3001
+node seed-motivos-retorno http://54.87.117.64:3001
+node seed-checklist-assistencia-agua-natural http://54.87.117.64:3001
+node seed-checklist-assistencia http://54.87.117.64:3001
+node seed-pedidos http://54.87.117.64:3001
+node seed-pendencias http://54.87.117.64:3001
+node seed-produtos-entregue http://54.87.117.64:3001
+node seed-produtos-recebido http://54.87.117.64:3001
+```

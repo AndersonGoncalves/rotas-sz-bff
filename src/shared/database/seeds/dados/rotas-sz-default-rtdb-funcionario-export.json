@@ -32,13 +32,6 @@
     "id": "",
     "nome": "Welton"
   },
-  "-OZQPkH-iJbz5D90pmUU": {
-    "codigoExterno": "1712",
-    "email": "Cleilson@superzon.com.br",
-    "funcao": "Técnico",
-    "id": "",
-    "nome": "Cleilson"
-  },
   "-OZQQ43UcM4q8ae-rZQm": {
     "codigoExterno": "1875",
     "email": "Eduardo@superzon.com.br",
@@ -190,14 +183,6 @@
     "funcao": "Logística",
     "id": "",
     "nome": "Aline"
-  },
-  "-OkjFpdHmw3FTu-mTDTY": {
-    "codigoExterno": "1866",
-    "email": "emerson@superzon.com.br",
-    "foto": "",
-    "funcao": "Técnico",
-    "id": "",
-    "nome": "Emerson"
   },
   "-Ol6_RM6FLqHx89bXS8w": {
     "codigoExterno": "239",
@@ -478,5 +463,12 @@
     "funcao": "Técnico",
     "id": "-Or-hBwUczSVJyxzXhOm",
     "nome": "Samuel Oliveira "
+  },
+  "-OxeYsWBYZ0am1xiBkr6": {
+    "codigoExterno": "247",
+    "email": "leilaricardo.spj@gmail.com",
+    "funcao": "Comercial",
+    "id": "",
+    "nome": "Leila ricardo"
   }
 }
