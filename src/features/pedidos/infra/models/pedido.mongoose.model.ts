@@ -4,6 +4,8 @@ const produtoSchema = new mongoose.Schema(
   {
     id: { type: String, default: '' },
     idProduto: { type: String, default: '' },
+    variacaoProdutoId: { type: String, default: '' },
+    servicoId: { type: String, default: '' },
     idPedido: { type: String, default: '' },
     codigoPedido: { type: String, default: '' },
     codigoProduto: { type: String, default: '' },
@@ -11,6 +13,9 @@ const produtoSchema = new mongoose.Schema(
     quantidade: { type: Number, default: 0 },
     precoUnitario: { type: Number, default: 0 },
     precoMinimo: { type: Number, default: 0 },
+    desconto: { type: Number, default: 0 },
+    devolvido: { type: Number, default: 0 },
+    devolucaoLancada: { type: Boolean, default: null },
     situacaoRomaneio: { type: String, default: '' },
   },
   { _id: false },
