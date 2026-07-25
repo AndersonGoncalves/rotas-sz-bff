@@ -1,8 +1,8 @@
 services:
   api:
-    build: .          # usa o Dockerfile que você criou no Passo 1
+    build: .
     ports:
-      - "3001:3001"   # expõe a porta 3001 para fora do container
+      - "3001:3001"
     env_file:
       - .env
     environment:
@@ -13,13 +13,19 @@ services:
       mongo:
         condition: service_healthy
     restart: unless-stopped
+    # Proteção contra acúmulo de logs no disco
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   mongo:
-    image: mongo:7    # baixa a imagem oficial do MongoDB
+    image: mongo:7
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db   # salva os dados fora do container
+      - mongo_data:/data/db
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
@@ -29,6 +35,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    # Proteção contra acúmulo de logs no disco
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
-  mongo_data:   # volume nomeado: dados persistem mesmo se o container for recriado
+  mongo_data:
