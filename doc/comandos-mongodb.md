@@ -71,6 +71,29 @@ db.getCollection("pedido").find({ observacao: { $exists: false } })
 db.getCollection("pedido").find({ observacao: null }) // pega null OU inexistente
 db.getCollection("pedido").find({ observacao: { $eq: null, $exists: true } }) // só null
 
+// Pedidos de uma data específica em que o cliente tem celular preenchido (existe e não é vazio)
+db.getCollection("pedido").find({
+  dataRomaneio: '2026-07-31T00:00:00',
+  "cliente.celular": { $exists: true, $ne: null, $ne: "" }
+})
+// Busca pedidos com dataRomaneio igual ao valor exato informado e onde cliente.celular
+// existe, não é null e não é string vazia — ou seja, retorna apenas pedidos daquele dia
+// que possuem um celular de contato válido.
+// Atenção: assim como no exemplo de chaves repetidas acima, { $ne: null, $ne: "" } tem a
+// chave $ne duplicada no mesmo objeto. Em JS/mongosh a segunda sobrescreve a primeira, então
+// na prática a condição executada é só { $exists: true, $ne: "" } (o $ne: null é ignorado).
+// Isso funciona "por acaso" porque documentos sem o campo já são excluídos pelo $exists: true,
+// mas se cliente.celular pudesse existir com valor null, ele passaria no filtro.
+// Forma correta e explícita, sem depender de chave duplicada:
+db.getCollection("pedido").find({
+  dataRomaneio: '2026-07-31T00:00:00',
+  $and: [
+    { "cliente.celular": { $exists: true } },
+    { "cliente.celular": { $ne: null } },
+    { "cliente.celular": { $ne: "" } }
+  ]
+})
+
 // Contém texto (like)
 db.getCollection("pedido").find({ nome: { $regex: "texto", $options: "i" } })
 
