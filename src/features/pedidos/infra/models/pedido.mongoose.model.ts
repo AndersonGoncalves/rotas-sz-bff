@@ -50,6 +50,7 @@ const pedidoSchema = new mongoose.Schema(
     fotos: { type: [String], default: [] },
     frete: { type: Number, default: 0 },
     horaInstalacao: { type: String, default: '' },
+    horarioPrevistoAtendimento: { type: String, default: null },
     idCliente: { type: String, default: '' },
     index: { type: Number, default: 0 },
     lancado: { type: Boolean, default: null },

@@ -46,6 +46,7 @@ export interface IPedido {
   turno: string;
   pedidoTeste: string;
   index?: number;
+  horarioPrevistoAtendimento?: string | null;
   cliente?: Record<string, any> | null;
   produtos?: ICarrinho[] | null;
   servicos?: ICarrinho[] | null;
