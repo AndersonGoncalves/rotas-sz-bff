@@ -31,6 +31,8 @@ export class PedidoMongooseRepository implements IPedidoRepository {
       pedidoTeste: doc.pedidoTeste,
       index: doc.index,
       horarioPrevistoAtendimento: doc.horarioPrevistoAtendimento,
+      distanciaPercorridaMetros: doc.distanciaPercorridaMetros,
+      duracaoPercorridaSegundos: doc.duracaoPercorridaSegundos,
       cliente: doc.cliente,
       produtos: doc.produtos,
       servicos: doc.servicos,

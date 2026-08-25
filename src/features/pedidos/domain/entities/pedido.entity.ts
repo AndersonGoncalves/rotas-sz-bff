@@ -47,6 +47,8 @@ export interface IPedido {
   pedidoTeste: string;
   index?: number;
   horarioPrevistoAtendimento?: string | null;
+  distanciaPercorridaMetros?: number | null;
+  duracaoPercorridaSegundos?: number | null;
   cliente?: Record<string, any> | null;
   produtos?: ICarrinho[] | null;
   servicos?: ICarrinho[] | null;

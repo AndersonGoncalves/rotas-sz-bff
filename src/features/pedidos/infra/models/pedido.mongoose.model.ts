@@ -46,6 +46,8 @@ const pedidoSchema = new mongoose.Schema(
     dataRomaneio: { type: String, default: '' },
     dataVisita: { type: String, default: '' },
     desconto: { type: Number, default: 0 },
+    distanciaPercorridaMetros: { type: Number, default: null },
+    duracaoPercorridaSegundos: { type: Number, default: null },
     enderecoCobranca: { type: String, default: '' },
     fotos: { type: [String], default: [] },
     frete: { type: Number, default: 0 },
