@@ -49,6 +49,8 @@ export interface IPedido {
   horarioPrevistoAtendimento?: string | null;
   distanciaPercorridaMetros?: number | null;
   duracaoPercorridaSegundos?: number | null;
+  horarioInicioReal?: string | null;
+  horarioFimReal?: string | null;
   cliente?: Record<string, any> | null;
   produtos?: ICarrinho[] | null;
   servicos?: ICarrinho[] | null;
