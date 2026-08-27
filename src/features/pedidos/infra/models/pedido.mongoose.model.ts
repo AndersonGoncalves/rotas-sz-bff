@@ -56,6 +56,7 @@ const pedidoSchema = new mongoose.Schema(
     horarioInicioReal: { type: String, default: null },
     horarioPrevistoAtendimento: { type: String, default: null },
     idCliente: { type: String, default: '' },
+    origemRoteirizacao: { type: String, default: null },
     index: { type: Number, default: 0 },
     lancado: { type: Boolean, default: null },
     lancadoComercial: { type: Boolean, default: null },

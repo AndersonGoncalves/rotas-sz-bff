@@ -71,6 +71,7 @@ export class PedidosController extends BaseRouter {
           duracaoPercorridaSegundos: body.duracaoPercorridaSegundos ?? null,
           horarioInicioReal: body.horarioInicioReal ?? null,
           horarioFimReal: body.horarioFimReal ?? null,
+          origemRoteirizacao: body.origemRoteirizacao ?? null,
           cliente: body.cliente ?? null,
           produtos: body.produtos ?? null,
           servicos: body.servicos ?? null,
