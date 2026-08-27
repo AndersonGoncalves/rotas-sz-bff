@@ -55,6 +55,7 @@ const pedidoSchema = new mongoose.Schema(
     horarioFimReal: { type: String, default: null },
     horarioInicioReal: { type: String, default: null },
     horarioPrevistoAtendimento: { type: String, default: null },
+    destinoRoteirizacao: { type: String, default: null },
     idCliente: { type: String, default: '' },
     origemRoteirizacao: { type: String, default: null },
     index: { type: Number, default: 0 },

@@ -52,6 +52,7 @@ export interface IPedido {
   horarioInicioReal?: string | null;
   horarioFimReal?: string | null;
   origemRoteirizacao?: string | null;
+  destinoRoteirizacao?: string | null;
   cliente?: Record<string, any> | null;
   produtos?: ICarrinho[] | null;
   servicos?: ICarrinho[] | null;
