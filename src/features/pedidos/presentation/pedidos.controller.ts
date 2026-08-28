@@ -73,6 +73,7 @@ export class PedidosController extends BaseRouter {
           horarioFimReal: body.horarioFimReal ?? null,
           origemRoteirizacao: body.origemRoteirizacao ?? null,
           destinoRoteirizacao: body.destinoRoteirizacao ?? null,
+          origemDiaRoteirizacao: body.origemDiaRoteirizacao ?? null,
           cliente: body.cliente ?? null,
           produtos: body.produtos ?? null,
           servicos: body.servicos ?? null,
