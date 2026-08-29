@@ -1,5 +1,6 @@
 import * as restify from 'restify';
 import { MongooseConnection } from '../database/mongoose.connection';
+import { backfillFuncionarioRoteirizacaoDefaults } from '../database/migrations/backfill-funcionario-roteirizacao-defaults';
 import { handleError } from './error.handler';
 import { BaseRouter } from '../router/base.router';
 import { environment } from '../config/environment';
@@ -55,8 +56,18 @@ export class Server {
     const db = new MongooseConnection();
     return db
       .connect()
-      .then(() => {
+      .then(async () => {
         console.log(`[DB] Conectado ao MongoDB: ${environment.db.url}`);
+
+        // Falha na migração não deve derrubar o boot do servidor — só
+        // registra e segue (os campos ficam `null` até a próxima subida,
+        // quando a migração roda de novo e tenta preencher de novo).
+        try {
+          await backfillFuncionarioRoteirizacaoDefaults();
+        } catch (err) {
+          console.error('[Migration] Erro ao preencher defaults de roteirização do funcionário:', err);
+        }
+
         return new Promise<Server>((resolve) => {
           this.application.listen(environment.server.port, () => {
             console.log(`[Server] ${this.application.name} rodando na porta ${environment.server.port}`);

@@ -11,6 +11,13 @@ export class FuncionarioMongooseRepository implements IFuncionarioRepository {
       nome: doc.nome,
       email: doc.email,
       assinatura: doc.assinatura,
+      origemRotaPadrao: doc.origemRotaPadrao,
+      enderecoEmpresaRota: doc.enderecoEmpresaRota,
+      destinoRotaPadrao: doc.destinoRotaPadrao,
+      enderecoFinalRota: doc.enderecoFinalRota,
+      modoTransporteRota: doc.modoTransporteRota,
+      tempoMedioAtendimentoMinutos: doc.tempoMedioAtendimentoMinutos,
+      consumoMedioKmPorLitro: doc.consumoMedioKmPorLitro,
     };
   }
 

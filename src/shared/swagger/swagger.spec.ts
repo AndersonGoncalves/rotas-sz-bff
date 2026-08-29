@@ -955,6 +955,36 @@ export const swaggerSpec = {
           nome: { type: 'string' },
           email: { type: 'string', format: 'email' },
           assinatura: { type: 'string' },
+          origemRotaPadrao: {
+            type: 'string',
+            enum: ['atual', 'empresa'],
+            nullable: true,
+            default: 'atual',
+          },
+          enderecoEmpresaRota: {
+            type: 'string',
+            nullable: true,
+            default: 'Av. Duque de Caxias, 68, Centro Fortaleza - CE',
+          },
+          destinoRotaPadrao: {
+            type: 'string',
+            enum: ['mesmo_da_partida', 'empresa'],
+            nullable: true,
+            default: 'empresa',
+          },
+          enderecoFinalRota: {
+            type: 'string',
+            nullable: true,
+            default: 'Av. Duque de Caxias, 68, Centro Fortaleza - CE',
+          },
+          modoTransporteRota: {
+            type: 'string',
+            enum: ['carro', 'moto', 'a_pe', 'transporte_publico'],
+            nullable: true,
+            default: 'moto',
+          },
+          tempoMedioAtendimentoMinutos: { type: 'number', nullable: true, default: 15 },
+          consumoMedioKmPorLitro: { type: 'number', nullable: true, default: 10.0 },
         },
       },
       FuncionarioInput: {
@@ -966,6 +996,36 @@ export const swaggerSpec = {
           nome: { type: 'string' },
           email: { type: 'string', format: 'email' },
           assinatura: { type: 'string' },
+          origemRotaPadrao: {
+            type: 'string',
+            enum: ['atual', 'empresa'],
+            nullable: true,
+            default: 'atual',
+          },
+          enderecoEmpresaRota: {
+            type: 'string',
+            nullable: true,
+            default: 'Av. Duque de Caxias, 68, Centro Fortaleza - CE',
+          },
+          destinoRotaPadrao: {
+            type: 'string',
+            enum: ['mesmo_da_partida', 'empresa'],
+            nullable: true,
+            default: 'empresa',
+          },
+          enderecoFinalRota: {
+            type: 'string',
+            nullable: true,
+            default: 'Av. Duque de Caxias, 68, Centro Fortaleza - CE',
+          },
+          modoTransporteRota: {
+            type: 'string',
+            enum: ['carro', 'moto', 'a_pe', 'transporte_publico'],
+            nullable: true,
+            default: 'moto',
+          },
+          tempoMedioAtendimentoMinutos: { type: 'number', nullable: true, default: 15 },
+          consumoMedioKmPorLitro: { type: 'number', nullable: true, default: 10.0 },
         },
       },
       MotivoRetorno: {

@@ -28,11 +28,37 @@ export class FuncionariosController extends BaseRouter {
 
     application.post('/funcionarios', async (req, res, next) => {
       try {
-        const { funcao, nome, email, codigoExterno, assinatura } = req.body;
+        const {
+          funcao,
+          nome,
+          email,
+          codigoExterno,
+          assinatura,
+          origemRotaPadrao,
+          enderecoEmpresaRota,
+          destinoRotaPadrao,
+          enderecoFinalRota,
+          modoTransporteRota,
+          tempoMedioAtendimentoMinutos,
+          consumoMedioKmPorLitro,
+        } = req.body;
         if (!funcao || !nome) {
           return next(new BadRequestError('Campos obrigatórios: funcao, nome'));
         }
-        const created = await this.repo.create({ funcao, nome, email, codigoExterno, assinatura });
+        const created = await this.repo.create({
+          funcao,
+          nome,
+          email,
+          codigoExterno,
+          assinatura,
+          origemRotaPadrao,
+          enderecoEmpresaRota,
+          destinoRotaPadrao,
+          enderecoFinalRota,
+          modoTransporteRota,
+          tempoMedioAtendimentoMinutos,
+          consumoMedioKmPorLitro,
+        });
         res.json(201, { id: created.id });
         return next();
       } catch (e) {
