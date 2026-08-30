@@ -7,6 +7,7 @@ const funcionarioSchema = new mongoose.Schema(
     nome: { type: String, required: true },
     email: { type: String, default: '' },
     assinatura: { type: String, default: null },
+    whatsapp: { type: String, default: '' },
     // Preferências de roteirização do técnico (tela "Configurações" do
     // app) — os defaults abaixo são os mesmos que o app usava como padrão
     // via SharedPreferences antes dessa migração (ver `Preferencias` em

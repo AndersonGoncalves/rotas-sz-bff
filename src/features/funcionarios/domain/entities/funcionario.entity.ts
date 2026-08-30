@@ -5,6 +5,7 @@ export interface IFuncionario {
   nome: string;
   email?: string;
   assinatura?: string;
+  whatsapp?: string;
   // Preferências de roteirização do técnico — antes salvas só no
   // SharedPreferences do aparelho (perdidas ao trocar de dispositivo e
   // invisíveis para o gerente); ver tela "Configurações" do app.

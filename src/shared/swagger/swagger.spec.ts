@@ -955,6 +955,7 @@ export const swaggerSpec = {
           nome: { type: 'string' },
           email: { type: 'string', format: 'email' },
           assinatura: { type: 'string' },
+          whatsapp: { type: 'string', nullable: true },
           origemRotaPadrao: {
             type: 'string',
             enum: ['atual', 'empresa'],
@@ -996,6 +997,7 @@ export const swaggerSpec = {
           nome: { type: 'string' },
           email: { type: 'string', format: 'email' },
           assinatura: { type: 'string' },
+          whatsapp: { type: 'string', nullable: true },
           origemRotaPadrao: {
             type: 'string',
             enum: ['atual', 'empresa'],
